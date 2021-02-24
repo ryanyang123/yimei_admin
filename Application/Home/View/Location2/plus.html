@@ -1,0 +1,363 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        {$title} <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">{$title}</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#"><?php echo $is_edit?'修改'.$title:'新增'.$title;?></a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="form-horizontal">
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属地点分类</font></font></label>
+
+                                        <div class="controls">
+                                            <select name="type_id" id="type_id" style="line-height: 34px;height: 34px;">
+
+                                                <foreach name="type_list" item="v">
+                                                    <option <if condition="$list['type_id'] eq $v['id']"> selected </if> value="{$v.id}" >{$v.name}</option>
+                                                </foreach>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下车地点</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入下车地点" name="name"  value="{$list.name}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">价格</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="number" placeholder="请输入价格" name="price"  value="{$list.price}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+                                    <div class="form-actions">
+
+                                        <button type="button" id="js_btn" onclick="SubmitData()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<include file="common/tz"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    var parent_url = "<?php echo U('home/'.$at.'/index');?>";
+
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+    function ClearImg(){
+        $("#upload_kuang").addClass("dan_upload_img_div1");
+        $("#uploadImage").val('');
+        $('.on_img_btn').show();
+        $('.change_img_btn').hide();
+        $('.del_img_btn').hide();
+        $('#uploadPreview').html('');
+    }
+
+
+
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+    function UploadImg(){
+        var img = "";
+        var file = $("#uploadImage").val();
+        if(file==""){
+            SubmitData("");
+        }
+
+
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+
+                            SubmitData(img);
+                        }else{
+                            showAlert("图片上传失败");
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
+    function SubmitData(){
+        var name = $.trim($("*[name='name']").val());
+        var price = $.trim($("*[name='price']").val());
+        var type_id = $("#type_id").val();
+
+        if(!name){
+            showAlert("请输入下车地点");
+            return false;
+        }
+        if(!price){
+            showAlert("请输入价格");
+            return false;
+        }
+
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/add'); ?>",
+            data:{name:name,price:price,type_id:type_id,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

@@ -1,0 +1,389 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+        <div id="portlet-config" class="modal hide">
+
+            <div class="modal-header">
+
+                <button data-dismiss="modal" class="close" type="button"></button>
+
+                <h3>Widget Settings</h3>
+
+            </div>
+
+            <div class="modal-body">
+
+                Widget settings form goes here
+
+            </div>
+
+        </div>
+
+        <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+                    <!-- BEGIN STYLE CUSTOMIZER -->
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+                    <!-- END BEGIN STYLE CUSTOMIZER -->
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        数据 <small>统计数据</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#">数据</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+                <!-- BEGIN DASHBOARD STATS -->
+
+                <div class="row-fluid">
+
+                    <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+
+                        <div class="dashboard-stat blue">
+
+                            <div class="visual">
+
+                                <i class="icon-user"></i>
+
+                            </div>
+
+                            <div class="details">
+
+                                <div class="number">
+
+                                     {$zong_list.total_user}
+
+                                </div>
+
+                                <div class="desc">
+
+                                    总注册用户
+
+                                </div>
+
+                            </div>
+
+                            <a class="more" href="{:U('home/user/index')}">
+                                查看详细 <i class="m-icon-swapright m-icon-white"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+
+                        <div class="dashboard-stat yellow">
+
+                            <div class="visual">
+
+                                <i class="icon-group"></i>
+
+                            </div>
+
+                            <div class="details">
+
+                                <div class="number">{$zong_list.total_ticket}</div>
+
+                                <div class="desc">总优惠券数量</div>
+
+                            </div>
+
+                            <a class="more" href="{:U('home/ticket/index')}">
+
+                                查看详细 <i class="m-icon-swapright m-icon-white"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+
+                        <div class="dashboard-stat green">
+
+                            <div class="visual">
+
+                                <i class="icon-dashboard"></i>
+
+                            </div>
+
+                            <div class="details">
+
+                                <div class="number">{$zong_list.total_hos}</div>
+
+                                <div class="desc">总医院数量</div>
+
+                            </div>
+
+                            <a class="more" href="{:U('home/hospital/index')}">
+
+                                查看详细  <i class="m-icon-swapright m-icon-white"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="span3 responsive" data-tablet="span6  fix-offset" data-desktop="span3">
+
+                        <div class="dashboard-stat purple">
+
+                            <div class="visual">
+
+                                <i class="icon-globe"></i>
+
+                            </div>
+
+                            <div class="details">
+
+                                <div class="number">{$zong_list.total_blogs}</div>
+
+                                <div class="desc">总日志数</div>
+
+                            </div>
+
+                            <a class="more" href="{:U('home/blogs/index')}">
+
+                               查看详细 <i class="m-icon-swapright m-icon-white"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <!--<div class="row-fluid">
+
+                        <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
+
+                            <div class="dashboard-stat yellow">
+
+                                <div class="visual">
+
+                                    <i class="icon-bar-chart"></i>
+
+                                </div>
+
+                                <div class="details">
+
+
+
+                                    <div class="details">
+
+                                        <div class="number">{$bill_num}</div>
+
+                                        <div class="desc">统计数据</div>
+
+                                    </div>
+
+                                </div>
+
+                                <a class="more" href="{:U('home/bill/index')}">
+
+                                    查看详细 <i class="m-icon-swapright m-icon-white"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>-->
+
+                <!-- END DASHBOARD STATS -->
+
+                <div class="clearfix"></div>
+
+
+
+                <div class="clearfix"></div>
+
+
+                <div class="clearfix"></div>
+
+
+
+                <div class="clearfix"></div>
+
+
+
+                <div class="portlet box grey">
+
+                    <div class="portlet-title">
+
+                        <div class="caption"><i class="icon-coffee"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登录日志</font></font></div>
+
+                        <div class="tools">
+
+                            <a href="javascript:;" class="collapse"></a>
+
+                            <!--<a href="#portlet-config" data-toggle="modal" class="config"></a>-->
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body">
+
+                        <table class="table table-hover">
+
+                            <thead>
+
+                            <tr>
+
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">＃</font></font></th>
+
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">帐号</font></font></th>
+
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IP</font></font></th>
+
+
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登录时间</font></font></th>
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody>
+
+
+                            <foreach name="list" item="v" key="key">
+                            <tr>
+
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$key+1}</font></font></td>
+
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$v.name}</font></font></td>
+
+                                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$v.ip}</font></font></td>
+
+
+                                <td>{$v.create_time|date="Y-m-d H:i:s",###}</td>
+
+                            </tr>
+                            </foreach>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <div class="pagination pagination-right">
+                        <div class="page_div">
+                            <?php echo $page;?>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- END CONTAINER -->
+
+<!-- BEGIN FOOTER -->
+
+
+<include file="common/footer"/>
+    <include file="common/tz"/>
+
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+<!-- END BODY -->
+
+</html>

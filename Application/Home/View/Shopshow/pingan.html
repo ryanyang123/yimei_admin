@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>平安保险</title>
+    <style>
+        html,body{
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 100%;height: 100%;" >
+    <!--https://emcs.pa18.com/product/p_freeInsurance/index.html?key=51912230000000464980&appType=05#/-->
+    <iframe id="tabiframe0" class="tabiframe0"  style="width: 100%;height: 100%;" src="{$url}" frameborder="0">
+
+    </iframe>
+</div>
+
+</body>
+</html>
+<script src="__PUBLIC__/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script>
+    var now_type = "{$type}";
+    /*  window.onload = function() {
+          var iframe = document.getElementsByTagName("iframe")[0];
+          var win = iframe.contentWindow;  // 通过contentWindow获取ifame子页面的window窗体对象。(不允许跨域名访问)
+          console.log('------------');
+          console.log(win.action);
+          console.log('------------');
+          var iframeDocument = iframe.contentWindow.document;
+          var input1 = iframeDocument.getElementById("id1");
+          input1.onblur = function() {
+              //alert(11);
+          }
+      }*/
+
+    window.addEventListener('message',function(e){
+        const da = e.data;
+        console.log(da);
+        var json_arr = JSON.parse(da);
+
+        //var arr = json_arr.url.split('&');
+
+        /* if(json_arr.url.indexOf("payAmount=") >= 0 ) {
+             var res = '{"data":"'+json_arr.url+'","query":"'+json_arr.query+'"}';
+             //var app_arr =$.parseJSON(res);
+             SendAppData(res,'1');
+             return ;
+         }else{
+             if(json_arr.url.indexOf("mainApplyPolicyNo=") >= 0 ) {
+                 var res2 = '{"data":"'+json_arr.url+'","query":"'+json_arr.query+'"}';
+                 //var app_arr =$.parseJSON(res);
+                 SendAppData(res2,'2');
+                 return;
+             }
+         }*/
+
+        if(now_type!='4'){
+            if(json_arr.url.indexOf("mainApplyPolicyNo=") >= 0 ) {
+                var res2 = '{"data":"'+json_arr.url+'","query":"'+json_arr.query+'"}';
+                //var app_arr =$.parseJSON(res);
+                SendAppData(res2);
+                return;
+            }
+        }
+
+
+        /*console.log(arr);
+        console.log(123);
+        console.log(json_arr.url);
+        if(json_arr.test){
+            console.log(123);
+        }else{
+            console.log(999);
+        }*/
+    });
+
+    function SendAppData(data){
+        var order_id = '{$order_id}';
+        var type = '{$type}';
+        var user_id = '{$user_id}';
+        //var show_type = '{$show_type}';
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/GetInsuranceInfo'); ?>",
+            data:{data_val:data,user_id:user_id,order_id:order_id,type:type},
+            success: function (result) {
+                if(result.code == 1){
+                }else if(result.code==0){
+                }else{
+                }
+            }
+        });
+    }
+
+</script>

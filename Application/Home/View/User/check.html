@@ -1,0 +1,1671 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+<style>
+    .at_icon{
+        width: 30px;
+    }
+</style>
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        用户 <small>详细</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">{$title}</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#">{$list.name}</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+                <div class="row-fluid">
+
+                    <div class="span6">
+
+                        <!-- BEGIN SAMPLE TABLE PORTLET-->
+
+                        <div class="portlet">
+
+
+
+                            <div class="portlet-body">
+
+                                <table class="table table-striped table-bordered table-advance table-hover">
+
+                                    <thead>
+
+                                    <tr>
+
+                                        <th><i class="icon-briefcase"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 选项</font></font></th>
+
+                                        <th ><i class="icon-flag"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 数值</font></font></th>
+
+                                    </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户ID</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$list.id}</font></font></td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户昵称</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$list.name}</font></font></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户头像</font></font></a>
+                                        </td>
+                                        <td>
+                                            <a class="fancybox-button" data-rel="fancybox-button" title="" href="{$list.head}">
+                                                <img src="{$list.head}" class="img45" alt="">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">手机号</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$list.phone}</font></font></td>
+                                    </tr>
+
+
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地区</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$list.province}{$list.city}{$list.area}</font></font></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">等级</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">LV.{$list.level}</font></font></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">积分</font></font></a>
+                                        </td>
+                                        <td>
+                                            <a href="{:U('home/score/index/user_id/'.$list['id'])}" target="_blank">{$list.score}</a>
+
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">生日</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.birthday neq 0">
+                                                {$list.birthday|date="Y-m-d",###}
+                                                <else/>
+                                                -
+                                            </if>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">年龄</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.age neq 0">
+                                                {$list.age}
+                                                <else/>
+                                                -
+                                            </if>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支付宝账号</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.ali_user_id neq null">
+                                                <span style="color: green;">已绑定</span>
+                                                <else/>
+                                                未绑定
+                                            </if>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">性别</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.sex eq 1">
+                                                男
+                                            </if>
+                                            <if condition="$list.sex eq 2">
+                                                女
+                                            </if>
+                                            <if condition="$list.sex eq 0">
+                                                -
+                                            </if>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">推广二维码</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.code_qr neq null">
+                                                <a class="fancybox-button" data-rel="fancybox-button" title="" href="{$list.code_qr}">
+                                                    <img src="{$list.code_qr}" class="img45" alt="">
+                                                </a>
+                                                <a href="javascript:delCodeQr('{$list.id}')" class="btn red"><i class=" icon-remove"></i> 清空</a>
+
+                                                <else/>
+                                                未生成
+                                            </if>
+                                        </td>
+                                    </tr>
+
+
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是否代理</font></font></a>
+                                        </td>
+                                        <td>
+
+                                                <if condition="$list.is_agent eq 1 and $limit_list.type eq 1">
+                                                    <span style="color: green;">是</span>
+
+                                                    <a href="javascript:delAgent('{$list.id}')" class="btn red"><i class=" icon-remove"></i> 取消代理</a>
+
+                                                    <else/>
+                                                    <span style="color: red;">否</span>&nbsp;
+                                                    <a href="javascript:EditAgent('{$list.id}')" class="btn blue"><i class="icon-edit"></i> 设置为代理</a>
+
+                                                </if>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是否股东</font></font></a>
+                                        </td>
+                                        <td>
+
+                                            <if condition="$list.is_gudong eq 1 and $limit_list.type eq 1">
+                                                    <span style="color: green;">是</span>
+
+
+                                                    <a href="javascript:EditAll('{$list.id}','0','取消股东身份','user','is_gudong')" class="btn red"><i class=" icon-remove"></i> 取消股东</a>
+
+                                                    <else/>
+                                                    <span style="color: red;">否</span>&nbsp;
+                                                    <if condition="$list.is_agent eq 1">
+                                                        <a href="javascript:EditAll('{$list.id}','1','设置为股东身份','user','is_gudong')" class="btn blue"><i class="icon-edit"></i> 设置为股东</a>
+                                                    </if>
+
+                                            </if>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注册时间</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> {$list.create_time|date="Y-m-d H:i:s",###}</font></font></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">总返利（排行榜显示）</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                            ￥{$list.rebate_money}
+                                            <if condition="$limit_list.type eq 1">
+
+
+                                            <a href="javascript:editrebate('{$list.rebate_money}')" class="btn blue"><i class="icon-edit"></i> 修改</a>
+                                            </if>
+                                        </font></font></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">总收益</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ￥{$list.total_revenue}</font></font></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已到账金额</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ￥{$list.revenue_yes}</font></font></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">未到账金额</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ￥{$list.revenue_no}</font></font></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">邀请码</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.code neq 0">
+                                                {$list.code}
+                                                <else/>
+                                                未填写
+                                            </if>
+                                            <if condition="$limit_list.type eq 1">
+
+                                            <a href="javascript:editcode('{$list.code}')" class="btn blue"><i class="icon-edit"></i> 修改</a>
+                                            </if>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">邀请人</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.code_user neq 0">
+                                                <a href="{:U('home/user/check/edit/'.$list['code_user'])}" target="_blank">{$code_user.name}</a>
+                                                <else/>
+                                                -
+                                            </if>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上级</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.parent neq 0">
+                                                <a href="{:U('home/user/check/edit/'.$parent_info['id'])}" target="_blank">{$parent_info.name}</a>
+                                                <else/>
+                                                -
+                                            </if>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上上级</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$is_one eq 1">
+                                                <a href="{:U('home/user/check/edit/'.$one_info['id'])}" target="_blank">{$one_info.name}</a>
+                                                <else/>
+                                                -
+                                            </if>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最后登录时间</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.login_time eq 0">
+                                                从未登录
+                                                <else/>
+                                                {$list.login_time|date="Y-m-d H:i:s",###}
+                                            </if>
+                                            </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">操作</font></font></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:deleteUser('{$list.id}')" class="btn red"><i class="icon-trash"></i> 注销用户</a>
+
+                                        </td>
+                                    </tr>
+
+
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <!-- END SAMPLE TABLE PORTLET-->
+
+                    </div>
+
+
+                    <div class="span6">
+
+                        <!-- BEGIN BORDERED TABLE PORTLET-->
+
+                        <div class="portlet">
+
+                            <div class="portlet-title">
+
+                                <div class="caption"><i class="icon-coffee"></i>
+                                    下级：<span style="color: red;font-weight: bolder;">{$a_num}</span> 人 &nbsp;&nbsp;
+                                    下下级：<span style="color: red;font-weight: bolder;">{$b_num}</span> 人 &nbsp;&nbsp;
+                                </div>
+
+
+                            </div>
+
+                            <style>
+                                .xuan_agent_ta td,.xuan_agent_ta th{
+                                    text-align: center;
+                                    line-height: 30px;
+                                }
+                                .xuan_agent_head{
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                }
+                                .xuan_agent_ta a{
+                                    text-decoration: none;
+                                    color: #000;
+                                }
+                                .a_td_a{
+                                    width: 50px;
+                                    display: block;
+                                }
+                            </style>
+                            <div class="portlet-body">
+
+                                <table class="table table-bordered table-hover xuan_agent_ta">
+
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 50px;">
+                                            <a class="a_td_a" href="javascript:agent_show('a_zong')" id="a_zong_i" ><i class="icon-chevron-down"></i></a>
+                                        </th>
+                                        <th>头像</th>
+                                        <th>名称</th>
+                                        <th>手机号</th>
+                                        <th>返利</th>
+                                        <th>下级</th>
+                                    </tr>
+
+                                    </thead>
+
+                                    <tbody style="display: none;" id="a_zong">
+
+                                    <foreach name="a_list" item="v">
+                                        <tr>
+                                            <td>
+                                                <if condition="$v.b_num neq 0">
+                                                    <a class="a_td_a" href="javascript:agent_show('a_zong{$v.id}')" id="a_zong{$v.id}_i" ><i class="icon-chevron-down"></i></a>
+                                                </if>
+                                            </td>
+                                            <td>
+                                                <img class="xuan_agent_head" src="{$v.head}" alt="">
+                                            </td>
+                                            <td>
+                                                <a href="{:U('home/user/check/edit/'.$v['id'])}" target="_blank">{$v.name}</a>
+                                            </td>
+                                            <td>
+                                                {$v.phone}
+                                            </td>
+                                            <td>
+                                                {$v.rebate}
+                                            </td>
+                                            <td>
+                                                {$v.b_num}
+                                            </td>
+                                        </tr>
+                                        <if condition="$v.b_num neq 0">
+
+
+
+                                                <tr id="a_zong{$v.id}" style="display: none;">
+                                                    <td colspan="6">
+                                                <table style="width: 85%;margin-left: 15%;">
+                                                    <tr>
+                                                        <th>头像</th>
+                                                        <th>名称</th>
+                                                        <th>手机号</th>
+                                                        <th>返利</th>
+                                                    </tr>
+                                                    <foreach name="v.b_list" item="k">
+                                                    <tr>
+
+                                                        <td>
+                                                            <img class="xuan_agent_head" src="{$k.head}" alt="">
+                                                        </td>
+                                                        <td>
+                                                            <a href="{:U('home/user/check/edit/'.$k['id'])}" target="_blank">{$k.name}</a>
+                                                        </td>
+                                                        <td>
+                                                            {$k.phone}
+                                                        </td>
+                                                        <td>
+                                                            {$k.rebate}
+                                                        </td>
+                                                    </tr>
+                                                    </foreach>
+                                                </table>
+
+                                                    </td>
+                                                </tr>
+
+
+                            </if>
+                                    </foreach>
+
+
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="portlet">
+
+                            <div class="portlet-title">
+
+                                <div class="caption"><i class="icon-coffee"></i>
+                                    邀请好友：<span style="color: red;font-weight: bolder;">{$code_num}</span> 人
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+
+                                <table class="table table-bordered table-hover xuan_agent_ta">
+
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 50px;">
+                                            <a class="a_td_a" href="javascript:agent_show('a_zongcode')" id="a_zongcode_i" ><i class="icon-chevron-down"></i></a>
+                                        </th>
+                                        <th>头像</th>
+                                        <th>名称</th>
+                                        <th>手机号</th>
+                                        <th>返利</th>
+                                    </tr>
+
+                                    </thead>
+
+                                    <tbody style="display: none;" id="a_zongcode">
+
+                                    <foreach name="code_list" item="v">
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <img class="xuan_agent_head" src="{$v.head}" alt="">
+                                            </td>
+                                            <td>
+                                                <a href="{:U('home/user/check/edit/'.$v['id'])}" target="_blank">{$v.name}</a>
+                                            </td>
+                                            <td>
+                                                {$v.phone}
+                                            </td>
+                                            <td>
+                                                {$v.rebate}
+                                            </td>
+
+                                        </tr>
+                                    </foreach>
+
+
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <!-- END BORDERED TABLE PORTLET-->
+
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="portlet-title">
+
+
+                  <!--  <a href="<?php echo U('home/'.$at.'/plus2/edit/'.$is_edit);?>" id="sample_editable_1_new" class="btn green">
+
+                        新增套餐 <i class="icon-plus"></i>
+
+                    </a>-->
+
+
+
+                </div>
+
+
+                <style>
+                    .tc_table th,.tc_table td{
+                        text-align: center;
+                    }
+                </style>
+                    <!-- BEGIN CONDENSED TABLE PORTLET-->
+
+
+                <!--<div class="portlet-body" style="width: 100%;">
+
+                    <table class="table table-bordered table-hover tc_table" >
+
+                        <thead>
+                        <tr>
+                            <th colspan="4">支付给医院抽成</th>
+                            <th colspan="4">购买商城商品抽成</th>
+                            &lt;!&ndash; <th>操作</th>&ndash;&gt;
+                        </tr>
+                        <tr>
+                            <td>好友消费返利（%）</td>
+                            <td>下属客户消费返利（%）</td>
+                            <td>下级代理客户消费返利（%）</td>
+                            <td>下下级代理客户消费返利（%）</td>
+
+                            <td>好友消费返利（%）</td>
+                            <td>下属客户消费返利（%）</td>
+                            <td>下级代理客户消费返利（%）</td>
+                            <td>下下级代理客户消费返利（%）</td>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr>
+                            <td>{$odds_list.friend_rebate}</td>
+                            <td>{$odds_list.agent_rebate}</td>
+                            <td>{$odds_list.xia_rebate}</td>
+                            <td>{$odds_list.xiaixa_rebate}</td>
+
+                            <td>{$odds_list.shop_friend_rebate}</td>
+                            <td>{$odds_list.shop_agent_rebate}</td>
+                            <td>{$odds_list.shop_xia_rebate}</td>
+                            <td>{$odds_list.shop_xiaixa_rebate}</td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                    <span>当前状态：
+                                        <if condition="$odds_info.friend_rebate neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('friend_rebate')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.friend_rebate neq NULL">
+                                    <a href="JavaScript:OddsMo('friend_rebate')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+                            <td>
+                                    <span>当前状态：
+                                        <if condition="$odds_info.agent_rebate neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('agent_rebate')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.agent_rebate neq NULL">
+                                    <a href="JavaScript:OddsMo('agent_rebate')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+
+                            <td>
+                                    <span>当前状态：
+                                        <if condition="$odds_info.xia_rebate neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('xia_rebate')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.xia_rebate neq NULL">
+                                    <a href="JavaScript:OddsMo('xia_rebate')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+
+                            <td>
+                                    <span>当前状态：
+                                        <if condition="$odds_info.xiaixa_rebate neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('xiaixa_rebate')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.xiaixa_rebate neq NULL">
+                                    <a href="JavaScript:OddsMo('xiaixa_rebate')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+
+
+
+
+                            <td>
+                                    <span>当前状态：
+                                        <if condition="$odds_info.shop_friend_rebate neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('shop_friend_rebate')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.shop_friend_rebate neq NULL">
+                                    <a href="JavaScript:OddsMo('shop_friend_rebate')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+                            <td>
+                                    <span>当前状态：
+                                        <if condition="$odds_info.shop_agent_rebate neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('shop_agent_rebate')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.shop_agent_rebate neq NULL">
+                                    <a href="JavaScript:OddsMo('shop_agent_rebate')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+
+                            <td>
+                                    <span>当前状态：
+                                        <if condition="$odds_info.shop_xia_rebate neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('shop_xia_rebate')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.shop_xia_rebate neq NULL">
+                                    <a href="JavaScript:OddsMo('shop_xia_rebate')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+
+                            <td>
+                                    <span>当前状态：
+                                        <if condition="$odds_info.shop_xiaixa_rebate neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('shop_xiaixa_rebate')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.shop_xiaixa_rebate neq NULL">
+                                    <a href="JavaScript:OddsMo('shop_xiaixa_rebate')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">下级代理下属用户消费下级代理可得(%)</td>
+                            <td colspan="2">下下级代理下属用户消费下下级代理可得(%)</td>
+                            <td colspan="2">下级代理下属用户消费下级代理可得(%)</td>
+                            <td colspan="2">下下级代理下属用户消费下下级代理可得(%)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">{$odds_list.next}</td>
+                            <td colspan="2">{$odds_list.nextnext}</td>
+                            <td colspan="2">{$odds_list.shop_next}</td>
+                            <td colspan="2">{$odds_list.shop_nextnext}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                    <span>当前状态：
+                                        <if condition="$odds_info.next neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('next')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.next neq NULL">
+                                    <a href="JavaScript:OddsMo('next')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+                            <td colspan="2">
+                                    <span>当前状态：
+                                        <if condition="$odds_info.nextnext neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('nextnext')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.nextnext neq NULL">
+                                    <a href="JavaScript:OddsMo('nextnext')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+                            <td colspan="2">
+                                    <span>当前状态：
+                                        <if condition="$odds_info.shop_next neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('shop_next')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.shop_next neq NULL">
+                                    <a href="JavaScript:OddsMo('shop_next')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+                            <td colspan="2">
+                                    <span>当前状态：
+                                        <if condition="$odds_info.shop_nextnext neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('shop_nextnext')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.shop_nextnext neq NULL">
+                                    <a href="JavaScript:OddsMo('shop_nextnext')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td colspan="2">下下级代理下属用户消费-下级代理可得(%)</td>
+                            <td colspan="2">下属客户的好友消费返利（仅医院订单）(%)</td>
+                            <td colspan="4">下下级代理下属用户消费-下级代理可得(%)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">{$odds_list.next_gd}</td>
+                            <td colspan="2">{$odds_list.hos_xia_friend}</td>
+                            <td colspan="4">{$odds_list.shop_next_gd}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                    <span>当前状态：
+                                        <if condition="$odds_info.next_gd neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('next_gd')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.next_gd neq NULL">
+                                    <a href="JavaScript:OddsMo('next_gd')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+                            <td colspan="2">
+                                    <span>当前状态：
+                                        <if condition="$odds_info.hos_xia_friend neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('hos_xia_friend')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.hos_xia_friend neq NULL">
+                                    <a href="JavaScript:OddsMo('hos_xia_friend')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+                            <td colspan="4">
+                                    <span>当前状态：
+                                        <if condition="$odds_info.shop_next_gd neq NULL"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                <br>
+                                <a href="javascript:fahuo('shop_next_gd')" class="btn green"> 手动设置</a>
+                                <if condition="$odds_info.shop_next_gd neq NULL">
+                                    <a href="JavaScript:OddsMo('shop_next_gd')" class="btn blue"> 恢复默认</a>
+                                </if>
+                            </td>
+
+                        </tr>
+
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>-->
+                <if condition="$limit_list.type eq 1">
+
+                    <div class="portlet-title">
+
+                        <div class="caption">
+                            <i class="icon-coffee"></i>抽水比例
+                        </div>
+
+                    </div>
+                    <div class="portlet-body" style="width: 100%;">
+
+                    <table class="table table-bordered table-hover tc_table" >
+
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <foreach name="type_list" item="v">
+                                <th>{$v.name}</th>
+                            </foreach>
+                        </tr>
+
+
+                        </thead>
+
+                        <tbody>
+                            <foreach name="odds_list" item="v">
+                                <tr>
+                                    <th style="width: 260px;text-align: left;">{$v.show_name}</th>
+                                    <foreach name="v.set_list" item="k" >
+                                        <th>
+                                     <span >当前比例：
+                                         <span style="color: red;">{$k.value} %</span>
+                                    </span>
+                                            <br>
+
+                                    <span>当前状态：
+                                        <if condition="$k.type eq 1"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                            <br>
+                                            <a href="javascript:fahuo('{$k.name}')" class="btn green"> 手动设置</a>
+                                            <if condition="$k.type eq 1">
+                                                <a href="JavaScript:OddsMo('{$k.name}')" class="btn blue"> 恢复默认</a>
+                                            </if>
+                                        </th>
+                                    </foreach>
+
+                                </tr>
+
+                            </foreach>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+                </if>
+                <br>
+
+                    <div class="portlet-title">
+
+                        <div class="caption">
+                            <i class="icon-coffee"></i>拥有的优惠券
+                        </div>
+
+                    </div>
+
+
+                    <div class="portlet-body" style="width: 70%;">
+
+                        <table class="table table-bordered table-hover tc_table" >
+
+                            <thead>
+
+                            <tr>
+
+                                <th>序号</th>
+                                <th>优惠券名称</th>
+                                <th>折扣</th>
+                                <th>购买金额</th>
+                                <th>返还金额</th>
+                                <th>优惠券类型</th>
+                                <th>是否已使用</th>
+                                <th>是否已返还</th>
+                                <th>购买时间</th>
+                               <!-- <th>操作</th>-->
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody>
+                            <foreach name="list.ticket_list" item="v" key="key">
+                                <tr>
+
+                                    <td>{$key+1}</td>
+
+                                    <td>
+                                        {$v.title}
+                                    </td>
+
+                                    <td>
+                                        <if condition="$v.type eq 2">
+                                            -
+                                            <else/>
+                                            {$v.discount} 折
+                                        </if>
+
+                                    </td>
+                                    <td>
+                                        <if condition="$v.type eq 2">
+                                            -
+                                            <else/>
+                                            ￥{$v.buy_money}
+                                        </if>
+
+                                    </td>
+
+                                    <td>
+                                        <if condition="$v.type eq 2">
+                                            -
+                                            <else/>
+                                            ￥{$v.rebate_money}
+                                        </if>
+
+                                    </td>
+                                    <td>
+
+                                        <if condition="$v.type eq 1">
+                                            <span class="label">普通优惠券</span>
+                                        </if>
+                                        <if condition="$v.type eq 2">
+                                            <span class="label">体验券</span>
+                                        </if>
+                                        <if condition="$v.type eq 3">
+                                            <span class="label">代理优惠券</span>
+                                        </if>
+
+                                    </td>
+
+                                    <td>
+                                        <if condition="$v.status eq 1">
+                                            <span class="label label-success">已使用</span>
+                                        </if>
+                                        <if condition="$v.status eq 2">
+                                            <span class="label label-success">已使用</span>
+                                        </if>
+                                        <if condition="$v.status eq 3">
+                                            <span class="label label-info">已退款</span>
+                                        </if>
+                                        <if condition="$v.status eq 0">
+                                            <span class="label label-important">未使用</span>
+                                        </if>
+                                    </td>
+
+                                    <td>
+                                        <if condition="$v.is_rebate eq 1">
+                                            <span class="label label-success">是</span>
+                                        </if>
+                                        <if condition="$v.is_rebate eq 0">
+                                            <span class="label label-important">否</span>
+                                        </if>
+                                    </td>
+
+
+                                    <td>
+                                        {$v.create_time|date="Y-m-d H:i:s",###}
+                                    </td>
+                                   <!-- <td>
+                                        <if condition="$v.type neq 1">
+                                            <a href="JavaScript:_deleteUser('{$v.id}','套餐','card_detail');" class="btn red"><i class="icon-trash"></i> 删除</a>
+                                        </if>
+                                    </td>
+-->
+                                </tr>
+                            </foreach>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+
+
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+    <!-- modal -->
+    <div class="modal fade" id = 'modal_fahuo' style="display: none;">
+        <div class="modal-dialog" >
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+                    <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                    <h4 class="modal-title" id='modal_fahuo_title'>修改比例</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="#" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">修改抽水比例</font></font></label>
+                            <div class="controls">
+                                <input type="number" placeholder="请输入要修改的抽水比例" name="fh_num"  value="" class="m-wrap medium">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal" >取 消</button>
+                    <button type="button" class="btn green" id='modal_fahuo_yes'  style='margin-left:9px'>确 定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- ./modal -->
+
+
+    <!-- modal -->
+    <div class="modal fade" id = 'modal_editcode' style="display: none;">
+        <div class="modal-dialog" >
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+                    <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                    <h4 class="modal-title" id='modal_editcode_title'>修改邀请码</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="#" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">邀请码(清除则留空)</font></font></label>
+                            <div class="controls">
+                                <input type="text" id="editcode_num" placeholder="邀请码（清除则留空）" name="editcode_num"  value="" class="m-wrap medium">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal" >取 消</button>
+                    <button type="button" class="btn green" id='modal_editcode_yes'  style='margin-left:9px'>确 定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- ./modal -->
+
+    <!-- modal -->
+    <div class="modal fade" id = 'modal_editrebate' style="display: none;">
+        <div class="modal-dialog" >
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+                    <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                    <h4 class="modal-title" id='modal_editrebate_title'>修改总返利</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="#" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">返利金额</font></font></label>
+                            <div class="controls">
+                                <input type="number" id="editrebate_num" placeholder="返利金额" name="editrebate_num"  value="" class="m-wrap medium">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal" >取 消</button>
+                    <button type="button" class="btn green" id='modal_editrebate_yes'  style='margin-left:9px'>确 定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- ./modal -->
+
+
+    <!-- END CONTAINER -->
+<include file="common/footer"/>
+    <include file="common/tz"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+    var is_Edit = '<?php echo $is_edit;?>';
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+
+    function agent_show(id){
+        var node=$('#'+id);
+        if(node.is(':hidden')){　　//如果node是隐藏的则显示node元素，否则隐藏
+            node.show();
+            $('#'+id+'_i').html('<i class="icon-chevron-up"></i>');
+        }else{
+            node.hide();
+            $('#'+id+'_i').html('<i class="icon-chevron-down"></i>');
+        }
+    }
+
+
+
+    function editcode(code){
+        $('#editcode_num').val(code);
+        $('#modal_editcode').modal('show');
+        $('#modal_editcode_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            SubmitEditCode();
+        };
+    }
+
+    function SubmitEditCode(){
+        var edit_code = $.trim($("*[name='editcode_num']").val());
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/editcode'); ?>",
+            data:{code:edit_code,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.reload();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+    function editrebate(rebate){
+        $('#editrebate_num').val(rebate);
+        $('#modal_editrebate').modal('show');
+        $('#modal_editrebate_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            SubmitEditrebate();
+        };
+    }
+
+    function SubmitEditrebate(){
+        var edit_code = $.trim($("*[name='editrebate_num']").val());
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/editrebate'); ?>",
+            data:{rebate:edit_code,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.reload();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+
+
+    function fahuo(id){
+        $('#modal_fahuo').modal('show');
+        $('#modal_fahuo_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            SubmitFaHuo(id);
+        };
+    }
+
+    function SubmitFaHuo(type){
+        var fh_num = $.trim($("*[name='fh_num']").val());
+        if(fh_num==''){
+            showAlert("请输入要修改的抽水比例");
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/editodds'); ?>",
+            data:{type:type,odds:fh_num,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.reload();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+
+
+    var parent_url = "<?php echo U('home/user/index');?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+    function EditCheckbox(id){
+        var str ;
+        if($('.tuijian'+id).is(':checked')) {
+            str =1;
+        }else{
+            str=0;
+        }
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/edittuijian'); ?>",
+            data:{id:id,str:str},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.reload();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+
+    function deleteUser(id){
+        showConfirm('<i class="icon-exclamation-sign"></i> 注销用户','确定要注销用户吗? 注销后将删除用户的所有记录，删除数据后不可恢复，请谨慎操作！',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/user/deleteUser'); ?>",
+                data:{id:id,str:str,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.href='{U:("home/user/index")}';
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function EditStatus(id,str,title,db){
+        var name;
+        if(str=='1'){
+            name = '显示';
+        }else{
+            name = '隐藏';
+        }
+        showConfirm('<i class="icon-exclamation-sign"></i> '+name+title,'确定要'+name+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editshow'); ?>",
+                data:{id:id,str:str,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function _deleteUser(id,name,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除'+name,'确定要删除'+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/group/deleteuser'); ?>",
+                data:{id:id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function OddsMo(type){
+        showConfirm('<i class="icon-exclamation-sign"></i> 恢复默认','确定要将此比例恢复默认，使用系统设置比例吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/editmo'); ?>",
+                data:{type:type,is_edit:is_Edit},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function EditAgent(id){
+        showConfirm('<i class="icon-exclamation-sign"></i> 设置为代理','确定要将此用户设置为代理吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/editagent'); ?>",
+                data:{id:id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+
+    function delAgent(id){
+        showConfirm('<i class="icon-exclamation-sign"></i> 取消代理身份','确定要将此用户代理身份取消吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/delagent'); ?>",
+                data:{id:id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function ClearImg(){
+        $("#upload_kuang").addClass("dan_upload_img_div1");
+        $("#uploadImage").val('');
+        $('.on_img_btn').show();
+        $('.change_img_btn').hide();
+        $('.del_img_btn').hide();
+        $('#uploadPreview').html('');
+    }
+
+
+    function UploadImg(){
+        var img = "";
+        var file = $("#uploadImage").val();
+        if(file==""){
+            SubmitData("");
+        }
+
+
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+
+                            SubmitData(img);
+                        }else{
+                            showAlert("图片上传失败");
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
+    function SubmitData(){
+
+        var name = $.trim($("*[name='name']").val());
+        var phone = $.trim($("*[name='phone']").val());
+        var location = $.trim($("*[name='location']").val());
+        var parent = $.trim($("*[name='parent']").val());
+        var price = $.trim($("*[name='price']").val());
+        var ku_num = $.trim($("*[name='ku_num']").val());
+
+        if(!name){
+            showAlert("请输入明细账单名称");
+            return false;
+        }
+
+        if(!phone){
+            showAlert("请输入手机号");
+            return false;
+        }
+        if(!location){
+            showAlert("请输入地址");
+            return false;
+        }
+
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/user/add'); ?>",
+            data:{name:name,phone:phone,location:location,parent:parent,price:price,ku_num:ku_num,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+    function EditAll(id,str,title,db,value){
+
+        showConfirm('<i class="icon-exclamation-sign"></i> '+title,'确定要 '+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editall'); ?>",
+                data:{id:id,str:str,db:db,value:value},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function delCodeQr(id){
+
+        showConfirm('<i class="icon-exclamation-sign"></i> 重置二维码','确定要 重置二维码 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/delCodeQr'); ?>",
+                data:{id:id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+</script>

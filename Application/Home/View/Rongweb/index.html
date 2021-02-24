@@ -1,0 +1,901 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        即时聊天 <small>窗口</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#">即时聊天</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+                <style>
+
+                    div.speech {
+                        margin: 10px 0;
+                        padding: 8px;
+                        table-layout: fixed;
+                        word-break: break-all;
+                        position: relative;
+                        background: -webkit-gradient( linear, 50% 0%, 50% 100%, from(#ffffff), color-stop(0.1, #ececec), color-stop(0.5, #dbdbdb), color-stop(0.9, #dcdcdc), to(#8c8c8c) );
+                        border: 1px solid #989898;
+                        -webkit-border-radius: 8px;
+                        -moz-border-radius: 8px;
+                        border-radius: 8px;
+                    }
+                    div.speech:before {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        left: 15px;
+                        top: -20px;
+                        border: 10px solid;
+                        border-color: transparent transparent #989898 transparent;
+                    }
+                    div.speech:after {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        left: 17px;
+                        top: -16px;
+                        border: 8px solid;
+                        border-color: transparent transparent #ffffff transparent;
+                    }
+                    div.speech.right {
+                        box-shadow: -2px 2px 5px #CCC;
+                        margin-right: 10px;
+                        width: 75%;
+                        float: right;
+                        background: -webkit-gradient( linear, 50% 0%, 50% 100%, from(#e4ffa7), color-stop(0.1, #bced50), color-stop(0.4, #aed943), color-stop(0.8, #a7d143), to(#99BF40) );
+                    }
+                    div.speech.right:before {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        top: 9px;
+                        bottom: auto;
+                        left: auto;
+                        right: -10px;
+                        border-width: 9px 0 9px 10px;
+                        border-color: transparent #989898;
+                    }
+                    div.speech.right:after {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        top: 10px;
+                        bottom: auto;
+                        left: auto;
+                        right: -8px;
+                        border-width: 8px 0 8px 9px;
+                        border-color: transparent #bced50;
+                    }
+                    div.speech.left {
+                        box-shadow: 2px 2px 2px #CCCCCC;
+                        margin-left: 10px;
+                        width: 75%;
+                        float: left;
+                        background: -webkit-gradient( linear, 50% 0%, 50% 100%, from(#ffffff), color-stop(0.1, #eae8e8), color-stop(0.4, #E3E3E3), color-stop(0.8, #DFDFDF), to(#D9D9D9) );
+                    }
+                    div.speech.left:before {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        top: 9px;
+                        bottom: auto;
+                        left: -10px;
+                        border-width: 9px 10px 9px 0;
+                        border-color: transparent #989898;
+                    }
+                    div.speech.left:after {
+                        content: '';
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        top: 10px;
+                        bottom: auto;
+                        left: -8px;
+                        border-width: 8px 9px 8px 0;
+                        border-color: transparent #eae8e8;
+                    }
+                    .leftimg {
+                        float: left;
+                        margin-top: 10px;
+                    }
+                    .rightimg {
+                        float: right;
+                        margin-top: 10px;
+                    }
+                    .leftd {
+                        position: relative;;
+                        clear: both;
+                        float: left;
+                        padding-left: 40px;
+                    }
+                    .rightd {
+                        position: relative;;
+                        clear: both;
+                        float: right;
+                        padding-right: 40px;
+                    }
+                    .clear {
+                        clear: both;
+                    }
+                    .head_div{
+                        border-radius: 50%!important;
+                        overflow: hidden;;
+                        width: 40px;
+                        height: 40px;
+                    }
+                    .head_left{
+                        position: absolute;
+                        left: 0;
+                        top:10px;
+                    }
+                    .head_right{
+                        position: absolute;
+                        right: 0;
+                        top:10px;
+                    }
+                    .rong_zong{
+                        float: left;
+                        width: 69%;
+                    }
+                    .rong_head{
+                        height: 30rem;
+                        overflow-y: auto;;
+                        border-bottom: 1px solid #ccc;
+
+                        padding: 10px;
+                    }
+                    .rong_list{
+                        float: left;
+                        width: 30%;
+                        height: 38rem;
+                        overflow-y: auto;
+                        border-right: 1px solid #ccc;
+                    }
+                    .rong_ul{
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .rong_ul li{
+                        width: 95%;
+                        padding-top: 10px;
+                        border-bottom: 1px solid #ccc;
+                        padding-bottom: 10px;
+                        padding-left: 10px;
+
+                    }
+                    .rong_ul li.r_active{
+                        background: #eee;
+                    }
+                    .head_css{
+                        width: 45px;
+                        height: 45px;
+                        border-radius: 50%!important;
+                    }
+                    .rong_ul_con{
+                        margin-bottom: 0;
+                        color: #999;
+                    }
+                </style>
+
+
+                <div class="row-fluid" style="width: 65%;border: 1px solid #ccc;">
+                    <div class="rong_list">
+                        <ul class="rong_ul">
+                            <if condition="$ul_list neq null">
+                                <foreach name="ul_list" item="v">
+                                    <li onclick="qieuser('{$v.send_user_id}')" class="rong_user_all  rong_user_{$v.send_user_id}">
+                                        <table>
+                                            <tr>
+                                                <td rowspan="3" style="width: 55px;">
+                                                    <img class="head_css rong_user_head_{$v.send_user_id}" src="{$v.head}" alt="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="rong_user_name_{$v.send_user_id}">
+                                                    {$v.name}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="width: 100px;height: 20px;overflow: hidden;" class="rong_ul_con rong_li_con_{$v.send_user_id}"></p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </li>
+                                </foreach>
+
+                            </if>
+
+                        </ul>
+                    </div>
+
+                    <div class="rong_zong">
+                        <div class="rong_head">
+                        <!--<div class="rong_content">-->
+                               <!-- <div class="leftd">
+                                    <div class="speech left"> 你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？你在吗？ </div>
+                                    <div class="head_div head_left">
+                                        <img  src="{$user_info.head}" alt="">
+                                    </div>
+                                </div>
+                                <div class="rightd">
+                                    <div class="speech right"> 你在吗？ </div>
+                                    <div class="head_div head_right">
+                                        <img  src="{$user_info.head}" alt="">
+                                    </div>
+                                </div>-->
+
+                       <!-- </div>-->
+                        </div>
+                        <div>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td rowspan="3">
+                                        <textarea id="content"  style="resize:none;height: 6rem;width: 98%;margin-bottom: 0;border:none;" ></textarea>
+
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 80px;text-align: center;">
+                                        <label for="imgInput">
+                                            <input type="file" onchange="UploadImg()" style="width: 0;height: 0;" id="imgInput" name="photoimage" class="imgInput" />
+                                            <i style="font-size: 25px;" class="icon-picture"></i>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <button type="button" onclick="sendmsg()" class="btn blue" style="margin-left: 5%;">发 送</button>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <!--end tabbable-->
+                    <!--<div>
+                        <a href="javascript:test()">asdasda</a>
+                    </div>-->
+                </div>
+
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+
+<!-- modal -->
+<div id='modal_video' style="display: none;width: 100%;height: 100%;background: rgba(0,0,0,0.8);z-index: 10000000;position: fixed;top: 0;">
+
+    <div style="margin: 80px auto 0;text-align: center;position: relative;" >
+        <div style="position:absolute;top:-58px;right: 30%;">
+            <i class="icon-remove-circle" style="font-size: 50px;color: #f00;"></i>
+        </div>
+        <div id="video_url" style="display: inline-block;max-height: 800px;">
+
+        </div>
+
+    </div>
+</div>
+<!-- ./modal -->
+
+<include file="common/footer"/>
+
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<!-- HTTP -->
+<script src="http://cdn.ronghub.com/RongIMLib-2.5.1.js"></script>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+
+<script>
+    var now_id = '{$now_id}';
+    var user_id = '{$user_info.id}';
+    var appkey = 'uwd1c0sxuqtr1';
+    RongIMLib.RongIMClient.init(appkey);
+
+    RongIMClient.setConnectionStatusListener({
+        onChanged: function (status) {
+            // status 标识当前连接状态
+            switch (status) {
+                case RongIMLib.ConnectionStatus.CONNECTED:
+                    console.log('链接成功');
+                    break;
+                case RongIMLib.ConnectionStatus.CONNECTING:
+                    console.log('正在链接');
+                    break;
+                case RongIMLib.ConnectionStatus.DISCONNECTED:
+                    console.log('断开连接');
+                    break;
+                case RongIMLib.ConnectionStatus.KICKED_OFFLINE_BY_OTHER_CLIENT:
+                    console.log('其他设备登录, 本端被踢');
+                    break;
+                case RongIMLib.ConnectionStatus.DOMAIN_INCORRECT:
+                    console.log('域名不正确, 请至开发者后台查看安全域名配置');
+                    break;
+                case RongIMLib.ConnectionStatus.NETWORK_UNAVAILABLE:
+                    console.log('网络不可用, 此时可调用 reconnect 进行重连');
+                    break;
+                default:
+                    console.log('链接状态为', status);
+                    break;
+            }
+        }
+    });
+
+    RongIMClient.setOnReceiveMessageListener({
+        // 接收到的消息
+        onReceived: function (message) {
+            var messageContent = message.content;
+            // 判断消息类型
+            switch(message.messageType) {
+                case RongIMClient.MessageType.TextMessage: // 文字消息
+                    console.log('文字内容', messageContent.content);
+                    rongmessage('1',messageContent.user.id,messageContent.content);
+                    break;
+                case RongIMClient.MessageType.ImageMessage: // 图片消息
+                    console.log('图片缩略图 base64', messageContent.content);
+                    console.log('原图 url', messageContent.imageUri);
+                    rongmessage('2',messageContent.user.id,messageContent.imageUri);
+                    break;
+                case RongIMClient.MessageType.HQVoiceMessage: // 音频消息
+                    console.log('音频 type ', messageContent.type); // 编解码类型，默认为 aac 音频
+                    console.log('音频 url', messageContent.remoteUrl); // 播放：<audio src={remoteUrl} />
+                    console.log('音频 时长', messageContent.duration);
+                    break;
+                case RongIMClient.MessageType.RichContentMessage: // 富文本(图文)消息
+                    console.log('文本内容', messageContent.content);
+                    console.log('图片 base64', messageContent.imageUri);
+                    console.log('原图 url', messageContent.url);
+                    break;
+                case RongIMClient.MessageType.UnknownMessage: // 未知消息
+                    console.log('未知消息, 请检查消息自定义格式是否正确', message);
+                    break;
+                default:
+                    console.log('收到消息', message);
+                    break;
+            }
+        }
+    });
+
+
+
+    var token = "BP9Fgjt+ajUY86SCtQJ358tHj1Un9uv4B+LcYJhqqWUEfoCwzfDcdUG9p7jzftYnAzXCy3FeY3nYLgKNAZT9AA==";
+
+    RongIMClient.connect(token, {
+        onSuccess: function(userId) {
+            console.log('连接成功, 用户 id 为', userId);
+            if(now_id){
+                var  ul_list = $.parseJSON('{$ul_list_json}');;
+                $.each(ul_list, function (key, v) {
+                    jiazaihos(v.send_user_id,v.name,v.head);
+                });
+
+            }
+            // 连接已成功, 此时可通过 getConversationList 获取会话列表并展示
+        },
+        onTokenIncorrect: function() {
+            showAlert('连接失败, 失败原因: token 无效');
+            console.log('连接失败, 失败原因: token 无效');
+        },
+        onError: function(errorCode) {
+            var info = '';
+            switch (errorCode) {
+                case RongIMLib.ErrorCode.TIMEOUT:
+                    info = '链接超时';
+                    break;
+                case RongIMLib.ConnectionState.UNACCEPTABLE_PAROTOCOL_VERSION:
+                    info = '不可接受的协议版本';
+                    break;
+                case RongIMLib.ConnectionState.IDENTIFIER_REJECTED:
+                    info = 'appkey 不正确';
+                    break;
+                case RongIMLib.ConnectionState.SERVER_UNAVAILABLE:
+                    info = '服务器不可用';
+                    break;
+                default:
+                    info = errorCode;
+                    break;
+            }
+            showAlert(info);
+            console.log('连接失败, 失败原因: ', info);
+        }
+    });
+
+    function jiazaihos(id,name,head){
+
+        var conversationType = RongIMLib.ConversationType.PRIVATE; //单聊, 其他会话选择相应的会话类型即可
+        var targetId = id; // 想获取自己和谁的历史消息，targetId 赋值为对方的 Id
+        var timestrap = null; // 默认传 null，若从头开始获取历史消息，请赋值为 0, timestrap = 0;
+        var count = 20; // 每次获取的历史消息条数，范围 0-20 条，可以多次获取
+        RongIMLib.RongIMClient.getInstance().getHistoryMessages(conversationType, targetId, timestrap, count, {
+            onSuccess: function(list, hasMsg) {
+                console.log(hasMsg);
+                addnav('1',id,name,head,'');
+
+                $.each(list, function (key, v) {
+                    //消息方向，1 为发送的消息、2 为接收的消息。
+                    if(v.messageDirection==2){
+                        if(v.objectName=='RC:ImgMsg'){
+                            add_message('2',id,name,head,v.content.imageUri);
+                        }
+                        if(v.objectName=='RC:TxtMsg'){
+                            add_message('1',id,name,head,v.content.content);
+                        }
+                    }
+                    if(v.messageDirection==1){
+                        if(v.objectName=='RC:ImgMsg'){
+                            myself_add_msg('2',id,v.content.imageUri);
+                        }
+                        if(v.objectName=='RC:TxtMsg'){
+                            myself_add_msg('1',id,v.content.content);
+                        }
+                    }
+                });
+                // list => Message 数组。
+                // hasMsg => 是否还有历史消息可以获取。
+            },
+            onError: function(error) {
+                console.log('GetHistoryMessages, errorcode:' + error);
+            }
+        });
+    }
+
+
+    function rongmessage(type,id,content){
+        var name = '';
+        var head = '';
+        var is_have = $('li').is('.rong_user_'+id);
+        if(is_have){
+            $('.rong_li_con_'+id).html(content);
+            head = $('.rong_user_head_'+id).attr('src');
+            name = $('.rong_user_name_'+id).html();
+
+            add_message(type,id,name,head,content);
+        }else{
+            $.ajax({
+                type: 'POST',
+                async: false,
+                url: "<?php echo U('home/'.$at.'/getuserinfo'); ?>",
+                data:{id:id},
+                success: function (result) {
+                    if(result.code == 1){
+                        add_message(type,id,result.list.name,result.list.head,content);
+                    }else{
+
+                    }
+                }
+            });
+
+        }
+    }
+
+
+
+
+
+    function UploadImg(){
+
+        showConfirm('<i class="icon-exclamation-sign"></i> 发送图片','确定要发送此图片吗?',function(){
+
+            var file = $("#imgInput").val();
+            if(file==""){
+                showAlert("图片上传失败");
+            }
+            else{
+                //判断上传的文件的格式是否正确
+                var fileType = file.substring(file.lastIndexOf(".")+1);
+                if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                    showAlert("上传文件格式错误");
+                    return false;
+                }
+                else{
+                    var url = "<?php echo U('home/'.$at.'/thumb');?>";
+                    $.ajaxFileUpload({
+                        url:url,
+                        fileElementId:"imgInput",        //file的id
+                        dataType:"json",                  //返回数据类型为文本
+                        success:function(res){
+
+                            if(res){
+
+                                var jsonObject = JSON.parse(res);
+                                sendimg(jsonObject.base64,jsonObject.url);
+                            }else{
+                                showAlert("图片上传失败");
+                            }
+                        }
+                    })
+                }
+            }
+        });
+
+    }
+
+
+    function myself_add_msg(type,id,content){
+
+        if(type=='1'){
+            $('.rong_con_'+id).append(' <div class="rightd">\n' +
+                '  <div class="speech right"> '+content+' </div>\n' +
+                ' <div class="head_div head_right">\n' +
+                '<img  src="{$user_info.head}" alt="">\n' +
+                ' </div>\n' +
+                '</div>');
+            $('.rong_li_con_'+id).html(content);
+        }
+
+        if(type=='2'){
+            $('.rong_con_'+id).append(' <div class="rightd">\n' +
+                '  <div class="speech right"> ' +
+                '<a class="fancybox-button" data-rel="fancybox-button" title="" target="_blank" href="'+content+'">\n' +
+                '     <img src="'+content+'" style="width: 300px;height: auto;" " alt="">\n' +
+                '  </a>' +
+                ' </div>\n' +
+                ' <div class="head_div head_right">\n' +
+                '<img  src="{$user_info.head}" alt="">\n' +
+                ' </div>\n' +
+                '</div>');
+            $('.rong_li_con_'+id).html('[图片]');
+        }
+
+
+
+
+        $('.rong_head').scrollTop($('.rong_con_'+now_id)[0].scrollHeight);
+        return;
+    }
+
+
+    function addnav(type,id,name,head,content){
+        var tar_con = '';
+        var is_have = $('li').is('.rong_user_'+id);
+        if(is_have){
+            $('.rong_li_con_'+id).html(content);
+        }else{
+            if(type=='1'){
+                tar_con = content;
+            }
+            if(type=='2'){
+                tar_con = '[图片]';
+            }
+            $('.rong_ul').append(
+                '  <li onclick="qieuser(\''+id+'\')" class="rong_user_all  rong_user_'+id+'">\n' +
+                '<table>\n' +
+                '<tr>\n' +
+                '<td rowspan="3" style="width: 55px;">\n' +
+                '<img class="head_css rong_user_head_'+id+'" src="'+head+'" alt="">\n' +
+                ' </td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td class="rong_user_name_'+id+'">\n' +
+                name +
+                '</td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td>\n' +
+                '<p style="width: 100px;height: 20px;overflow: hidden;" class="rong_ul_con rong_li_con_'+id+'">'+tar_con+'</p>\n' +
+                '</td>\n' +
+                '</tr>\n' +
+                '</table>\n' +
+                '</li>');
+
+            if(!now_id){
+                $('.rong_user_'+id).addClass('r_active');
+                now_id = id;
+            }
+        }
+
+        var is_have_con = $('div').is('.rong_con_'+id);
+        if(!is_have_con){
+            $('.rong_head').append('<div class="rong_content rong_con_'+id+'"></div>');
+        }
+        $('.rong_head').scrollTop($('.rong_con_'+id)[0].scrollHeight);
+        return;
+    }
+
+
+    function add_message(type,id,name,head,content){
+        addnav(type,id,name,head,content);
+        if(type=='1'){
+            $('.rong_con_'+id).append(' <div class="leftd">\n' +
+                '  <div class="speech left"> '+content+' </div>\n' +
+                ' <div class="head_div head_left">\n' +
+                '<img  src="'+head+'" alt="">\n' +
+                ' </div>\n' +
+                '</div>');
+
+        }
+        if(type=='2'){
+            $('.rong_con_'+id).append(' <div class="leftd">\n' +
+                '  <div class="speech left"> ' +
+                '<a class="fancybox-button" data-rel="fancybox-button" title="" target="_blank" href="'+content+'">\n' +
+                '     <img src="'+content+'" style="width: 300px;height: auto;" " alt="">\n' +
+                '  </a>' +
+                '</div>\n' +
+                ' <div class="head_div head_left">\n' +
+                '<img  src="'+head+'" alt="">\n' +
+                ' </div>\n' +
+                '</div>');
+
+        }
+
+        if(now_id){
+            if(now_id!=id){
+                $('.rong_con_'+id).hide();
+            }else{
+                $('.rong_head').scrollTop($('.rong_con_'+id)[0].scrollHeight);
+
+            }
+        }else{
+            $('.rong_content').hide();
+            $('.rong_con_'+id).show();
+            $('.rong_head').scrollTop($('.rong_con_'+id)[0].scrollHeight);
+
+        }
+        return;
+    }
+
+    function test() {
+        RongIMClient.getInstance().getConversationList({
+            onSuccess: function(list) {
+                console.log('获取会话列表成功', list);
+            },
+            onError: function(error) {
+                console.log('获取会话列表失败', error);
+            }
+        }, null);
+    }
+
+
+
+    function qieuser(id){
+        now_id = id;
+        $('.rong_content').hide();
+        $('.rong_con_'+id).show();
+        $('.rong_user_all').removeClass('r_active');
+        $('.rong_user_'+id).addClass('r_active');
+        $('.rong_head').scrollTop($('.rong_con_'+id)[0].scrollHeight);
+    }
+
+
+    function sendimg(base64Str,imageUri){
+        $("#imgInput").val('');
+        var msg = new RongIMLib.ImageMessage({content: base64Str, imageUri: imageUri});
+        var conversationType = RongIMLib.ConversationType.PRIVATE; // 单聊, 其他会话选择相应的会话类型即可
+        var targetId = now_id; // 目标 Id
+        RongIMClient.getInstance().sendMessage(conversationType, targetId, msg, {
+            onSuccess: function (message) {
+                // message 为发送的消息对象并且包含服务器返回的消息唯一 Id 和发送消息时间戳
+                console.log('Send successfully');
+
+
+                myself_add_msg('2',now_id,imageUri);
+            },
+            onError: function (errorCode, message) {
+                var info = '';
+                switch (errorCode) {
+                    case RongIMLib.ErrorCode.TIMEOUT:
+                        info = '超时';
+                        break;
+                    case RongIMLib.ErrorCode.UNKNOWN:
+                        info = '未知错误';
+                        break;
+                    case RongIMLib.ErrorCode.REJECTED_BY_BLACKLIST:
+                        info = '在黑名单中，无法向对方发送消息';
+                        break;
+                    case RongIMLib.ErrorCode.NOT_IN_DISCUSSION:
+                        info = '不在讨论组中';
+                        break;
+                    case RongIMLib.ErrorCode.NOT_IN_GROUP:
+                        info = '不在群组中';
+                        break;
+                    case RongIMLib.ErrorCode.NOT_IN_CHATROOM:
+                        info = '不在聊天室中';
+                        break;
+                }
+                showAlert('发送失败:' +info);
+                console.log('发送失败:' + info + errorCode);
+            }
+        });
+    }
+
+
+    function sendmsg(){
+        var content = $('#content').val();
+
+        var msg = new RongIMLib.TextMessage({ content: content, extra: '附加信息' });
+        var conversationType = RongIMLib.ConversationType.PRIVATE; // 单聊, 其他会话选择相应的会话类型即可
+        var targetId = now_id; // 目标 Id
+        RongIMClient.getInstance().sendMessage(conversationType, targetId, msg, {
+            onSuccess: function (message) {
+                // message 为发送的消息对象并且包含服务器返回的消息唯一 Id 和发送消息时间戳
+                console.log('Send successfully');
+                $('#content').val('');
+                myself_add_msg('1',now_id,content);
+            },
+            onError: function (errorCode, message) {
+                var info = '';
+                switch (errorCode) {
+                    case RongIMLib.ErrorCode.TIMEOUT:
+                        info = '超时';
+                        break;
+                    case RongIMLib.ErrorCode.UNKNOWN:
+                        info = '未知错误';
+                        break;
+                    case RongIMLib.ErrorCode.REJECTED_BY_BLACKLIST:
+                        info = '在黑名单中，无法向对方发送消息';
+                        break;
+                    case RongIMLib.ErrorCode.NOT_IN_DISCUSSION:
+                        info = '不在讨论组中';
+                        break;
+                    case RongIMLib.ErrorCode.NOT_IN_GROUP:
+                        info = '不在群组中';
+                        break;
+                    case RongIMLib.ErrorCode.NOT_IN_CHATROOM:
+                        info = '不在聊天室中';
+                        break;
+                }
+                showAlert(info);
+                console.log('发送失败: ' + info + errorCode);
+            }
+        });
+    }
+
+
+
+    function _deleteUser(id,name,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除'+name,'确定要删除'+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/delete'); ?>",
+                data:{id:id,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function EditStatus(id,str,title,db){
+        var name;
+        if(str=='1'){
+            name = '显示';
+        }else{
+            name = '隐藏';
+        }
+        showConfirm('<i class="icon-exclamation-sign"></i> '+name+title,'确定要'+name+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editshow'); ?>",
+                data:{id:id,str:str,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+    function getuserinf(id){
+        $.ajax({
+            type: 'POST',
+            async: false,
+            url: "<?php echo U('home/'.$at.'/getuserinfo'); ?>",
+            data:{id:id},
+            success: function (result) {
+                if(result.code == 1){
+                    return result.list;
+                }else{
+                   return false;
+                }
+            }
+        });
+    }
+
+
+    function EditData(id)
+    {
+        location.href = "<?php echo U('home/GameAdd/index/edit_id/"+id+"');?>";
+    }
+</script>

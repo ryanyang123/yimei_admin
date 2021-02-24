@@ -1,0 +1,749 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/duoimg/css/globle.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        {$title} <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">游戏</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#"><?php echo $is_edit?'修改'.$title:'新增'.$title;?></a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="form-horizontal">
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医院名称</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入医院名称" name="name"  value="{$list.name}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+                               <!--     <?php if($is_edit){?>
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医院logo</font></font></label>
+
+                                        <div class="controls">
+
+                                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                <div class="dan_upload_img_div1" style="border: none;;">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <?php }?>-->
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医院logo</font></font></label>
+
+
+                                        <div class="controls">
+                                            <div id="upload_kuang"  <if condition="!$is_edit and !$list['logo']">class="dan_upload_img_div1"</if>>
+                                                <div id="uploadPreview">
+                                                    <if condition="$is_edit and $list['logo']">
+                                                        <img src="{$list.logo}" style="max-height: 150px;border:1px solid #ddd;" alt=""/>
+                                                    </if>
+                                                </div>
+
+                                            </div>
+
+                                            <label class="on_img_btn" for="uploadImage" style="display: inline;"> <span  class="btn btn-default" style="">
+                                                <if condition="!$is_edit and !$list['logo']">
+                                                    选择图片
+                                                    <else/>
+                                                    更改图片
+                                                </if>
+
+                                            </span></label>
+                                            <label class="change_img_btn" for="uploadImage" style="display: none;"> <span  class="btn btn-default" style="">更改</span></label>
+                                            <label class="del_img_btn" style="display: none;" onclick="ClearImg('')"> <span  class="btn btn-default" style="">删除</span></label>
+                                            <input id="uploadImage" style="" type="file"  name="photoimage" class="fimg1"  />
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医院背景图</font></font></label>
+
+
+                                        <div class="controls">
+                                            <div id="upload_kuang2"  <if condition="!$is_edit and !$list['bg']">class="dan_upload_img_div1"</if>>
+                                            <div id="uploadPreview2">
+                                                <if condition="$is_edit and $list['bg']">
+                                                    <img src="{$list.bg}" style="max-height: 150px;border:1px solid #ddd;" alt=""/>
+                                                </if>
+                                            </div>
+
+                                        </div>
+
+
+                                        <label class="on_img_btn2" for="uploadImage2" style="display: inline;"> <span  class="btn btn-default" style="">
+                                                <if condition="!$is_edit and !$list['bg']">
+                                                    选择图片
+                                                    <else/>
+                                                    更改图片
+                                                </if>
+                                            </span></label>
+                                            <label class="change_img_btn2" for="uploadImage2" style="display: none;"> <span  class="btn btn-default" style="">更改</span></label>
+                                            <label class="del_img_btn2" style="display: none;" onclick="ClearImg('2')"> <span  class="btn btn-default" style="">删除</span></label>
+                                            <input id="uploadImage2" style="" type="file"  name="photoimage2" class="fimg1"  />
+                                        </div>
+                                    </div>
+
+
+                        <div class="control-group">
+
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登录账号</font></font></label>
+
+                            <div class="controls">
+                                <input type="text" placeholder="请输入登录账号" autocomplete="off" name="username"  value="{$list.username}" class="m-wrap medium">
+                            </div>
+
+                        </div>
+
+                        <div class="control-group">
+
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登录密码</font></font></label>
+
+                            <div class="controls">
+                                <input type="password" placeholder="无需修改密码可不填" autocomplete="off" name="password"  value="" class="m-wrap medium">
+                            </div>
+
+                        </div>
+                        <div class="control-group">
+
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确认密码</font></font></label>
+
+                            <div class="controls">
+                                <input type="password" placeholder="确认密码" autocomplete="off" name="password2"  value="" class="m-wrap medium">
+                            </div>
+
+                        </div>
+
+
+                        <div class="control-group">
+
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支付宝账号</font></font></label>
+
+                            <div class="controls">
+                                <input type="text" placeholder="请输入支付宝账号" name="ali_number"  value="{$list.ali_number}" class="m-wrap medium">
+                            </div>
+
+                        </div>
+
+                        <div class="control-group">
+
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支付宝真实姓名</font></font></label>
+
+                            <div class="controls">
+                                <input type="text" placeholder="请输入支付宝真实姓名" name="ali_name"  value="{$list.ali_name}" class="m-wrap medium">
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医院类型</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入医院类型" name="classify"  value="{$list.classify}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医院地址</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入医院地址" name="location"  value="{$list.location}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                            经度
+                                            <br>
+                                            经度范围：0°——180°
+                                        </font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入经度" name="lng"  value="{$list.lng}" class="m-wrap medium">
+
+                                            <a href="https://lbs.amap.com/console/show/picker" target="_blank">点击查询经纬度</a>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                            纬度
+                                            <br>
+                                            纬度范围：0°——90°
+                                        </font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入纬度" name="lat"  value="{$list.lat}" class="m-wrap medium">
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医院面积</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入医院面积" name="proportion"  value="{$list.proportion}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">治疗室数量</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入治疗室数量" name="treatment_room"  value="{$list.treatment_room}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">手术室数量</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入手术室数量" name="operating_room"  value="{$list.operating_room}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医院科室</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="多个科室请以加号(+)分隔" name="administrative"  value="{$list.administrative}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">成立时间</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请选择医院成立时间" name="open_time"  readonly <if condition="$list['open_time'] gt 0">value="{$list.open_time|date='Y-m-d',###}"</if> class="m-wrap medium auto-kal" autocomplete="off">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医院简介</font></font></label>
+                                        <div class="controls">
+                                            <textarea class="large m-wrap" name="intro" rows="10">{$list.intro}</textarea>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">排序</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="排序，越小越前" name="sort"  value="{$list.sort}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <div class="form-actions">
+
+                                        <button type="button" onclick="UploadImg()"  class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wangEditor/release/wangEditor.min.js"></script>
+<script src="__PUBLIC__/duoimg/js/webuploader.min.js"></script>
+<script src="__PUBLIC__/duoimg/js/diyUpload.js"></script>
+<script>
+
+
+
+
+
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+
+    $("#uploadImage2").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+                $("#uploadPreview2").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn2').hide();
+                $('.change_img_btn2').show().css('display','inline-block');
+                $('.del_img_btn2').show().css('display','inline-block');
+                $("#upload_kuang2").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+
+
+    /*$('input:radio[name="optionsRadios1"]').change( function(){
+        $('.show_all').hide();
+        if($(this).val()==1 || $(this).val()==2){
+            $('.show_'+$(this).val()).show();
+        }
+    })
+*/
+
+    function ClearImg(id){
+        $("#upload_kuang"+id).addClass("dan_upload_img_div1");
+        $("#uploadImage"+id).val('');
+        $('.on_img_btn'+id).show();
+        $('.change_img_btn'+id).hide();
+        $('.del_img_btn'+id).hide();
+        $('#uploadPreview'+id).html('');
+    }
+
+
+    function _deleteUser(id,name,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除'+name,'确定要删除'+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/delete'); ?>",
+                data:{id:id,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function UploadImg(){
+        var img = "";
+        var file = $("#uploadImage").val();
+        if(file==""){
+            UploadImg2("");
+        }
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+                            UploadImg2(img);
+                        }else{
+                            showAlert("图片上传失败");
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
+
+
+    function UploadImg2(img1){
+        var img = "";
+        var file = $("#uploadImage2").val();
+        if(file==""){
+            SubmitData(img1,"");
+        }
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/thumb2');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage2",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+
+                            SubmitData(img1,img);
+                        }else{
+                            showAlert("图片上传失败");
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
+
+    var parent_url = "<?php echo U('home/'.$at.'/index');?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+    function SubmitData(img1,img2){
+        var name = $.trim($("*[name='name']").val());
+        var classify = $.trim($("*[name='classify']").val());
+        var location = $.trim($("*[name='location']").val());
+        var lng = $.trim($("*[name='lng']").val());
+        var lat = $.trim($("*[name='lat']").val());
+        var proportion = $.trim($("*[name='proportion']").val());
+        var treatment_room = $.trim($("*[name='treatment_room']").val());
+        var operating_room = $.trim($("*[name='operating_room']").val());
+        var administrative = $.trim($("*[name='administrative']").val());
+        var open_time = $.trim($("*[name='open_time']").val());
+        var sort = $.trim($("*[name='sort']").val());
+        var intro = $.trim($("*[name='intro']").val());
+        var username = $.trim($("*[name='username']").val());
+        var password = $.trim($("*[name='password']").val());
+        var password2 = $.trim($("*[name='password2']").val());
+        var ali_number = $.trim($("*[name='ali_number']").val());
+        var ali_name = $.trim($("*[name='ali_name']").val());
+
+
+
+        if (!name){showAlert("请输入医院名称");return false;}
+        if(!img1 && !is_Edit){
+            showAlert("请上传医院LOGO");
+            return false;
+        }
+        if(!img2 && !is_Edit){
+            showAlert("请上传医院背景图");
+            return false;
+        }
+        if (!classify){showAlert("请输入医院类型");return false;}
+        if (!location){showAlert("请输入医院地址");return false;}
+        if (!lng){showAlert("请输入医院经度");return false;}
+        if (!lat){showAlert("请输入医院纬度");return false;}
+        if (!proportion){showAlert("请输入医院面积");return false;}
+        if (!treatment_room){showAlert("请输入医院治疗室数量");return false;}
+        if (!operating_room){showAlert("请输入医院手术室数量");return false;}
+        if (!administrative){showAlert("请输入医院科室");return false;}
+        if (!open_time){showAlert("请选择医院成立时间");return false;}
+        if (!intro){showAlert("请输入医院简介");return false;}
+
+
+        if (!username){showAlert("登录账号不能为空");return false;}
+        if(!is_Edit){
+            if (!password){showAlert("请设置登录密码");return false;}
+        }
+
+        if (password!=password2){showAlert("两次密码输入不一致");return false;}
+        if (!ali_number){showAlert("请输入支付宝账号");return false;}
+        if (!ali_name){showAlert("请输入支付宝真实姓名");return false;}
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/add'); ?>",
+            data:{img1:img1,
+                img2:img2,
+                name:name,
+                username:username,
+                password:password,
+                ali_number:ali_number,
+                ali_name:ali_name,
+                classify:classify,
+                location:location,
+                lng:lng,
+                lat:lat,
+                proportion:proportion,
+                treatment_room:treatment_room,
+                operating_room:operating_room,
+                administrative:administrative,
+                open_time:open_time,
+                intro:intro,
+                sort:sort,
+                is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

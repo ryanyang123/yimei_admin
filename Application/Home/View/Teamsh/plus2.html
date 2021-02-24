@@ -1,0 +1,358 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+<style>
+    .ts_span{
+        margin-left: 10px;;
+        float: none!important;
+        display: inline-block!important;
+        width: auto!important;;
+
+    }
+    .m-wrap.medium,.user_select{
+        width: 120px!important;;
+    }
+    .taocan_div{
+        border-bottom: 1px solid #ccc;;
+        margin-bottom: 20px;;
+    }
+    .jia1{
+        font-size: 14px;
+        font-weight: bolder;;
+        color: #fff;;
+        border: 1px solid #fff;;
+        border-radius: 50% !important;
+        width: 32px;;
+        height: 32px;;
+        margin-left: 5px;;
+        display: inline-block;;
+        margin-bottom: 20px;;
+        background: #008000;
+    }
+
+    .jia2{
+        font-size: 14px;
+        font-weight: bolder;;
+        color: #fff;;
+        border: 1px solid #fff;;
+        border-radius: 50% !important;
+        width: 32px;;
+        height: 32px;;
+        margin-left: 5px;;
+        display: inline-block;;
+        background: red;
+    }
+
+</style>
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        {$title} <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">{$title}</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="{:U('home/'.$at.'/check/edit/'.$is_edit)}">{$list.card_name}</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#"><?php echo $is_edit?'修改套餐':'新增套餐';?></a></li>
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="">
+
+                                    <div id="zong_div">
+                                        <div class="controls taocan_div show_div0">
+                                            <span class="ts_span">排序：</span><input type="number" placeholder="请输入排序" id="sort0"  value="" class="m-wrap medium">
+                                            <span class="ts_span">用户属性：</span>
+                                            <select name="" id="user_type0" class="user_select">
+                                                <option value="1" >普通客户</option>
+                                                <option value="2" >大客户</option>
+                                            </select>
+                                            <span class="ts_span">销售价格：</span><input type="text" placeholder="请输入销售价格" id="money0"  value="" class="m-wrap medium">
+                                            <span class="ts_span">销售数量：</span><input type="number" placeholder="请输入销售数量" id="num0"  value="" class="m-wrap medium">
+
+                                        </div>
+                                    </div>
+
+                                    <button type="button" onclick="AddSmallGg()" class="jia1" ><i class="icon-plus"></i></button>
+
+                                    <div class="form-actions">
+                                        <button type="button" id="js_btn" onclick="SubmitData()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    var parent_url = "<?php echo U('home/'.$at.'/check/edit/'.$is_edit);?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+    var now_i = 0;
+
+    function AddSmallGg(){
+        $('.jia2').remove();
+        now_i++;
+        $('#zong_div').append('<div class="controls taocan_div show_div'+now_i+'">' +
+        ' <span class="ts_span">排序：</span><input type="number" placeholder="请输入排序" id="sort'+now_i+'"  value="" class="m-wrap medium"> ' +
+        '<span class="ts_span">用户属性：</span> <select name="" id="user_type'+now_i+'" class="user_select"> ' +
+        '<option value="1" >普通客户</option> ' +
+        '<option value="2" >大客户</option> ' +
+        '</select> ' +
+        '<span class="ts_span">销售价格：</span><input type="text" placeholder="请输入销售价格" id="money'+now_i+'"  value="" class="m-wrap medium"> ' +
+        '<span class="ts_span">销售数量：</span><input type="number" placeholder="请输入销售数量" id="num'+now_i+'"  value="" class="m-wrap medium"> ' +
+        '<button type="button" onclick="DelSmallGg(\''+now_i+'\')" class="jia2" ><i class="icon-trash"></i></button>' +
+        '</div>');
+    }
+
+    function DelSmallGg(id){
+        now_i--;
+        $('.show_div'+id).remove();
+        if(now_i!=0){
+            $('.show_div'+now_i).append('<button type="button" onclick="DelSmallGg(\''+now_i+'\')" class="jia2" ><i class="icon-trash"></i></button>');
+        }
+
+    }
+
+    function SubmitData(){
+
+        var arr_select = new Array();
+        for(var i = 0; i <=now_i; i++) {
+            var sort =  $('#sort'+i).val();
+            if(!sort){
+                showAlert("请输入排序");
+                $('#sort'+i).focus();
+                return false;
+            }
+
+            var user_type =  $('#user_type'+i).val();
+
+            var money =  $('#money'+i).val();
+            if(!money){
+                showAlert("请输入销售价格");
+                $('#money'+i).focus();
+                return false;
+            }
+
+            var num =  $('#num'+i).val();
+            if(!num){
+                showAlert("请输入销售数量");
+                $('#num'+i).focus();
+                return false;
+            }
+
+
+
+            arr_select[i] = new Array();
+            arr_select[i][0] =  sort;
+            arr_select[i][1] =  user_type;
+            arr_select[i][2] =  money;
+            arr_select[i][3] =  num;
+
+
+        }
+
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/adddetail'); ?>",
+            data:{arr_select:arr_select,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

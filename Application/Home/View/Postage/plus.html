@@ -1,0 +1,798 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+<style>
+    .pad_span{
+        padding-top: 7px; display: inline-block!important;
+        float: none!important;
+        margin-left: 0!important;
+        width: auto!important;
+    }
+    .guige_div{
+        /*margin-left: 5rem;margin-top: 10px;*/
+    }
+    .guige_div input{
+        width: 70px!important;
+    }
+    .jia1{
+        font-size: 14px;
+        font-weight: bolder;;
+        color: #000;;
+        border: 1px solid #000;;
+        border-radius: 50% !important;
+        width: 32px;;
+        height: 32px;;
+        margin-left: 5px;;
+        display: inline-block;;
+    }
+    .jia3{
+        font-size: 14px;
+        font-weight: bolder;;
+        color: #000;;
+        border: 1px solid #000;;
+        border-radius: 50% !important;
+        width: 32px;;
+        height: 32px;;
+        margin-left: 5px;;
+        display: inline-block;;
+    }
+    .zong_g1{
+        margin-bottom: 15px;;
+    }
+    .guige_div2{
+        margin-bottom: 10px;;
+    }
+    .area_a{
+
+        padding-top: 7px;
+
+        display: inline-block;
+        float: left;
+        margin-right: 20px;
+    }
+    .area_span{
+        margin-right: 20px;
+        padding-top: 7px;
+        display: inline-block!important;
+        width: 100px!important;
+        float: none!important;
+    }
+    .province_checkbox{
+        display: inline-block;
+        margin-right: 20px;
+    }
+    .area_checkbox{
+        display: inline-block;
+    }
+</style>
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        {$title} <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">运费模板</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#"><?php echo $is_edit?'修改'.$title:'新增'.$title;?></a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="form-horizontal">
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模板名称</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="text" placeholder="请输入模板名称" name="name"  value="{$list.name}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">类型</font></font></label>
+
+                                        <div class="controls">
+                                            <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+
+                                            <label class="radio">
+                                                <div class="radio"><span><input type="radio" name="optionsRadios1" <if condition="$list['status'] eq 1 or $list['status'] eq 0"> checked="" </if>   value="1"></span></div>
+                                                自定义邮费
+                                            </label>
+                                            <label class="radio">
+                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios1" <if condition="$list['status'] eq 2"> checked="" </if> value="2"></span></div>
+                                                包邮
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+
+                                  <!--  <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">类型</font></font></label>
+
+                                        <div class="controls">
+                                            &lt;!&ndash; 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友&ndash;&gt;
+
+                                            <label class="radio">
+                                                <div class="radio"><span><input type="radio" name="optionsRadios1" <if condition="$list['type'] eq 0"> checked="" </if>   value="0"></span></div>
+                                                按件数
+                                            </label>
+                                            <label class="radio">
+                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios1" <if condition="$list['type'] eq 1"> checked="" </if> value="1"></span></div>
+                                                按重量
+                                            </label>
+                                        </div>
+
+                                    </div>-->
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指定条件包邮</font></font></label>
+
+                                        <div class="controls">
+                                            <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+                                            <label class="radio">
+                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios2" <if condition="$list['is_bao'] eq 0"> checked="" </if> value="0"></span></div>
+                                                不指定
+                                            </label>
+                                            <label class="radio">
+                                                <div class="radio"><span><input type="radio" name="optionsRadios2" <if condition="$list['is_bao'] eq 1"> checked="" </if>   value="1"></span></div>
+                                                指定
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="control-group   baoyou_all baoyou_1" <if condition="$list.is_bao neq 1">style="display: none;"</if> >
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">包邮条件</font></font></label>
+
+                                        <div class="controls">
+                                            <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+
+                                            <label class="radio">
+                                                <div class="radio"><span><input type="radio" name="optionsRadios3" <if condition="$list['bao_type'] eq 0 or $list['bao_type'] eq 1"> checked="" </if>   value="1"></span></div>
+                                                按金额
+                                            </label>
+                                            <label class="radio">
+                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios3" <if condition="$list['bao_type'] eq 2"> checked="" </if> value="2"></span></div>
+                                                按件数
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group baoyou_all baoyou_1" <if condition="$list.is_bao neq 1">style="display: none;"</if>>
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">包邮设置</font></font></label>
+
+                                        <div class="controls">
+                                            <span style="padding-top: 7px; display: inline-block;">购买满</span>
+                                            <input type="number" placeholder="" name="bao_num"  value="{$list.bao_num}" style="width: 90px!important;" class="m-wrap medium">
+                                            <span style="padding-top: 7px; display: inline-block;">
+                                                <span id="baoyou_type" style="color: red;font-weight: bolder;">
+                                                    <if condition="$list.bao_type eq 2">
+                                                        件
+                                                        <else/>
+                                                        元
+                                                    </if>
+
+                                                </span>
+                                                ，则包邮</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group show_all show_1" <if condition="$list.status eq 2">style="display: none;"</if>>
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">默认运费</font></font></label>
+
+                                        <div class="controls">
+                                                <input type="number" placeholder="" name="one_num"  value="{$list.one_num}" style="width: 90px!important;" class="m-wrap medium">
+                                                <span class="pad_span">件内</span>
+                                                <input type="number" placeholder="" name="one_money"  value="{$list.one_money}" style="width: 90px!important;" class="m-wrap medium">
+                                                <span class="pad_span">元  ，每增加</span>
+                                                <input type="number" placeholder="" name="more_num"  value="{$list.more_num}" style="width: 90px!important;" class="m-wrap medium">
+                                                <span class="pad_span">件</span>
+                                                <input type="number" placeholder="" name="more_money"  value="{$list.more_money}" style="width: 90px!important;" class="m-wrap medium">
+                                                <span class="pad_span">元</span>
+                                        </div>
+
+                                    </div>
+
+
+                                    <hr class=" show_all show_1" <if condition="$list.status eq 2">style="display: none;"</if>>
+
+                                    <div class="control-group show_all show_1" <if condition="$list.status eq 2">style="display: none;"</if>>
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">自定义运费</font></font></label>
+
+                                        <div class="controls all_ge">
+                                            <if condition="$list.data neq null">
+                                                <div class="zong_g1 da_div1">
+                                                    <div class="guige_div zgg1">
+                                                        <foreach name="list.data" item="v" key="key">
+                                                            <div class="guige_div2 del_small{$key+1}">
+                                                                <span class="area_span location{$key+1}">{$v.loca}</span>
+                                                                <a class="area_a" href="javascript:fahuo({$key+1});">编辑</a>
+                                                                <!-- <input type="text" placeholder="" name="s_value1"  value="" class="m-wrap s_value1">
+                                                                 <input type="number" placeholder="金额" name="s_price1"  value="" class="m-wrap s_price1">-->
+                                                                <input type="number" placeholder="首件数(件)" name="ot_one_num{$key+1}"  value="{$v.one_num}" style="width: 90px!important;" class="m-wrap medium">
+                                                                <!--<span class="pad_span"></span>-->
+                                                                <input type="number" placeholder="首费(元)" name="ot_one_money{$key+1}"  value="{$v.one_money}" style="width: 90px!important;" class="m-wrap medium">
+                                                                <input type="number" placeholder="续件数(件)" name="ot_more_num{$key+1}"  value="{$v.more_num}" style="width: 90px!important;" class="m-wrap medium">
+                                                                <input type="number" placeholder="续费(元)" name="ot_more_money{$key+1}"  value="{$v.more_money}" style="width: 90px!important;" class="m-wrap medium">
+                                                                <!--
+                                                                                                                            <input type="number" placeholder="增加成本" name="s_cost11"  value="" class="m-wrap s_cost11">
+                                                                -->
+                                                                <input type="hidden"  name="s_id{$key+1}"  value="0" class="m-wrap s_id{$key+1}">
+
+
+                                                                <input type="hidden" class="now_area_id{$key+1}" value="{$v.loca}"/>
+                                                            </div>
+                                                        </foreach>
+
+                                                    </div>
+                                                    <input type="hidden" class="now_num" value="{$list.now_num}"/>
+                                                    <!--<button type="button" onclick="AddGg()" class="jia2"><i class="icon-plus"></i>增加新的商品规格</button>-->
+                                                </div>
+
+                                                <else/>
+                                                <div class="zong_g1 da_div1">
+
+                                                    <div class="guige_div zgg1">
+                                                        <div class="guige_div2 del_small1">
+                                                            <span class="area_span location1">未添加地区</span>
+                                                            <a class="area_a" href="javascript:fahuo(1);">编辑</a>
+                                                           <!-- <input type="text" placeholder="" name="s_value1"  value="" class="m-wrap s_value1">
+                                                            <input type="number" placeholder="金额" name="s_price1"  value="" class="m-wrap s_price1">-->
+                                                            <input type="number" placeholder="首件数(件)" name="ot_one_num1"  value="" style="width: 90px!important;" class="m-wrap medium">
+                                                            <!--<span class="pad_span"></span>-->
+                                                            <input type="number" placeholder="首费(元)" name="ot_one_money1"  value="" style="width: 90px!important;" class="m-wrap medium">
+                                                            <input type="number" placeholder="续件数(件)" name="ot_more_num1"  value="" style="width: 90px!important;" class="m-wrap medium">
+                                                            <input type="number" placeholder="续费(元)" name="ot_more_money1"  value="" style="width: 90px!important;" class="m-wrap medium">
+                                                            <!--
+                                                                                                                        <input type="number" placeholder="增加成本" name="s_cost11"  value="" class="m-wrap s_cost11">
+                                                            -->
+                                                            <input type="hidden"  name="s_id1"  value="0" class="m-wrap s_id1">
+                                                            <button type="button" onclick="AddSmallGg('1')" class="jia1" ><i class="icon-plus"></i></button>
+                                                            <input type="hidden" class="now_area_id1" value=""/>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" class="now_num" value="1"/>
+                                                    <!--<button type="button" onclick="AddGg()" class="jia2"><i class="icon-plus"></i>增加新的商品规格</button>-->
+                                                </div>
+                                            </if>
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="form-actions">
+
+                                        <button type="button" id="js_btn" onclick="SubmitData()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+
+<!-- modal -->
+<div class="modal fade" id = 'modal_fahuo' style="display: none;top: 8%;width: 600px;" >
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_fahuo_title'>选择区域</h4>
+            </div>
+            <div class="modal-body" style="min-height: 500px;">
+               <table style="width: 100%;line-height: 38px;">
+                   <foreach name="area_list" item="v" key="key">
+                       <tr>
+                           <td style="width: 100px;vertical-align: top;">
+                                    <label class="checkbox all_color area_checkbox" >
+                                        <span class="all_pro"><input class="limits all_checkbox" type="checkbox" onclick="changearea(this)" <if condition="$v.is_on eq 1">checked</if> data-aid="{$key}"  name="area_list" value="{$v.name}"></span> {$v.name}
+                                    </label>
+                           </td>
+                           <td>
+                               <foreach name="v.list" item="k">
+                                   <label class="checkbox all_color province_checkbox " >
+                                       <span class="all_pro span_pro_{$k.parent}">
+                                           <input class="limits all_checkbox area_pro_{$k.parent}" type="checkbox" onclick="changexiao(this)" <if condition="$v.is_on eq 1">checked</if>  data-parent="{$v.name}" name="location_list" value="{$k.name}">
+                                       </span> {$k.name}
+                                   </label>
+                               </foreach>
+                           </td>
+                       </tr>
+                   </foreach>
+
+               </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >取 消</button>
+                <button type="button" class="btn green" id='modal_fahuo_yes'  style='margin-left:9px'>确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+
+
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    var parent_url = "<?php echo U('home/'.$at.'/index');?>";
+    var all_sel=new Array();
+    $(function(){
+        var data_arr = $.parseJSON('{$data_arr}');
+        var now_num = '{$list.now_num}';
+
+        if(data_arr){
+            $.each(data_arr,function(index,value){
+                all_sel[index] = new Array();
+                all_sel[index] = value;
+            });
+            if(now_num>1){
+                $('.del_small'+now_num).append(' <button type="button" onclick="DelSmallGg(\''+now_num+'\')" class="jia1" ><i class="icon-trash"></i></button>');
+            }
+            $('.del_small'+now_num).append(' <button type="button" onclick="AddSmallGg(\''+now_num+'\')" class="jia1" ><i class="icon-plus"></i></button>\n');
+
+        }
+
+    });
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+    $('input:radio[name="optionsRadios1"]').change( function(){
+        $('.show_all').hide();
+        if($(this).val()==1 || $(this).val()==2 || $(this).val()==3 || $(this).val()==4){
+            $('.show_'+$(this).val()).show();
+        }
+    })
+
+    $('input:radio[name="optionsRadios2"]').change( function(){
+        $('.baoyou_all').hide();
+        if($(this).val()==1 || $(this).val()==2 || $(this).val()==3 || $(this).val()==4){
+            $('.baoyou_'+$(this).val()).show();
+        }
+    })
+
+    $('input:radio[name="optionsRadios3"]').change( function(){
+        if($(this).val()==1){
+            $('#baoyou_type').html('元');
+        }else{
+            $('#baoyou_type').html('件');
+        }
+    })
+
+    function fahuo(id){
+        var now_arr=new Array();
+        var now_area = $('.now_area_id'+id).val();
+
+        $('.all_color').css('color','#000');
+        $('.all_pro .checker span').removeClass('checked');
+        $('.all_checkbox').attr({"checked":false,'disabled':false});
+        if(now_area){
+            now_arr = now_area.split(",");
+            $.each(now_arr,function(index,value){
+                $("input[name='location_list'][value="+value+"]").attr("checked",true);
+                $("input[name='location_list'][value="+value+"]").parents("span").addClass('checked');
+
+          /*      $("input[name='area_list'][value="+value+"]").attr("checked",true);
+                $("input[name='area_list'][value="+value+"]").parents("span").addClass('checked');*/
+
+            });
+        }
+        if(all_sel){
+            $.each(all_sel,function(index,item){
+                if(item){
+                    if(index!=id){
+                        $.each(item,function(key,value){
+                            $("input[name='location_list'][value="+value+"]").attr({"checked":false,'disabled':true});
+                            $("input[name='location_list'][value="+value+"]").parents("span").removeClass('checked');
+                            $("input[name='location_list'][value="+value+"]").parents("label").css('color','#ccc');
+
+                           /* $("input[name='area_list'][value="+value+"]").attr({"checked":false,'disabled':true});
+                            $("input[name='area_list'][value="+value+"]").parents("span").removeClass('checked');
+                            $("input[name='area_list'][value="+value+"]").parents("label").css('color','#ccc');*/
+                        });
+                    }
+                }
+            });
+        }
+
+
+        $('#modal_fahuo').modal('show');
+        $('#modal_fahuo_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            Changelocation(id);
+        };
+    }
+
+    function Changelocation(id){
+        var arrlist=new Array();
+
+        var tmp="";
+        var tmp2="";
+        $("input[name='location_list']:checkbox:checked").each(function(){
+            arrlist.push($(this).val());
+        });
+        tmp = arrlist.join(",");
+        if(tmp){
+            $('.location'+id).html(tmp);
+        }else{
+            $('.location'+id).html('未添加地区');
+        }
+
+        $("input[name='area_list']:checkbox:checked").each(function(){
+            arrlist.push($(this).val());
+        });
+        all_sel[id] = new Array();
+        all_sel[id] = arrlist;
+        //console.log(all_sel);
+        tmp2 = arrlist.join(",");
+
+
+        $('.now_area_id'+id).val(tmp2);
+
+        $('#modal_fahuo').modal('hide');
+    }
+
+
+    function changearea(obj){
+        var aid = obj.dataset.aid;
+        if(obj.checked){
+
+            //$('.area_pro_'+aid).attr("checked",true);
+            //$('.span_pro_'+aid+' .checker span').addClass('checked');
+            $('.span_pro_'+aid+' .checker span input').each(function(){
+                console.log($(this).is(':disabled'));
+               if($(this).is(':disabled')){
+
+               }else{
+                   $(this).parent('span').addClass('checked');
+                   $(this).attr("checked",true);
+               }
+            });
+        }else{
+            $('.span_pro_'+aid+' .checker span').removeClass('checked');
+            $('.area_pro_'+aid).attr("checked",false);
+        }
+    }
+    function changexiao(obj){
+        var parent = obj.dataset.parent;
+        if(obj.checked){
+
+        }else{
+            $("input[name='area_list'][value="+parent+"]").attr("checked",false);
+            $("input[name='area_list'][value="+parent+"]").parents("span").removeClass('checked');
+        }
+    }
+    function DelSmallGg(zi){
+        var now_j = $('.now_num').val();
+        var now_k = parseInt(now_j)-1;
+        $('.now_num').val(now_k);
+        $('.del_small'+zi).remove();
+        $('.now_area_id'+zi).remove();
+        all_sel[zi] = new Array();
+        //all_sel= all_sel.splice(zi,0);
+        var add_btn = now_k;
+        if(now_k==1){
+            $('.del_small'+add_btn).append('<button type="button" onclick="AddSmallGg(\''+zi+'\')" class="jia1" ><i class="icon-plus"></i></button> </div>');
+        }else{
+            $('.del_small'+add_btn).append(
+                '<button type="button" onclick="DelSmallGg(\''+now_k+'\')" class="jia1" ><i class="icon-trash"></i></button>'+
+                '<button type="button" onclick="AddSmallGg(\''+zi+'\')" class="jia1" ><i class="icon-plus"></i></button> </div>');
+        }
+
+    }
+
+    function AddSmallGg(id){
+        var now_j = $('.now_num').val();
+        var now_k = parseInt(now_j)+1;
+        $('.now_num').val(now_k);
+        $('.zgg1 .jia1').remove();
+        $('.zgg1').append('<div class="guige_div2 del_small'+now_k+'">' +
+            ' <span class="area_span location'+now_k+'">未添加地区</span>' +
+            '<a class="area_a" href="javascript:fahuo('+now_k+');">编辑</a>' +
+            /*' <input type="text" placeholder="规格值" name="s_value'+now_k+'"  value="" class="m-wrap s_value'+now_k+'"> ' +
+            '<input type="number" placeholder="金额" name="s_price'+now_k+'"  value="" class="m-wrap s_price'+now_k+'"> ' +*/
+            '<input type="number" placeholder="首件数(件)" name="ot_one_num'+now_k+'"  value="" style="width: 90px!important;" class="m-wrap medium">\n' +
+            '<input type="number" placeholder="首费(元)" name="ot_one_money'+now_k+'"  value="" style="width: 90px!important;" class="m-wrap medium">\n' +
+            '<input type="number" placeholder="续件数(件)" name="ot_more_num'+now_k+'"  value="" style="width: 90px!important;" class="m-wrap medium">\n' +
+            '<input type="number" placeholder="续费(元)" name="ot_more_money'+now_k+'"  value="" style="width: 90px!important;" class="m-wrap medium">\n' +
+            '<input type="hidden"  name="s_id'+now_k+'"  value="0" class="m-wrap s_id'+now_k+'">'+
+            '<button type="button" onclick="DelSmallGg(\''+now_k+'\')" class="jia1" ><i class="icon-trash"></i></button>'+
+            '<button type="button" onclick="AddSmallGg(\''+now_k+'\')" class="jia1" ><i class="icon-plus"></i></button> </div>'+
+            '<input type="hidden" class="now_area_id'+now_k+'" value=""/>'
+        );
+    }
+
+
+    /**
+     * 将二维数组转为 json 字符串
+     */
+    function encodeArray2D(obj) {
+        var array = [];
+        for (var i = 0; i < obj.length; i++) {
+            array[i] = '[' + obj[i].join(',') + ']';
+        }
+        return '[' + array.join(',') + ']';
+    }
+
+    function SubmitData(){
+
+        var is_bao,bao_type,bao_num,one_num,one_money,more_num,more_money,tmp = '';
+        var name = $.trim($("*[name='name']").val());
+        var status = $("input[name='optionsRadios1']:checked").val();
+        bao_num = $.trim($("*[name='bao_num']").val());
+        one_num = $.trim($("*[name='one_num']").val());
+        one_money = $.trim($("*[name='one_money']").val());
+        more_num = $.trim($("*[name='more_num']").val());
+        more_money = $.trim($("*[name='more_money']").val());
+        is_bao = $("input[name='optionsRadios2']:checked").val();
+        bao_type = $("input[name='optionsRadios3']:checked").val();
+
+
+        if(!name){showAlert("请输入模板名称");return false;}
+
+        if(status==1){
+            if(is_bao==1){
+                if(!bao_num){showAlert("请输入包邮条件");return false;}
+            }
+            if(one_num==null){showAlert("请输入默认首件数");return false;}
+            if(one_money==null){showAlert("请输入默认首费");return false;}
+            if(more_num==null){showAlert("请输入默认续件数");return false;}
+            if(more_money==null){showAlert("请输入默认续件费");return false;}
+
+            var reg = new RegExp(",","g");//g,表示全部替换。
+            var arr = new Array();
+            var now_j = $('.now_num').val();
+            for(var i=0;i<now_j;i++){
+                var j  = i+1;
+                arr[i] = new Array();
+                var location = '"'+$('.location'+j).html()+'"';
+                if(location){
+                    arr[i][0] = location.replace(reg,"+");
+                    arr[i][1] = $.trim($("*[name='ot_one_num"+j+"']").val());
+                    arr[i][2] = $.trim($("*[name='ot_one_money"+j+"']").val());
+                    arr[i][3] = $.trim($("*[name='ot_more_num"+j+"']").val());
+                    arr[i][4] = $.trim($("*[name='ot_more_money"+j+"']").val());
+
+                    if(!arr[i][1]){arr[i][1] = 0;}
+                    if(!arr[i][2]){arr[i][2] = 0;}
+                    if(!arr[i][3]){arr[i][3] = 0;}
+                    if(!arr[i][4]){arr[i][4] = 0;}
+                }
+
+
+            }
+            if(arr){
+                tmp =   encodeArray2D(arr)
+            }
+        }
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/add'); ?>",
+            data:{name:name,
+                status:status,
+                is_bao:is_bao,
+                bao_type:bao_type,
+                bao_num:bao_num,
+                one_num:one_num,
+                one_money:one_money,
+                more_num:more_num,
+                more_money:more_money,
+                tmp:tmp,
+                is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

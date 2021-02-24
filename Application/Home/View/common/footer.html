@@ -1,0 +1,312 @@
+<div class="footer">
+
+    <div class="footer-inner">
+
+        2017 &copy; <a href="#" title="一方盟" target="_blank">网站模板</a> - 一方盟 <a href="#" target="_blank" title="模板之家">一方盟</a>
+
+    </div>
+
+    <div class="footer-tools">
+
+			<span class="go-top">
+
+			<i class="icon-angle-up"></i>
+
+			</span>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<!-- modal -->
+<div class="modal fade" id = 'modal_confirm' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_confirm_title'>Default Modal</h4>
+            </div>
+            <div class="modal-body">
+                <p id='modal_confirm_body'>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >取 消</button>
+                <button type="button" class="btn green" id='modal_confirm_yes' style='margin-left:9px'>确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+
+<div class="modal fade" id = 'modal_alert'  style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <h4 class="modal-title" id='modal_alert_title'><i class="icon-exclamation-sign"></i> 消息</h4>
+            </div>
+            <div class="modal-body">
+                <p id='modal_alert_body'>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id='modal_alert_yes' style='margin-left:9px'>确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div id="newMessageDIV2">
+
+</div>
+
+
+
+<!-- END FOOTER -->
+
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+<!-- BEGIN CORE PLUGINS -->
+
+<script src="__PUBLIC__/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+
+<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+<script src="__PUBLIC__/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--[if lt IE 9]>
+
+<script src="__PUBLIC__/js/excanvas.min.js"></script>
+
+<script src="__PUBLIC__/js/respond.min.js"></script>
+
+<![endif]-->
+
+<script src="__PUBLIC__/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.blockui.min.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.cookie.min.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.uniform.min.js" type="text/javascript" ></script>
+
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+<script src="__PUBLIC__/js/jquery.vmap.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.vmap.russia.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.vmap.world.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.vmap.europe.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.vmap.germany.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.vmap.usa.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.flot.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.flot.resize.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.pulsate.min.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/date.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/daterangepicker.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.gritter.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/fullcalendar.min.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.easy-pie-chart.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/jquery.sparkline.min.js" type="text/javascript"></script>
+
+
+
+<!--上传图片添加-->
+<script type="text/javascript" src="__PUBLIC__/js/ckeditor.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-fileupload.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/chosen.jquery.min.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/select2.min.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/wysihtml5-0.3.0.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-wysihtml5.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.tagsinput.min.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.toggle.buttons.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-datetimepicker.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/clockface.js"></script>
+
+
+
+
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-colorpicker.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/bootstrap-timepicker.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.inputmask.bundle.min.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.input-ip-address-control-1.0.min.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.multi-select.js"></script>
+
+
+
+
+<!--上传图片添加-->
+<!-- END PAGE LEVEL PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="__PUBLIC__/js/jquery.fancybox.pack.js"></script>
+
+<script src="__PUBLIC__/js/app.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/index.js" type="text/javascript"></script>
+
+<script src="__PUBLIC__/js/search.js"></script>
+
+<script src="__PUBLIC__/js/form-components.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.dataTables.min.js"></script>
+
+<script src="__PUBLIC__/js/table-advanced.js"></script>
+
+<script src="__PUBLIC__/js/kalendae.standalone.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<script>
+    $(function(){
+        $('#tz_input').blur(function(){
+
+            var url=$('#tz_a_num').attr("href");
+            //var strs=url.substr(0,25);
+            var strs=url;
+            var value=this.value;
+            var newurl=strs+value;
+            $('#tz_a_num').attr("href",newurl);
+        });
+    });
+    function OverAllNav(msg){
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/public/overallnav'); ?>",
+            data:{msg:msg},
+            success: function (result) {
+                if(result.code == 1){
+                    $('.overall_a .tubiao').remove();
+                    if(result.list.order_num>0){
+                        $('.overall_a_order').append('<span class="badge badge-important tubiao">'+result.list.order_num+'</span>');
+                    }
+                    if(result.list.manager_num>0){
+                        $('.overall_a_manager').append('<span class="badge badge-important tubiao">'+result.list.manager_num+'</span>');
+                    }
+                    if(result.list.service_num>0){
+                        $('.overall_a_service').append('<span class="badge badge-important tubiao">'+result.list.service_num+'</span>');
+                    }
+                    if(result.is_sy==1){
+                        $('#newMessageDIV2').html('<audio autoplay="autoplay"><source src="__PUBLIC__'+result.sy_url+'"'
+                        + 'type="audio/wav"/><source src="__PUBLIC__'+result.sy_url+'" type="audio/mpeg"/></audio>');
+                    }
+                }
+            }
+        });
+    }
+
+
+    function cleartis(type){
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/public/cleartis'); ?>",
+            data:{type:type},
+            success: function (result) {
+                window.location.href= parent_url;
+            }
+        });
+    }
+
+    function showConfirm(title,body,callback){
+        $('#modal_confirm_title')[0].innerHTML=title;
+        $('#modal_confirm_body')[0].innerHTML=body;
+        $('#modal_confirm_yes')[0].onclick=function(){
+            $('#modal_confirm').modal('hide');
+            if(callback){
+                callback();
+            }
+        };
+        $('#modal_confirm').modal('show');
+        $('#modal_confirm_yes')[0].focus();
+    }
+
+    function showAlert(body,callback){
+        //$('#modal_alert_title')[0].innerHTML=title;
+        $('#modal_alert_body')[0].innerHTML=body;
+        $('#modal_alert_yes')[0].onclick=function(){
+            $('#modal_alert').modal('hide');
+            if(callback){
+                callback();
+            }
+        };
+        $('#modal_alert').modal('show');
+        $('#modal_alert_yes')[0].focus();
+    }
+
+    jQuery(document).ready(function() {
+
+        App.init(); // initlayout and core plugins
+
+        Index.init();
+
+        Index.initJQVMAP(); // init index page's custom scripts
+
+        Index.initCalendar(); // init index page's custom scripts
+
+        Index.initCharts(); // init index page's custom scripts
+
+        Index.initChat();
+
+        Index.initMiniCharts();
+
+        Index.initDashboardDaterange();
+        Search.init();//图片插件
+        //Index.initIntro();//登录弹出
+        FormComponents.init();
+        TableAdvanced.init();
+
+    });
+
+</script>

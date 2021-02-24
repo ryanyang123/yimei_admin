@@ -1,0 +1,605 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        帖子 <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-user"></i>
+
+                            <a href="<?php echo U('home/article/index');?>">帖子列表</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#"><?php echo $is_edit?'修改帖子':'新增帖子';?></a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="form-horizontal">
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">类型</font></font></label>
+
+                                        <div class="controls">
+
+
+                                            <a href="{:U('home/article/plus')}" class="btn icn-only">文字</a>
+                                            <a href="#" class="btn green icn-only">图片</a>
+                                            <a href="{:U('home/article/video')}" class="btn icn-only">视频</a>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">帖子内容</font></font></label>
+
+                                        <div class="controls">
+
+                                            <textarea class="span2 m-wrap" name="content" id="content" rows="6">
+
+                                            </textarea>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">发布用户</font></font></label>
+                                        <div class="controls">
+
+                                            <select name="user_id" data-placeholder="Your Favorite Type of Bear" class="chosen-with-diselect span3" tabindex="-1" id="user_id">
+
+                                                <foreach name="user_list" item="v">
+                                                    <option  selected  value="{$v.id}" >
+                                                        名称：{$v.name}-----<img src="{$v.head}" alt=""/>----性别：{$v.sex}
+                                                    </option>
+                                                </foreach>
+
+                                            </select>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?php echo $is_edit2&&$list4?'修改logo':'图片1';?></font></font></label>
+
+
+                                        <div class="controls">
+                                            <div id="upload_kuang"  class="dan_upload_img_div1">
+                                                <div id="uploadPreview">
+
+                                                </div>
+                                            </div>
+
+                                            <label class="on_img_btn" for="uploadImage" style="display: inline;"> <span  class="btn btn-default" style="">选择图片</span></label>
+                                            <label class="change_img_btn" for="uploadImage" style="display: none;"> <span  class="btn btn-default" style="">更改</span></label>
+                                            <label class="del_img_btn" style="display: none;" onclick="ClearImg('')"> <span  class="btn btn-default" style="">删除</span></label>
+                                            <input id="uploadImage" style="" type="file"  name="photoimage" class="fimg1"  />
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?php echo $is_edit2&&$list4?'修改logo':'图片2';?></font></font></label>
+
+
+                                        <div class="controls">
+                                            <div id="upload_kuang2"  class="dan_upload_img_div1">
+                                                <div id="uploadPreview2">
+
+                                                </div>
+                                            </div>
+
+                                            <label class="on_img_btn2" for="uploadImage2" style="display: inline;"> <span  class="btn btn-default" style="">选择图片</span></label>
+                                            <label class="change_img_btn2" for="uploadImage2" style="display: none;"> <span  class="btn btn-default" style="">更改</span></label>
+                                            <label class="del_img_btn3" style="display: none;" onclick="ClearImg('2')"> <span  class="btn btn-default" style="">删除</span></label>
+                                            <input id="uploadImage2" style="" type="file"  name="photoimage" class="fimg1"  />
+
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><?php echo $is_edit2&&$list4?'修改logo':'图片3';?></font></font></label>
+
+
+                                        <div class="controls">
+                                            <div id="upload_kuang3"  class="dan_upload_img_div1">
+                                                <div id="uploadPreview3">
+
+                                                </div>
+                                            </div>
+
+                                            <label class="on_img_btn3" for="uploadImage3" style="display: inline;"> <span  class="btn btn-default" style="">选择图片</span></label>
+                                            <label class="change_img_btn3" for="uploadImage3" style="display: none;"> <span  class="btn btn-default" style="">更改</span></label>
+                                            <label class="del_img_btn3" style="display: none;" onclick="ClearImg('3')"> <span  class="btn btn-default" style="">删除</span></label>
+                                            <input id="uploadImage3" style="" type="file"  name="photoimage" class="fimg1"  />
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">点赞数</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="number" placeholder="请输入点赞数" name="zan"  value="0" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">浏览数</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="number" placeholder="请输入浏览数" name="browse"  value="0" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属地方</font></font></label>
+
+                                        <div class="controls">
+                                            <select name="place_id" data-placeholder="Your Favorite Type of Bear" class="chosen-with-diselect span2" tabindex="-1" id="place_id">
+
+                                                <foreach name="place_list" item="v">
+                                                    <option  selected  value="{$v.id}" >{$v.name}</option>
+                                                </foreach>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <div class="form-actions">
+
+                                        <button type="button" id="js_btn" onclick="UploadImg()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+    $("#uploadImage2").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+                $("#uploadPreview2").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn2').hide();
+                $('.change_img_btn2').show().css('display','inline-block');
+                $('.del_img_btn2').show().css('display','inline-block');
+                $("#upload_kuang2").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+    $("#uploadImage3").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+                $("#uploadPreview3").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn3').hide();
+                $('.change_img_btn3').show().css('display','inline-block');
+                $('.del_img_btn3').show().css('display','inline-block');
+                $("#upload_kuang3").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+    var parent_url = "<?php echo U('home/article/index');?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+    function ClearImg(str){
+        if(str){
+            $("#upload_kuang"+str).addClass("dan_upload_img_div1");
+            $("#uploadImage"+str).val('');
+            $('.on_img_btn'+str).show();
+            $('.change_img_btn'+str).hide();
+            $('.del_img_btn'+str).hide();
+            $('#uploadPreview'+str).html('');
+        }else{
+            $("#upload_kuang").addClass("dan_upload_img_div1");
+            $("#uploadImage").val('');
+            $('.on_img_btn').show();
+            $('.change_img_btn').hide();
+            $('.del_img_btn').hide();
+            $('#uploadPreview').html('');
+        }
+
+    }
+
+
+    function UploadImg(){
+        var content = $.trim($("*[name='content']").val());
+        if(!content){
+            showAlert("请输入帖子内容");
+            return false;
+        }
+        var img = "";
+        var file = $("#uploadImage").val();
+        $('#js_btn').attr('disabled',true);
+        if(file==""){
+            UploadImg2("");
+        }
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                $('#js_btn').attr('disabled',false);
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/article_thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+
+                            UploadImg2(img);
+                        }else{
+                            showAlert("图片上传失败");
+                            $('#js_btn').attr('disabled',false);
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    function UploadImg2(img1){
+        var img = "";
+        var file = $("#uploadImage2").val();
+        if(file==""){
+            UploadImg3(img1,"");
+        }
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                $('#js_btn').attr('disabled',false);
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/article_thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage2",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+                            UploadImg3(img1,img);
+                        }else{
+                            showAlert("图片上传失败");
+                            $('#js_btn').attr('disabled',false);
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    function UploadImg3(img1,img2){
+        var img = "";
+        var file = $("#uploadImage3").val();
+        if(file==""){
+            SubmitData(img1,img2,"");
+        }
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                $('#js_btn').attr('disabled',false);
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/article_thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage3",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+                            SubmitData(img1,img2,img);
+                        }else{
+                            showAlert("图片上传失败");
+                            $('#js_btn').attr('disabled',false);
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    function SubmitData(img1,img2,img3){
+
+        var content = $.trim($("*[name='content']").val());
+        var user_id = $.trim($("*[name='user_id']").val());
+        var zan = $.trim($("*[name='zan']").val());
+        var browse = $.trim($("*[name='browse']").val());
+        var place_id = $.trim($("*[name='place_id']").val());
+
+        if(!content){
+            showAlert("请输入帖子内容");
+            $('#js_btn').attr('disabled',false);
+            return false;
+        }
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/article/add'); ?>",
+            data:{content:content,user_id:user_id,zan:zan,browse:browse,place_id:place_id,type:'1',img1:img1,img2:img2,img3:img3},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

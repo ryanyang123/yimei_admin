@@ -1,0 +1,1219 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+<style>
+    .star_img{
+        width: 20px;
+    }
+</style>
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        店铺列表 <small>详细</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">{$title}</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#">{$list.name}</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+                <div class="row-fluid">
+
+                    <div class="span6">
+
+                        <!-- BEGIN SAMPLE TABLE PORTLET-->
+
+                        <div class="portlet">
+
+                            <a href="{:U('home/'.$at.'/plus/edit/'.$list['id'])}" class="btn blue"><i class="icon-edit"></i> 修改</a>
+
+
+                            <div class="portlet-body">
+
+                                <table class="table table-striped table-bordered table-advance table-hover">
+
+                                    <thead>
+
+                                    <tr>
+
+                                        <th style="width: 100px;"><i class="icon-briefcase"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 选项</font></font></th>
+
+                                        <th ><i class="icon-flag"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 数值</font></font></th>
+
+                                    </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店铺名称</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                            {$list.name}</font></font>
+                                            <a href="javascript:fahuo('{$list.name}');" class="btn blue"><i class="icon-edit"></i> 修改</a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店铺分类</font></font></a>
+                                        </td>
+                                        <td>
+                                            {$list.class_name}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">结算类型</font></font></a>
+                                        </td>
+                                        <td>
+                                            {$list.type_name}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店主</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$list.user_name}</font></font></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登录账号</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$list.username}</font></font></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分类名称</font></font></a>
+                                        </td>
+                                        <td>
+                                            {$list.classify_name}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品数量</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$list.goods_num}</font></font></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销量</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$list.sales}</font></font></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店铺评分</font></font></a>
+                                        </td>
+                                        <td>
+                                            <foreach name="list.grade" item="v">
+                                                <img src="__PUBLIC__/image/{$v}" alt="">
+                                            </foreach>
+
+                                            <a href="javascript:editgrade('{$list.id}','{$list.now_grade}');" class="btn blue"><i class="icon-edit"></i> 修改评分</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可预约项目</font></font></a>
+                                        </td>
+                                        <td>
+                                            <foreach name="list.yuyue_list" item="v">
+                                                <span style="border:1px solid #ddd;border-radius: 20px;padding: 2px 20px;margin-right: 10px">
+                                                    {$v}
+                                                </span>
+                                            </foreach>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预约后赠送券</font></font></a>
+                                        </td>
+                                        <td>
+                                           {$list.ticket_name}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">绑定医院</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.hospital_id eq 0">
+                                                未绑定
+                                                <a href="javascript:bindhos();" class="btn blue"><i class="icon-edit"></i> 绑定医院</a>
+
+                                                <else/>
+                                                <a href="{:U('home/hospital/check/edit/'.$list['hospital_id'])}" target="_blank"> {$list.hos_name}</a>
+
+                                                <a href="javascript:delbind();" class="btn red"> 取消绑定</a>
+
+                                            </if>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">交易额</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">￥{$list.zong_money}</font></font></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.is_show eq 1">
+                                                <a href="javascript:EditAll('{$list.id}','0','封店','shop','is_show')">
+                                                    <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">正常</font></font></span>
+                                                </a>
+                                            </if>
+
+                                            <if condition="$list.is_show eq 0">
+                                                <a href="javascript:EditAll('{$list.id}','1','开启店铺','shop','is_show')">
+                                                    <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已封店</font></font></span>
+                                                </a>
+                                            </if>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">客服状态</font></font></a>
+                                        </td>
+                                        <td>
+                                            <if condition="$list.service_type eq 1">
+                                                <a href="javascript:EditAll('{$list.id}','0','使用店铺客服','shop','service_type')">
+                                                    <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">系统客服</font></font></span>
+                                                </a>
+                                            </if>
+
+                                            <if condition="$list.service_type eq 0">
+                                                <a href="javascript:EditAll('{$list.id}','1','使用系统客服','shop','service_type')">
+                                                    <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font>店铺客服</font></span>
+                                                </a>
+                                            </if>
+                                        </td>
+
+                                    </tr>
+                            <!--        <tr>
+                                        <td class="highlight">
+                                            <div class="warning"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店铺地址</font></font></a>
+                                        </td>
+                                        <td>
+                                            <a href="https://uri.amap.com/marker?position={$list.lng},{$list.lat}" target="_blank">{$list.location}</a>
+                                        </td>
+                                    </tr>-->
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店铺说明</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$list.explain}</font></font></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店铺电话</font></font></a>
+                                        </td>
+                                        <td>
+                                            <a href="tel:{$list.mobile}">{$list.phone}</a>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="important"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">抽水比例</font></font></a>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                抽水比例：
+                                                  <if condition="$list.odds neq NULL">
+                                                      {$list.odds} %
+                                                  <else/>
+                                                      {$list.odds_set} %
+                                                </if>
+                                                <br>
+                                            </span>
+                                              <span>当前状态：
+                                        <if condition="$list.odds neq NULL">
+                                            <span style="color: green;">手动</span>
+                                            <else/>
+                                            <span style="color: dodgerblue;">默认</span>
+                                        </if>
+                                    </span>
+                                            <br>
+                                            <a href="javascript:editodds('{$list.id}','1')" class="btn green"> 手动设置</a>
+                                            <if condition="$list.odds neq NULL">
+                                                <a href="JavaScript:OddsMo('{$list.id}','1')" class="btn blue"> 恢复默认</a>
+                                            </if>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success"></div>
+                                            <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开店时间</font></font></a>
+                                        </td>
+                                        <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> {$list.create_time|date="Y-m-d H:i:s",###}</font></font></td>
+                                    </tr>
+
+
+
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <!-- END SAMPLE TABLE PORTLET-->
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="clearfix"></div>
+
+
+                <div class="portlet-body" style="width: 100%;">
+                    <p>
+                        代理抽水设置
+                    </p>
+                    <table class="table table-bordered table-hover tc_table" >
+
+                        <thead>
+                        <tr>
+                            <foreach name="odds_list" item="v">
+                                <td>{$v.show_name}</td>
+                            </foreach>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr>
+                            <foreach name="odds_list" item="v">
+                                <td>
+                                    <span>当前比例：{$v.odds}</span>
+
+                                    <br>
+                                    <span>当前状态：
+                                        <if condition="$v.is_system eq 0"><span style="color: green;">手动</span><else/><span style="color: dodgerblue;">默认</span></if>
+                                    </span>
+                                    <br>
+                                    <a href="javascript:editodds('{$v.name}','3')" class="btn green"> 手动设置</a>
+                                    <if condition="$v.is_system eq 0">
+                                        <a href="JavaScript:OddsMo('{$v.name}','3')" class="btn blue"> 恢复默认</a>
+                                    </if>
+                                </td>
+                            </foreach>
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="portlet-title">
+
+
+                <!--    <a href="<?php echo U('home/'.$at.'/plus2/edit/'.$is_edit);?>" id="sample_editable_1_new" class="btn green">
+
+                        新增套餐 <i class="icon-plus"></i>
+
+                    </a>-->
+
+
+
+                </div>
+
+
+
+                    <!-- BEGIN CONDENSED TABLE PORTLET-->
+
+
+                    <div class="portlet-title">
+
+                        <div class="caption">
+                            <i class="icon-coffee"></i>商品列表
+                        </div>
+
+                    </div>
+                <style>
+                    .tc_table th,.tc_table td{
+                        text-align: center;
+                    }
+                </style>
+
+                    <div class="portlet-body" style="width: 100%;">
+
+                        <table class="table table-bordered table-hover tc_table" >
+
+                            <thead>
+
+                            <tr>
+
+                                <th>序号</th>
+                                <th>商品名称</th>
+                                <th>商品封面</th>
+                                <th>价格</th>
+                                <th>是否可支付预约金</th>
+                                <th>预约价格</th>
+                                <th>状态</th>
+                                <th>是否在首页显示</th>
+                                <th>是否置顶</th>
+                                <th>冻结状态</th>
+                                <th>销量</th>
+
+
+                                <th>发布时间</th>
+                                <th>抽水比例</th>
+                                <th>操作</th>
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody>
+                            <foreach name="goods_list" item="v" key="key">
+                                <tr>
+
+                                    <td>{$key+1}</td>
+                                    <td style="width: 20%;">{$v.name}</td>
+                                    <td>
+                                        <foreach name="v.img_list" item="k">
+                                            <a class="fancybox-button" data-rel="fancybox-button" title="" href="{$k}">
+                                                <img src="{$k}" class="img45" alt="">
+                                            </a>
+                                        </foreach>
+
+                                    </td>
+                                    <td>￥{$v.price}</td>
+                                    <td>
+                                        <if condition="$v.is_prepay eq 1">
+                                            <span style="color: green;">是</span>
+                                        </if>
+                                        <if condition="$v.is_prepay eq 0">
+                                            <span style="color: #f00;">否</span>
+                                        </if>
+                                    </td>
+                                    <td>
+                                        <if condition="$v.is_prepay eq 1">
+                                            ￥{$v.prepay}
+                                            <else/>
+                                            -
+                                        </if>
+                                    </td>
+                                    <td>
+
+                                        <if condition="$v.is_show eq 1">
+                                            <a href="javascript:EditAll('{$v.id}','0','下架套餐','shop_goods','is_show')">
+                                                <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上架中</font></font></span>
+                                            </a>
+                                        </if>
+
+                                        <if condition="$v.is_show eq 0">
+                                            <a href="javascript:EditAll('{$v.id}','1','上架套餐','shop_goods','is_show')">
+                                                <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已下架</font></font></span>
+                                            </a>
+                                        </if>
+
+                                    </td>
+
+
+                                    <td>
+                                        <if condition="$v.is_home eq 1">
+                                            <a href="javascript:EditAll('{$v.id}','0','取消首页显示','shop_goods','is_home')">
+                                                <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是</font></font></span>
+                                            </a>
+                                        </if>
+
+                                        <if condition="$v.is_home eq 0">
+                                            <a href="javascript:EditAll('{$v.id}','1','设置首页显示','shop_goods','is_home')">
+                                                <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">否</font></font></span>
+                                            </a>
+                                        </if>
+                                    </td>
+                                    <td>
+                                        <if condition="$v.is_top eq 1">
+                                            <a href="javascript:EditAll('{$v.id}','0','取消置顶','shop_goods','is_top')">
+                                                <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是</font></font></span>
+                                            </a>
+                                        </if>
+
+                                        <if condition="$v.is_top eq 0">
+                                            <a href="javascript:EditAll('{$v.id}','1','置顶','shop_goods','is_top')">
+                                                <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">否</font></font></span>
+                                            </a>
+                                        </if>
+                                    </td>
+
+                                   <td>
+                                        <if condition="$v.is_freeze eq 1">
+                                            <a href="javascript:EditAll('{$v.id}','0','冻结商品','shop_goods','is_freeze')">
+                                                <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">正常</font></font></span>
+                                            </a>
+                                        </if>
+
+                                        <if condition="$v.is_freeze eq 0">
+                                            <a href="javascript:EditAll('{$v.id}','1','解除冻结','shop_goods','is_freeze')">
+                                                <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已冻结</font></font></span>
+                                            </a>
+                                        </if>
+                                    </td>
+                                    <td>{$v.sales}</td>
+                                    <td>
+                                        {$v.create_time|date="Y-m-d H:i:s",###}
+                                    </td>
+                                    <td>
+                                          <span>
+                                                抽水比例：
+                                                  <if condition="$v.odds neq NULL">
+                                                      {$v.odds} %
+                                                  <else/>
+                                                      {$v.odds_set} %
+                                                </if>
+                                                <br>
+                                            </span>
+                                        <span>当前状态：
+                                        <if condition="$v.odds neq NULL">
+                                            <span style="color: green;">手动</span>
+                                            <else/>
+                                            <span style="color: dodgerblue;">默认</span>
+                                        </if>
+                                    </span>
+                                        <br>
+                                        <a href="javascript:editodds('{$v.id}','2')" class="btn green"> 手动设置</a>
+                                        <if condition="$v.odds neq NULL">
+                                            <a href="JavaScript:OddsMo('{$v.id}','2')" class="btn blue"> 恢复默认</a>
+                                        </if>
+                                    </td>
+                                    <td>
+                                        <a href="{:U('home/shopgoods/check/edit/'.$v['id'])}" class="btn green"> 查看详细</a>
+                                    </td>
+
+
+                                </tr>
+                            </foreach>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+
+
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+    <!-- modal -->
+    <div class="modal fade" id = 'modal_fahuo' style="display: none;">
+        <div class="modal-dialog" >
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+                    <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                    <h4 class="modal-title" id='modal_fahuo_title'>修改店铺名称</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <form action="#" class="form-horizontal">
+
+
+                        <div class="control-group">
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新的店铺名称</font></font></label>
+                            <div class="controls">
+                                <input type="text" placeholder="请输入要修改的店铺名称" name="fh_num"  value="" class="m-wrap medium">
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal" >取 消</button>
+                    <button type="button" class="btn green" id='modal_fahuo_yes'  style='margin-left:9px'>确 定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- ./modal -->
+
+    <!-- modal -->
+    <div class="modal fade" id = 'modal_grade' style="display: none;">
+        <div class="modal-dialog" >
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+                    <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                    <h4 class="modal-title" id='modal_grade_title'>修改评分</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <form action="#" class="form-horizontal">
+
+
+                        <div class="control-group">
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">修改评分</font></font></label>
+                            <div class="controls">
+                                <input type="number" placeholder="请输入要修改的评分" name="edit_grade"  value="" class="m-wrap medium">
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal" >取 消</button>
+                    <button type="button" class="btn green" id='modal_grade_yes'  style='margin-left:9px'>确 定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- ./modal -->
+
+
+
+    <!-- modal -->
+    <div class="modal fade" id = 'modal_bind' style="display: none;">
+        <div class="modal-dialog" >
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+                    <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                    <h4 class="modal-title" id='modal_bind_title'>绑定医院</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <form action="#" class="form-horizontal">
+
+
+                        <table style="width: 100%;line-height: 40px;text-align: center;" border="1">
+                            <tr>
+
+                                <td>医院名称</td>
+                                <td>操作</td>
+                            </tr>
+                            <tbody id="bind_con">
+
+                            </tbody>
+                        </table>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                  <!--  <button type="button" class="btn btn-default"
+                            data-dismiss="modal" >取 消</button>-->
+                    <button type="button" class="btn green" data-dismiss="modal"   style='margin-left:9px'>确 定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- ./modal -->
+
+
+
+    <!-- modal -->
+    <div class="modal fade" id = 'modal_odds' style="display: none;">
+        <div class="modal-dialog" >
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                    </button>
+                    <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                    <h4 class="modal-title" id='modal_odds_title'>修改比例</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="#" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">修改抽水比例</font></font></label>
+                            <div class="controls">
+                                <input type="number" placeholder="请输入要修改的抽水比例" name="odds_num"  value="" class="m-wrap medium">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal" >取 消</button>
+                    <button type="button" class="btn green" id='modal_odds_yes'  style='margin-left:9px'>确 定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- ./modal -->
+
+
+    <!-- END CONTAINER -->
+<include file="common/footer"/>
+    <include file="common/tz"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+    var is_Edit = '<?php echo $is_edit;?>';
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+    function EditAll(id,str,title,db,value){
+
+        showConfirm('<i class="icon-exclamation-sign"></i> '+title,'确定要 '+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editall'); ?>",
+                data:{id:id,str:str,db:db,value:value},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function OddsMo(id,type){
+        showConfirm('<i class="icon-exclamation-sign"></i> 恢复默认','确定要将此比例恢复默认，使用系统设置比例吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/editmo'); ?>",
+                data:{id:id,type:type,is_edit:is_Edit},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+    function editgrade(id,grade){
+        $("*[name='edit_grade']").val(grade);
+        $('#modal_grade').modal('show');
+        $('#modal_grade_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            Submitgrade(id);
+        };
+    }
+
+    function Submitgrade(id){
+        var grade = $.trim($("*[name='edit_grade']").val());
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/editgrade'); ?>",
+            data:{id:id,grade:grade,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.reload();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+    function editodds(id,type){
+        $('#modal_odds').modal('show');
+        $('#modal_odds_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            Submitodds(id,type);
+        };
+    }
+
+    function Submitodds(id,type){
+        var odds_num = $.trim($("*[name='odds_num']").val());
+        if(odds_num==''){
+            showAlert("请输入要修改的抽水比例");
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/editodds'); ?>",
+            data:{id:id,type:type,odds:odds_num,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.reload();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+    function bindhos(){
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/checkhos'); ?>",
+            success: function (result) {
+                if(result.code == 1){
+                    $('#bind_con').html();
+                    $('#modal_bind').modal('show');
+                    $.each(result.list,function(index,value){
+                        $('#bind_con').append('' +
+                            '<tr>' +
+                            '<td>'+value.name+'</td>' +
+                            '<td><a href="javascript:bindhospital(\''+value.id+'\');" class="btn green"> 绑定</a></td>' +
+                            '</tr>');
+                    });
+                }else{
+                    showAlert('没有可绑定的医院');
+                }
+            }
+        });
+    }
+
+    function fahuo(name){
+       $("*[name='fh_num']").val(name);
+        $('#modal_fahuo').modal('show');
+        $('#modal_fahuo_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            SubmitFaHuo();
+        };
+    }
+
+    function bindhospital(id){
+        var shop_id = '{$list.id}';
+        showConfirm('<i class="icon-exclamation-sign"></i> 绑定','确定要绑定此医院吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/bindhospital'); ?>",
+                data:{id:id,shop_id:shop_id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function delbind(id){
+        var shop_id = '{$list.id}';
+        showConfirm('<i class="icon-exclamation-sign"></i> 取消绑定','确定要取消绑定此医院吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/delbind'); ?>",
+                data:{shop_id:shop_id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function SubmitFaHuo(){
+        var fh_num = $.trim($("*[name='fh_num']").val());
+        if(fh_num==''){
+            showAlert("请输入要修改的店铺名称");
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/editname'); ?>",
+            data:{id:is_Edit,name:fh_num},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.reload();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+
+
+    var parent_url = "<?php echo U('home/user/index');?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+    function EditCheckbox(id){
+        var str ;
+        if($('.tuijian'+id).is(':checked')) {
+            str =1;
+        }else{
+            str=0;
+        }
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/edittuijian'); ?>",
+            data:{id:id,str:str},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.reload();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function EditStatus(id,str,title,db){
+        var name;
+        if(str=='1'){
+            name = '显示';
+        }else{
+            name = '隐藏';
+        }
+        showConfirm('<i class="icon-exclamation-sign"></i> '+name+title,'确定要'+name+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editshow'); ?>",
+                data:{id:id,str:str,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function _deleteUser(id,name,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除'+name,'确定要删除'+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/delete'); ?>",
+                data:{id:id,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function ClearImg(){
+        $("#upload_kuang").addClass("dan_upload_img_div1");
+        $("#uploadImage").val('');
+        $('.on_img_btn').show();
+        $('.change_img_btn').hide();
+        $('.del_img_btn').hide();
+        $('#uploadPreview').html('');
+    }
+
+
+    function UploadImg(){
+        var img = "";
+        var file = $("#uploadImage").val();
+        if(file==""){
+            SubmitData("");
+        }
+
+
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+
+                            SubmitData(img);
+                        }else{
+                            showAlert("图片上传失败");
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
+    function SubmitData(){
+
+        var name = $.trim($("*[name='name']").val());
+        var phone = $.trim($("*[name='phone']").val());
+        var location = $.trim($("*[name='location']").val());
+        var parent = $.trim($("*[name='parent']").val());
+        var price = $.trim($("*[name='price']").val());
+        var ku_num = $.trim($("*[name='ku_num']").val());
+
+        if(!name){
+            showAlert("请输入明细账单名称");
+            return false;
+        }
+
+        if(!phone){
+            showAlert("请输入手机号");
+            return false;
+        }
+        if(!location){
+            showAlert("请输入地址");
+            return false;
+        }
+
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/user/add'); ?>",
+            data:{name:name,phone:phone,location:location,parent:parent,price:price,ku_num:ku_num,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

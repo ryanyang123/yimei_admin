@@ -1,0 +1,434 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        {$title} <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">支付宝转账</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#"><?php echo $is_edit?'修改'.$title:'新增'.$title;?></a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="form-horizontal">
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户ID</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="text" placeholder="请输入转账的用户ID" name="user_id"  value="{$list.user_id}" class="m-wrap medium">
+                                            <button onclick="checkuser()" type="button" class="btn green"><i class="m-icon-swapright m-icon-white"></i> 查询用户信息</button>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></label>
+
+                                        <div class="controls">
+
+                                            <p style="text-align: left; color: red;">请点击查询用户信息</p>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="control-group show_all" style="display: none;">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户ID</font></font></label>
+
+                                        <div class="controls">
+                                            <p id="user_id"></p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group show_all" style="display: none;">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">头像</font></font></label>
+
+                                        <div class="controls">
+                                            <p><img id="user_head" src="" style="width: 50px; height: 50px;" alt=""></p>
+                                        </div>
+
+                                    </div>
+                                    <div class="control-group show_all" style="display: none;">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支付宝昵称</font></font></label>
+
+                                        <div class="controls">
+                                            <p id="ali_name"></p>
+                                        </div>
+
+                                    </div>
+                                    <div class="control-group show_all" style="display: none;">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户昵称</font></font></label>
+
+                                        <div class="controls">
+                                            <p id="user_name"></p>
+                                        </div>
+
+                                    </div>
+                                    <div class="control-group show_all" style="display: none;">
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是否绑定支付宝</font></font></label>
+                                        <div class="controls">
+                                            <p id="is_bind">
+
+
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <div class="control-group show_all show_info" style="display: none;">
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支付宝信息</font></font></label>
+                                        <div class="controls">
+                                            <p id="ali_info"></p>
+                                        </div>
+
+                                    </div>
+                                    <div class="control-group show_all show_info" style="display: none;">
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">转账金额</font></font></label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="转账金额" name="money"  value="" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group show_all show_info" style="display: none;">
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">转账备注（收款用户可查看）</font></font></label>
+                                        <div class="controls">
+                                            <input type="text" placeholder="转账备注" name="remark"  value="" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-actions">
+
+                                        <button type="button" id="js_btn" onclick="editcode()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 转账</font></font></button>
+
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- modal -->
+<div class="modal fade" id = 'modal_editcode' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_editcode_title'>支付密码</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请输入支付密码</font></font></label>
+                        <div class="controls">
+                            <input type="password" id="editcode_num" placeholder="支付密码" name="editcode_num"  value="" class="m-wrap medium">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >取 消</button>
+                <button type="button" class="btn green" id='modal_editcode_yes'  style='margin-left:9px'>确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    var parent_url = "<?php echo U('home/'.$at.'/index');?>";
+    var is_bind = '';
+    var user_id = '';
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+
+    function editcode(){
+
+        $('#modal_editcode').modal('show');
+        $('#modal_editcode_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            SubmitData();
+        };
+    }
+
+    function checkuser(){
+        var user_id2 = $.trim($("*[name='user_id']").val());
+        if(!user_id2){
+            showAlert("请输入用户ID");
+            return false;
+        }
+        $('.show_all').hide();
+        is_bind = '';
+        user_id = '';
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/checkuser'); ?>",
+            data:{user_id:user_id2},
+            success: function (result) {
+                if(result.code == 1){
+                    $('.show_all').show();
+                    $('#user_id').html(result.list.id);
+                    $('#ali_name').html(result.list.ali_name);
+                    $('#user_name').html(result.list.name);
+                    $('#user_head').attr('src',result.list.head);
+                    user_id = result.list.id;
+                    if(result.list.is_bind){
+                        is_bind = 1;
+
+                        $('.show_info').show();
+                        $('#is_bind').html('<span class="label label-success">已绑定</span>');
+                        if(result.list.ali_user_id){
+                            $('#ali_info').html('支付宝ID：'+result.list.ali_user_id);
+                        }else{
+                            $('#ali_info').html('支付宝账号：'+result.list.ali_number);
+                        }
+                    }else{
+                        $('.show_info').hide();
+                        $('#is_bind').html('<span class="label label-important">未绑定</span>');
+                    }
+
+                }else if(result.code==0){
+
+                    showAlert(result.res);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                }
+            }
+        });
+
+    }
+    function SubmitData(){
+        var pay_pass = $('#editcode_num').val();
+        var money = $.trim($("*[name='money']").val());
+        var remark = $.trim($("*[name='remark']").val());
+
+        if(!money){
+            showAlert("请输入转账金额");
+            return false;
+        }
+        if(!pay_pass){
+            showAlert("请输入支付密码");
+            return false;
+        }
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/add'); ?>",
+            data:{money:money,remark:remark,user_id:user_id,pay_pass:pay_pass},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

@@ -1,0 +1,1004 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/duoimg/css/globle.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        {$title} <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">商品</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#"><?php echo $is_edit?'修改'.$title:'新增'.$title;?></a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="form-horizontal">
+
+                                    <div class="control-group " >
+
+                                        <label class="control-label">
+                                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品名称</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="text" placeholder="请输入商品名称" name="name"  value="{$list.name}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品封面</font></font></label>
+
+
+                                        <div class="controls">
+                                            <div id="upload_kuang"  <if condition="!$is_edit and !$list['cover']">class="dan_upload_img_div1"</if>>
+                                            <div id="uploadPreview">
+                                                <if condition="$is_edit and $list['cover']">
+                                                    <img src="{$list.cover}" style="max-height: 150px;border:1px solid #ddd;" alt=""/>
+                                                </if>
+                                            </div>
+
+                                        </div>
+
+                                        <label class="on_img_btn" for="uploadImage" style="display: inline;"> <span  class="btn btn-default" style="">
+                                                <if condition="!$is_edit and !$list['cover']">
+                                                    选择图片
+                                                    <else/>
+                                                    更改图片
+                                                </if>
+
+                                            </span></label>
+                                        <label class="change_img_btn" for="uploadImage" style="display: none;"> <span  class="btn btn-default" style="">更改</span></label>
+                                        <label class="del_img_btn" style="display: none;" onclick="ClearImg()"> <span  class="btn btn-default" style="">删除</span></label>
+                                        <input id="uploadImage" style="" type="file"  name="photoimage" class="fimg1"  />
+                                    </div>
+                            </div>
+
+
+
+
+
+                                    <?php if($is_edit){?>
+
+                                    <div class="control-group " >
+
+                                        <label class="control-label">
+                                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">原有商品banner</font></font></label>
+
+                                        <div class="controls">
+
+                                            <foreach name="list.banner_list" item="k">
+                                                <a style="position: relative;" class="fancybox-button" data-rel="fancybox-button" title="" href="{$k.img_url}">
+                                                    <img src="{$k.img_url}" class="" style="width: 80px;height: 80px;" alt="{$k.sort}">
+                                                    <div style="position: absolute;top:10px;right: 5px;">
+                                                        <i class="icon-trash" onclick="_deleteUser('{$k.id}','商品banner','shop_goods_banner');" style="font-size: 22px;color:#f00;"></i>
+                                                    </div>
+                                                </a>
+
+                                            </foreach>
+
+
+                                        </div>
+
+                                    </div>
+                                    <?php }?>
+
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品banner</font></font></label>
+
+                                        <div class="controls">
+                                            <ul class="upload-ul clearfix">
+                                                <li class="upload-pick">
+                                                    <div class="webuploader-container clearfix" id="goodsUpload"></div>
+                                                </li>
+                                            </ul>
+                                            <p><a class="upload-btn" href="javascript:;">上传图片</a></p>
+                                        </div>
+
+                                    </div>
+
+
+
+                            <!--        <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">成本价</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="number" placeholder="请输入成本价" name="cost"  value="{$list.cost}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>-->
+
+<!--
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">出售价-散户</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="number" placeholder="请输入出售价-散户" name="price"  value="{$list.price}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">出售价-商户</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="number" placeholder="请输入出售价-商户" name="price_shop"  value="{$list.price_shop}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">出售价-会员</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="number" placeholder="请输入出售价-会员" name="price_vip"  value="{$list.price_vip}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>-->
+
+
+                            <div class="control-group">
+
+                                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                    是否限购
+                                    <br>
+                                    <p style="color: red;">不限购留空或0，限购请输入限购数量</p>
+                                </font></font></label>
+
+                                <div class="controls">
+
+                                    <input type="number" placeholder="不限购留空或0，限购请输入限购数量" name="max"  value="{$list.max}" class="m-wrap medium">
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="control-group">
+
+                                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">包邮运费模板</font></font></label>
+
+                                <div class="controls">
+                                    <select name="postage_id" data-placeholder="Your Favorite Type of Bear" class="chosen-with-diselect span3" tabindex="-1" id="selCSI">
+                                        <option disabled selected value="{$v.id}" >请选择</option>
+                                        <foreach name="postage_list" item="v">
+                                            <option <if condition="$list['postage_id'] eq $v['id']"> selected </if> value="{$v.id}" >{$v.name}</option>
+                                        </foreach>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">库存</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="number" placeholder="请输入库存" name="stock"  value="{$list.stock}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+
+                            <div class="control-group">
+
+                                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销量</font></font></label>
+
+                                <div class="controls">
+
+                                    <input type="number" placeholder="请输入销量" name="sales"  value="{$list.sales}" class="m-wrap medium">
+
+
+                                </div>
+
+                            </div>
+
+                                <div class="control-group">
+
+                                    <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是否可支付预约金</font></font></label>
+
+                                    <div class="controls">
+
+                                        <label class="radio">
+                                            <div class="radio"><span><input type="radio" name="optionsRadios1" <if condition="$list['is_prepay'] eq 0"> checked="" </if>   value="0"></span></div>
+                                            否
+                                        </label>
+                                        <label class="radio">
+                                            <div class="radio"><span class="checked"><input type="radio" name="optionsRadios1" <if condition="$list['is_prepay'] eq 1"> checked="" </if> value="1"></span></div>
+                                            是
+                                        </label>
+
+
+                                    </div>
+
+                                </div>
+
+                                   <div class="control-group  show_all show_1" <if condition="$list['is_prepay'] neq 1"> style="display: none;" </if>>
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预约金额</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="number" placeholder="请输入预约金额" name="prepay"  value="{$list.prepay}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <style>
+                                        .guige_div{
+                                            margin-left: 5rem;margin-top: 10px;
+                                        }
+                                        .guige_div input{
+                                            width: 90px!important;
+                                        }
+                                        .jia1{
+                                            font-size: 14px;
+                                            font-weight: bolder;;
+                                            color: #000;;
+                                            border: 1px solid #000;;
+                                            border-radius: 50% !important;
+                                            width: 32px;;
+                                            height: 32px;;
+                                            margin-left: 5px;;
+                                            display: inline-block;;
+                                        }
+                                        .jia3{
+                                            font-size: 14px;
+                                            font-weight: bolder;;
+                                            color: #000;;
+                                            border: 1px solid #000;;
+                                            border-radius: 50% !important;
+                                            width: 32px;;
+                                            height: 32px;;
+                                            margin-left: 5px;;
+                                            display: inline-block;;
+                                        }
+                                        .zong_g1{
+                                            margin-bottom: 15px;;
+                                        }
+                                        .guige_div2{
+                                            margin-bottom: 10px;;
+                                        }
+                                    </style>
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品规格</font></font></label>
+
+                                        <div class="controls all_ge">
+                                            <if condition="$list.is_select eq 1">
+                                                <?php $gi=1; $all_count = count($list['select_list'])?>
+                                                <foreach name="list.select_list" item="v" key="key">
+                                                <div class="zong_g1 da_div{$gi}">
+                                                    <input type="text" placeholder="规格名称" name="s_name{$gi}"  value="{$key}" class="m-wrap medium s_name{$gi}">
+                                                <!--    <if condition="$gi eq $all_count">
+                                                        <button type="button" onclick="DelGg('{$gi}')" class="jia3" ><i class="icon-trash"></i></button>
+                                                    </if>-->
+
+                                                    <br/>
+                                                    <?php $now_count = count($v);$gj = 1;?>
+                                                    <div class="guige_div zgg{$gi}">
+                                                        <foreach name="v" item="k" key="key2">
+                                                            <?php $new_ij = $gi.$gj;?>
+                                                        <div class="guige_div2 del_small{$new_ij}">
+                                                            <input type="text" placeholder="规格值" name="s_value{$new_ij}"  value="{$k.value}" class="m-wrap s_value{$new_ij}">
+                                                            <input type="number" placeholder="金额" name="s_price{$new_ij}"  value="{$k.add_price}" class="m-wrap s_price{$new_ij}">
+<!--
+                                                            <input type="number" placeholder="增加成本" name="s_cost{$new_ij}"  value="{$k.add_cost}" class="m-wrap s_cost{$new_ij}">
+-->
+                                                            <input type="hidden"  name="s_id{$new_ij}"  value="{$k.id}" class="m-wrap s_id{$new_ij}">
+                                                            <if condition="$gj eq $now_count">
+                                                                <if condition="$gj neq 1">
+                                                                    <button type="button" onclick="DelSmallGg('{$gi}','{$gj}')" class="jia1" ><i class="icon-trash"></i></button>
+
+                                                                </if>
+                                                                <button type="button" onclick="AddSmallGg('{$gi}')" class="jia1" ><i class="icon-plus"></i></button>
+                                                            </if>
+
+                                                        </div>
+                                                            <?php $gj++;?>
+                                                        </foreach>
+                                                    </div>
+                                                    <input type="hidden" class="now_num{$gi}" value="{$now_count}"/>
+                                                   <!-- <if condition="$gi eq $all_count">
+                                                    <button type="button" onclick="AddGg()" class="jia2"><i class="icon-plus"></i>增加新的商品规格</button>
+                                                    </if>-->
+                                                </div>
+                                                    <?php $gi++;?>
+                                                </foreach>
+                                                <else/>
+                                                <div class="zong_g1 da_div1">
+                                                    <input type="text" placeholder="规格名称" name="s_name1"  value="颜色/规格分类" class="m-wrap medium s_name1">
+                                                    <br/>
+                                                    <div class="guige_div zgg1">
+                                                        <div class="guige_div2 del_small11">
+                                                            <input type="text" placeholder="规格值" name="s_value11"  value="" class="m-wrap s_value11">
+                                                            <input type="number" placeholder="金额" name="s_price11"  value="" class="m-wrap s_price11">
+<!--
+                                                            <input type="number" placeholder="增加成本" name="s_cost11"  value="" class="m-wrap s_cost11">
+-->
+                                                            <input type="hidden"  name="s_id11"  value="0" class="m-wrap s_id11">
+                                                            <button type="button" onclick="AddSmallGg('1')" class="jia1" ><i class="icon-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" class="now_num1" value="1"/>
+                                                    <!--<button type="button" onclick="AddGg()" class="jia2"><i class="icon-plus"></i>增加新的商品规格</button>-->
+                                                </div>
+                                            </if>
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+                               <!--     <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">排序</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入序号" name="sort"  value="{$list.sort}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>-->
+
+
+
+
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属分类</font></font></label>
+
+                                        <div class="controls">
+                                            <select name="classify_id" data-placeholder="Your Favorite Type of Bear" class="chosen-with-diselect span3" tabindex="-1" id="selCSI">
+
+                                                <foreach name="classify_list" item="v">
+                                                    <option <if condition="$list['classify'] eq $v['id']"> selected </if> value="{$v.id}" >{$v.name}</option>
+                                                </foreach>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                        <div class="control-group">
+
+                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">排序</font></font></label>
+
+                            <div class="controls">
+
+                                <input type="number" placeholder="越小越前" name="sort"  value="{$list.sort}" class="m-wrap medium">
+
+
+                            </div>
+
+                        </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品描述</font></font></label>
+
+                                        <div class="controls">
+                                            <div class="row-fluid" style="width: 100%;">
+                                                <style>
+                                                    .toolbar {
+                                                        border: 1px solid #ccc;
+
+                                                    }
+                                                    .text {
+                                                        border: 1px solid #ccc;
+                                                        height: 600px;
+                                                        margin-top: 0!important;
+                                                    }
+                                                </style>
+
+                                                <div id="div1" class="toolbar">
+
+                                                </div>
+                                                <div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
+                                                    {$list.content}
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+                                    <div class="form-actions">
+
+                                        <button type="button" id="js_btn"  class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wangEditor/release/wangEditor.min.js"></script>
+<script src="__PUBLIC__/duoimg/js/webuploader.min.js"></script>
+<script src="__PUBLIC__/duoimg/js/diyUpload.js"></script>
+<script>
+    $('input:radio[name="optionsRadios1"]').change( function(){
+        $('.show_all').hide();
+        if($(this).val()==1 || $(this).val()==2){
+            $('.show_'+$(this).val()).show();
+        }
+    })
+
+    var img_arr = new Array();
+    var img_i = 0;
+    $(function(){
+
+        //上传图片
+        var $tgaUpload = $('#goodsUpload').diyUpload({
+            url:"<?php echo U('home/Upload/upload_duo');?>",
+            success:function( data ) {
+
+                img_arr[img_i]  = data.res;
+                console.log(img_arr);
+                img_i++;
+            },
+            error:function( err ) { },
+            buttonText : '',
+            accept: {
+                title: "Images",
+                extensions: 'gif,jpg,jpeg,bmp,png'
+            },
+            /*fileNumLimit:3,*/
+            thumb:{
+                width:120,
+                height:90,
+                quality:100,
+                allowMagnify:true,
+                crop:true,
+                type:"image/jpeg"
+            }
+        });
+
+        $(".upload-btn").click(function(){ $tgaUpload.upload(); });
+    });
+
+
+
+    var E = window.wangEditor
+    var editor = new E('#div1', '#div2')
+    // 配置服务器端地址
+    editor.customConfig.uploadImgServer = "{:U('home/'.$at.'/upload')}"
+    editor.customConfig.uploadFileName = 'fileData'
+    editor.customConfig.pasteFilterStyle = false
+    editor.customConfig.linkImgCheck = function (src) {
+        console.log(src) // 图片的链接
+
+        return true // 返回 true 表示校验成功
+        // return '验证失败' // 返回字符串，即校验失败的提示信息
+    }
+    editor.customConfig.linkCheck = function (text, link) {
+        console.log(text) // 插入的文字
+        console.log(link) // 插入的链接
+
+        return true // 返回 true 表示校验成功
+        // return '验证失败' // 返回字符串，即校验失败的提示信息
+    }
+    editor.customConfig.linkImgCallback = function (url) {
+        console.log(url) // url 即插入图片的地址
+    }
+
+    document.getElementById('js_btn').addEventListener('click', function () {
+        // 读取 html
+        //alert(editor.txt.html())
+        UploadImg(editor.txt.html())
+    }, false)
+
+
+
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
+
+
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+    var parent_url = "<?php echo U('home/'.$at.'/index');?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+
+    function _deleteUser(id,name,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除'+name,'确定要删除'+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/delete'); ?>",
+                data:{id:id,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function DelSmallGg(fu,zi){
+        var now_j = $('.now_num'+fu).val();
+        var now_k = parseInt(now_j)-1;
+        $('.now_num'+fu).val(now_k);
+        $('.del_small'+fu+zi).remove();
+
+        var add_btn = fu+String(now_k);
+        if(now_k==1){
+            $('.del_small'+add_btn).append('<button type="button" onclick="AddSmallGg(\''+fu+'\')" class="jia1" ><i class="icon-plus"></i></button> </div>');
+        }else{
+            $('.del_small'+add_btn).append(
+                    '<button type="button" onclick="DelSmallGg(\''+fu+'\',\''+now_k+'\')" class="jia1" ><i class="icon-trash"></i></button>'+
+                    '<button type="button" onclick="AddSmallGg(\''+fu+'\')" class="jia1" ><i class="icon-plus"></i></button> </div>');
+        }
+
+    }
+
+    function AddSmallGg(id){
+        var now_j = $('.now_num'+id).val();
+        var now_k = parseInt(now_j)+1;
+        $('.now_num'+id).val(now_k);
+        $('.zgg'+id+' .jia1').remove();
+        $('.zgg'+id).append('<div class="guige_div2 del_small'+id+now_k+'">' +
+        ' <input type="text" placeholder="规格值" name="s_value'+id+now_k+'"  value="" class="m-wrap s_value'+id+now_k+'"> ' +
+        '<input type="number" placeholder="金额" name="s_price'+id+now_k+'"  value="" class="m-wrap s_price'+id+now_k+'"> ' +
+/*
+        '<input type="number" placeholder="增加成本" name="s_cost'+id+now_k+'"  value="" class="m-wrap s_cost'+id+now_k+'">' +
+*/
+        '<input type="hidden"  name="s_id'+id+now_k+'"  value="0" class="m-wrap s_id'+id+now_k+'">'+
+        '<button type="button" onclick="DelSmallGg(\''+id+'\',\''+now_k+'\')" class="jia1" ><i class="icon-trash"></i></button>'+
+        '<button type="button" onclick="AddSmallGg(\''+id+'\')" class="jia1" ><i class="icon-plus"></i></button> </div>');
+    }
+
+
+
+    var now_i = parseInt('{$select_num}');
+
+
+    function AddGg(){
+        now_i++;
+        $('.all_ge .jia2').remove();
+        $('.all_ge .jia3').remove();
+        $('.all_ge').append('<div class="zong_g1 da_div'+now_i+'"> ' +
+        '<input type="text" placeholder="规格名称" name="s_name'+now_i+'"  value="" class="m-wrap medium s_name'+now_i+'">' +
+        '<button type="button" onclick="DelGg(\''+now_i+'\')" class="jia3" ><i class="icon-trash"></i></button> <br/>' +
+
+        ' <div class="guige_div zgg'+now_i+'">' +
+        ' <div class="guige_div2 del_small'+now_i+'1">' +
+        ' <input type="text" placeholder="规格值" name="s_value'+now_i+'1"  value="" class="m-wrap s_value'+now_i+'1">' +
+        ' <input type="number" placeholder="金额" name="s_price'+now_i+'1"  value="" class="m-wrap s_price'+now_i+'1"> ' +
+/*
+        '<input type="number" placeholder="增加成本" name="s_cost'+now_i+'1"  value="" class="m-wrap s_cost'+now_i+'1"> ' +
+*/
+        '<input type="hidden"  name="s_id'+now_i+'1"  value="0" class="m-wrap s_id'+now_i+'1">'+
+        '<button type="button" onclick="AddSmallGg(\''+now_i+'\')" class="jia1" ><i class="icon-plus"></i></button>' +
+        ' </div> ' +
+        '</div>' +
+        '<input type="hidden" class="now_num'+now_i+'" value="1"/> ' +
+        '<button type="button" onclick="AddGg()" class="jia2"><i class="icon-plus"></i>增加新的商品规格</button> </div>');
+    }
+
+    function DelGg(id){
+        $('.da_div'+id).remove();
+        now_i--;
+
+        if(now_i!=1){
+            $('.s_name'+now_i).after('<button type="button" onclick="DelGg(\''+now_i+'\')" class="jia3" ><i class="icon-trash"></i></button>');
+        }
+
+        $('.da_div'+now_i).append('<button type="button" onclick="AddGg()" class="jia2"><i class="icon-plus"></i>增加新的商品规格</button> </div>');
+    }
+
+
+
+    function ClearImg(){
+        $("#upload_kuang").addClass("dan_upload_img_div1");
+        $("#uploadImage").val('');
+        $('.on_img_btn').show();
+        $('.change_img_btn').hide();
+        $('.del_img_btn').hide();
+        $('#uploadPreview').html('');
+    }
+
+
+    function UploadImg(data){
+        var img = "";
+        var file = $("#uploadImage").val();
+        if(file==""){
+            SubmitData(data,"");
+        }
+
+
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg" && fileType!="PNG"&&fileType!="JPG" &&fileType!="JPEG"){
+                showAlert("上传文件格式错误");
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+
+                            SubmitData(data,img);
+                        }else{
+                            showAlert("图片上传失败");
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
+    function SubmitData(content,img_url){
+
+        if(!is_Edit){
+            if(!img_url){showAlert("请上传商品封面");return false;}
+        }
+        var is_prepay = $("input[name='optionsRadios1']:checked").val();
+        var name = $.trim($("*[name='name']").val());
+        var sort = $.trim($("*[name='sort']").val());
+        var stock = $.trim($("*[name='stock']").val());
+        var classify_id = $.trim($("*[name='classify_id']").val());
+        var postage_id = $.trim($("*[name='postage_id']").val());
+        var max = $.trim($("*[name='max']").val());
+        var sales = $.trim($("*[name='sales']").val());
+        var prepay ='';
+
+
+        var img_leng = $(".diyControl").length;
+        var img_arr_count = img_arr.length;
+        if(img_leng!=img_arr_count){
+            showAlert("请先点击上传图片后在保存");
+            return false;
+        }
+
+        if(img_arr_count>0){
+
+        }else{
+            img_arr ='';
+        }
+
+        var arr_select = new Array();
+        for(var i = 1; i <=now_i; i++) {
+            var s_name =  $('.s_name'+i).val();
+            if(!s_name){
+                showAlert("请输入规格名称");
+                $('.s_name'+i).focus();
+                return false;
+            }
+            arr_select[i] = new Array();
+            arr_select[i][0] =  s_name;
+            var now_num =  $('.now_num'+i).val();
+            for(var jj=1;jj<=now_num;jj++){
+                var qz = String(i)+String(jj);
+                arr_select[i][jj] =  new Array();
+                arr_select[i][jj][0] = $('.s_value'+qz).val();
+                if(!arr_select[i][jj][0]){
+                    showAlert("请输入规格值");
+                    $('.s_value'+qz).focus();
+                    return false;
+                }
+
+                arr_select[i][jj][1] = $('.s_price'+qz).val();
+                if(!arr_select[i][jj][1]){
+                    showAlert("请输入金额");
+                    $('.s_price'+qz).focus();
+                    return false;
+                }
+
+                arr_select[i][jj][2] = 0;
+                /* arr_select[i][jj][2] = $('.s_cost'+qz).val();
+               if(!arr_select[i][jj][2]){
+                    showAlert("请输入增加成本");
+                    $('.s_cost'+qz).focus();
+                    return false;
+                }*/
+                arr_select[i][jj][3] = $('.s_id'+qz).val();
+            }
+
+        }
+
+        if(!name){showAlert("请输入商品名称");return false;}
+        if(is_prepay=='1'){
+            prepay = $.trim($("*[name='prepay']").val());
+            if(!prepay){showAlert("请输入预约金");return false;}
+            if(prepay<0){showAlert("预约金 不能小于0");return false;}
+        }
+        if(!stock){showAlert("请输入库存");return false;}
+        if(stock<0){showAlert("库存 不能小于0");return false;}
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/add'); ?>",
+            data:{
+                max:max,
+                name:name,
+                postage_id:postage_id,
+                is_prepay:is_prepay,
+                prepay:prepay,
+                stock:stock,
+                sales:sales,
+                sort:sort,
+                classify_id:classify_id,
+                img_url:img_url,
+                content:content,
+                arr_select:arr_select,
+                img_arr:img_arr,
+                is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

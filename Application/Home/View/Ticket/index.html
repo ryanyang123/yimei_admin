@@ -1,0 +1,529 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+<link rel="stylesheet" href="__PUBLIC__/time/css/borain-timeChoice.css">
+<link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css">
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+                        优惠券管理 <small>列表</small>
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#">优惠券管理</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+
+                    <div class="btn-group">
+                        <a href="<?php echo U('home/'.$at.'/plus');?>" id="sample_editable_1_new" class="btn green">
+                            新增优惠券 <i class="icon-plus"></i>
+                        </a>
+                    </div>
+
+                    <div class="tabbable tabbable-custom tabbable-full-width">
+
+                        <div class="tab-content">
+
+
+
+                            <div id="tab_1_5" class="tab-pane active">
+
+                                <div class="row-fluid search-forms search-default">
+
+                                    <form class="form-search" method="get" action="{:U('home/'.$at.'/index')}">
+
+
+                                        <div class="chat-form clearfix">
+
+                                            <div class="input-cont" style="width:100%;float: left;margin-right: 20px;margin-bottom: 2px;min-width: 210px;">
+
+                                                <input type="text" placeholder="搜索 优惠券标题 | 优惠券副标题 " value="{$search_list.search}" name="search" class="m-wrap large">
+
+
+                                                <select name="hospital_id" id="" style="line-height: 34px;height: 34px;">
+                                                    <option value="" disabled >适用医院筛选</option>
+                                                    <option value="0" >全部</option>
+                                                    <foreach name="hos_list" item="v">
+                                                        <option <if condition="$search_list['hospital_id'] eq $v['id']"> selected </if> value="{$v.id}" >{$v.name}</option>
+                                                    </foreach>
+                                                </select>
+
+                                                <select name="type" id="" style="line-height: 34px;height: 34px;">
+                                                    <option value="" disabled >优惠券类型筛选</option>
+                                                    <option value="0" >全部</option>
+                                                    <option <if condition="$search_list['type'] eq 1"> selected </if> value="1" >普通优惠券</option>
+                                                    <option <if condition="$search_list['type'] eq 2"> selected </if> value="2" >体验券</option>
+                                                    <option <if condition="$search_list['type'] eq 3"> selected </if> value="3" >代理优惠券</option>
+                                                </select>
+
+                                                <select name="is_show" id="" style="line-height: 34px;height: 34px;">
+                                                    <option value="" disabled >显示状态筛选</option>
+                                                    <option value="0" >全部</option>
+                                                    <option <if condition="$search_list['is_show'] eq 2"> selected </if> value="2" >显示</option>
+                                                    <option <if condition="$search_list['is_show'] eq 1"> selected </if> value="1" >隐藏</option>
+                                                </select>
+
+
+
+                                                <!--<input type="text" placeholder="超时开始时间 " value="{$search_list['search_date']}" name="search_date" class="m-wrap large auto-kal">
+                                                    <input type="text" placeholder="超时结束时间 " value="{$search_list['search_date2']}" name="search_date2" class="m-wrap large auto-kal">-->
+
+                                                <input type="text" placeholder="开始时间" name="search_date" value="{$search_list['search_date']}" class="m-wrap medium start_time">
+                                                <input type="text" placeholder="结束时间" name="search_date2" value="{$search_list['search_date2']}" class="m-wrap medium end_time">
+                                            </div>
+
+
+
+
+
+                                            <button type="submit" class="btn green">搜 索 &nbsp; <i class="m-icon-swapright m-icon-white"></i></button>
+
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                                <div class="portlet-body" style="overflow: auto;">
+                                    <!--<div class="btn-group" style="float: right;">
+                                        <form action="{:U('home/inout/expAdminList')}" method="post">
+                                            <input type="hidden" name="search" value="{$search_list.search}"/>
+                                            <input type="hidden" name="type_id" value="{$search_list.type_id}"/>
+                                            <input type="hidden" name="search_date" value="{$search_list.search_date}"/>
+                                            <input type="hidden" name="search_date2" value="{$search_list.search_date2}"/>
+                                            <button type="submit" id="sample_editabl" class="btn green" >
+                                                导出Excel <i class="icon-signin"></i>
+                                            </button>
+                                        </form>
+
+                                    </div>-->
+                                    <table class="table table-striped table-hover" style="min-width: 860px;">
+
+                                        <thead>
+
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>类型</th>
+                                            <th>适用类型</th>
+                                            <th>代理券返利</th>
+                                            <th>使用类型</th>
+                                            <th>标题</th>
+                                            <th>副标题</th>
+                                            <th>抵消券文字</th>
+                                            <th>折扣/金额</th>
+                                            <th>销量</th>
+                                            <th>购买价格</th>
+                                            <th>返还金额</th>
+                                            <th>城市合伙人计算金额</th>
+                                            <th>是否公众号赠送</th>
+                                            <!--<th>适用医院</th>-->
+                                            <!--<th>说明</th>-->
+                                            <th>限购</th>
+                                            <th>显示状态</th>
+                                            <th>创建时间</th>
+                                            <th>操作</th>
+                                        </tr>
+
+                                        </thead>
+
+                                        <tbody>
+                                        <if condition="$list">
+                                            <foreach name="list" item="v" key="key">
+                                                <tr>
+
+                                                    <td>
+                                                        {$key+1}
+                                                    </td>
+                                                    <td>
+                                                        <if condition="$v.type eq 1"><span class="label label-info">普通优惠券</span></if>
+                                                        <if condition="$v.type eq 2"><span class="label label-info">体验券</span></if>
+                                                        <if condition="$v.type eq 3"><span class="label label-info">代理优惠券</span></if>
+                                                    </td>
+                                                    <td>
+                                                        <if condition="$v.ticket_type eq 1"><span class="label label-warning">机构优惠券</span></if>
+                                                        <if condition="$v.ticket_type eq 2"><span class="label label-warning">商品优惠券</span></if>
+                                                        <if condition="$v.ticket_type eq 3"><span class="label label-warning">活动优惠券</span></if>
+                                                    </td>
+
+                                                    <td>
+                                                        <if condition="$v.type eq 3">
+                                                            <if condition="$v.is_rebate eq 1">
+                                                                开启返利上级
+                                                                <else/>
+                                                                关闭返利上级
+                                                            </if>
+                                                            <else/>
+                                                            -
+                                                        </if>
+                                                    </td>
+                                                    <td>
+                                                        <if condition="$v.use_type eq 1">
+                                                        折扣券
+                                                     </if>
+                                                        <if condition="$v.use_type eq 2">
+                                                            抵消券
+                                                        </if>
+                                                        <if condition="$v.use_type eq 3">
+                                                            现金券
+                                                        </if>
+                                                    </td>
+                                                    <td>
+                                                        {$v.title}
+                                                    </td>
+
+                                                    <td>
+                                                        {$v.info}
+                                                    </td>
+                                                    <td>
+                                                        {$v.dis_title}
+                                                    </td>
+                                                    <td>
+                                                        <if condition="$v.use_type eq 1">
+                                                            {$v.discount}折
+                                                        </if>
+                                                        <if condition="$v.use_type eq 2">
+                                                          -
+
+                                                        </if>
+                                                        <if condition="$v.use_type eq 3">
+                                                            {$v.discount}元
+
+                                                        </if>
+
+                                                    </td>
+                                                    <td>
+                                                        {$v.sales}
+                                                    </td>
+                                                    <td>
+                                                        <if condition="$v.type eq 2">
+                                                            -
+                                                            <else/>
+                                                            ￥{$v.price}
+                                                        </if>
+
+                                                    </td>
+                                                    <td>
+                                                        <if condition="$v.type eq 2">
+                                                            -
+                                                            <else/>
+                                                            ￥{$v.rebate}
+                                                        </if>
+                                                    </td>
+                                                    <td>
+                                                        ￥{$v.city_money}
+                                                    </td>
+                                                   <!-- <td>
+                                                        <foreach name="v.hos_list" item="k">
+                                                            <a href="{:U('home/hospital/check/edit/'.$k['hospital_id'])}" target="_blank">{$new_hos[$k[hospital_id]]}</a>
+                                                            <br>
+                                                        </foreach>
+                                                    </td>-->
+                                                    <!--<td style="width: 10%;">
+                                                        {$v.explain}
+                                                    </td>-->
+                                                    <td>
+
+                                                            <if condition="$v.is_reg_send eq 1">
+                                                                <a href="javascript:EditAll('{$v.id}','0','取消赠送','ticket','is_reg_send')">
+                                                                    <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是</font></font></span>
+                                                                </a>
+                                                            </if>
+
+                                                            <if condition="$v.is_reg_send eq 0">
+                                                                <a href="javascript:EditAll('{$v.id}','1','设置为赠送','ticket','is_reg_send')">
+                                                                    <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">否</font></font></span>
+                                                                </a>
+                                                            </if>
+
+
+                                                    </td>
+                                                    <td>
+                                                        <if condition="$v.max eq 0">
+                                                            不限购
+                                                            <else/>
+                                                            {$v.max}次
+                                                        </if>
+
+
+                                                    </td>
+
+
+                                                    <td>
+
+                                                        <if condition="$v.is_show eq 1">
+                                                            <a href="javascript:EditStatus('{$v.id}','0','优惠券','ticket')">
+                                                                <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示</font></font></span>
+                                                            </a>
+                                                        </if>
+
+                                                        <if condition="$v.is_show eq 0">
+                                                            <a href="javascript:EditStatus('{$v.id}','1','优惠券','ticket')">
+                                                                <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">隐藏</font></font></span>
+                                                            </a>
+                                                        </if>
+                                                    </td>
+
+
+
+                                                    <td>{$v.create_time|date="Y-m-d H:i",###}</td>
+                                                    <td>
+                                                        <a href="{:U('home/'.$at.'/check/edit/'.$v['id'])}" class="btn green"><i class="icon-eye-open"></i> 查看详细</a>
+                                                        <a href="{:U('home/'.$at.'/plus/edit/'.$v['id'])}" class="btn blue"><i class="icon-edit"></i> 修改</a>
+                                                        <a href="JavaScript:_deleteUser('{$v.id}','{$v.have_count}','{$v.name}');" class="btn red"><i class="icon-trash"></i> 删除</a>
+                                                    </td>
+                                                </tr>
+                                            </foreach>
+                                            <else />
+                                            <tr>
+                                                <td colspan="10"><p class="no_data">暂时没有数据</p></td>
+                                            </tr>
+                                        </if>
+
+
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                                <div class="space5"></div>
+
+                                <div class="pagination pagination-right">
+                                    <br/>
+                                    <div class="page_div">
+                                        <?php echo $page;?>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!--end tabbable-->
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+
+<!-- modal -->
+<div id='modal_video' style="display: none;width: 100%;height: 100%;background: rgba(0,0,0,0.8);z-index: 10000000;position: fixed;top: 0;">
+
+    <div style="margin: 80px auto 0;text-align: center;position: relative;" >
+        <div style="position:absolute;top:-58px;right: 30%;">
+            <i class="icon-remove-circle" style="font-size: 50px;color: #f00;"></i>
+        </div>
+        <div id="video_url" style="display: inline-block;max-height: 800px;">
+
+        </div>
+    </div>
+</div>
+<!-- ./modal -->
+
+<include file="common/footer"/>
+<include file="common/tz"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/time/js/borain-timeChoice.js"></script>
+<script>
+    onLoadTimeChoiceDemo();
+
+    borainTimeChoice({
+        start:".start_time",
+        end:".end_time",
+        level:"HM",
+        less:false
+    });
+
+    function EditFreeze(id,str){
+        var name;
+        if(str=='1'){
+            name = '禁止';
+        }else{
+            name = '解封';
+        }
+        showConfirm('<i class="icon-exclamation-sign"></i> '+name+'用户','确定要'+name+' 该账户登陆吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/editfreeze'); ?>",
+                data:{id:id,str:str},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function _deleteUser(id,have_num,name){
+        let tis = '确定要删除此优惠券吗？'
+        if(have_num>0){
+             tis = '当前优惠券还有 '+have_num+'个用户拥有并未使用，是否要删除，删除后用户未使用券将删除,是否继续删除？'
+        }
+
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除',tis,function(){
+
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/delete'); ?>",
+                data:{id:id},
+                success: function (result) {
+
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function EditAll(id,str,title,db,value){
+        var name;
+        if(str=='1'){
+            name = '启动';
+        }else{
+            name = '取消';
+        }
+        showConfirm('<i class="icon-exclamation-sign"></i> '+name+title,'确定要'+name+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editall'); ?>",
+                data:{id:id,str:str,db:db,value:value},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function EditStatus(id,str,title,db){
+        var name;
+        if(str=='1'){
+            name = '显示';
+        }else{
+            name = '隐藏';
+        }
+        showConfirm('<i class="icon-exclamation-sign"></i> '+name+title,'确定要'+name+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editshow'); ?>",
+                    data:{id:id,str:str,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function EditData(id)
+    {
+        location.href = "<?php echo U('home/GameAdd/index/edit_id/"+id+"');?>";
+    }
+</script>

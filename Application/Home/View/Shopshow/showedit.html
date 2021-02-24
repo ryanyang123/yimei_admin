@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;;
+        }
+    </style>
+    <title>编辑</title>
+</head>
+<body>
+
+<div  style="height: 100%;">
+    <style>
+        .toolbar {
+            border: 1px solid #ccc;
+            height: 5%;
+        }
+        .text {
+            border: 1px solid #ccc;
+            height: 95%;
+        }
+        #div2 img{
+            max-width: 100%;
+        }
+    </style>
+
+    <div id="div1" class="toolbar">
+    </div>
+
+
+    <div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
+        {$list.content}
+    </div>
+
+</div>
+<button type="button" id="js_btn" style="width: 0;height: 0;border: none;padding: 0;"  class="btn blue"></button>
+
+</body>
+</html>
+<script src="__PUBLIC__/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="__PUBLIC__/wangEditor/release/wangEditor.min.js"></script>
+<script>
+
+    function AppFun(){
+        $('#js_btn').click();
+    }
+
+    function AppCopyUrl(html){
+        var ua = navigator.userAgent.toLowerCase();
+        if (/iphone|ipad|ipod/.test(ua)){
+            GameCheckIos(html);
+        } else {
+            window.AndroidWebView.showInfoFromJs(html);
+        }
+    }
+
+    function GameCheckIos(html){
+        window.webkit.messageHandlers.GameCheckIos.postMessage(html);
+    }
+
+</script>
+<script>
+
+
+    var E = window.wangEditor;
+    var editor = new E('#div1', '#div2');
+    // 配置服务器端地址
+    // 自定义菜单配置
+    editor.customConfig.menus = [
+
+        'head',  // 标题
+        'fontSize',  // 字号
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'link',  // 插入链接
+        'justify',  // 对齐方式
+        'image',  // 插入图片
+        'table',  // 表格
+        'video',  // 插入视频
+        'undo',  // 撤销
+    ]
+    editor.customConfig.uploadImgServer = "{:U('home/shopshow/upload')}"
+    editor.customConfig.uploadFileName = 'fileData'
+    editor.customConfig.linkImgCheck = function (src) {
+        console.log(src) // 图片的链接
+
+        return true // 返回 true 表示校验成功
+        // return '验证失败' // 返回字符串，即校验失败的提示信息
+    }
+    editor.customConfig.linkCheck = function (text, link) {
+        console.log(text) // 插入的文字
+        console.log(link) // 插入的链接
+
+        return true // 返回 true 表示校验成功
+        // return '验证失败' // 返回字符串，即校验失败的提示信息
+    }
+    editor.customConfig.linkImgCallback = function (url) {
+        console.log(url) // url 即插入图片的地址
+    }
+    document.getElementById('js_btn').addEventListener('click', function () {
+        // 读取 html
+        //alert(editor.txt.html())
+        AppCopyUrl(editor.txt.html())
+    }, false)
+
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create();
+
+
+</script>

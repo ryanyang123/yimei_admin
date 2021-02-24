@@ -1,0 +1,1359 @@
+<div class="page-sidebar nav-collapse collapse">
+
+    <!-- BEGIN SIDEBAR MENU -->
+    <style>
+        .tubiao{
+            border-radius: 50%!important;
+            float: right;
+            padding:0;
+            display: inline-block;;
+            width: 25px;
+            height: 25px;;
+            text-align: center;
+            line-height: 25px;;
+        }
+
+    </style>
+    <ul class="page-sidebar-menu">
+
+        <li>
+
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+            <div class="sidebar-toggler hidden-phone"></div>
+
+            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+        </li>
+
+        <li>
+
+            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+
+           <!-- <form class="sidebar-search">
+
+                <div class="input-box">
+
+                    <a href="javascript:;" class="remove"></a>
+
+                    <input type="text" placeholder="Search..." />
+
+                    <input type="button" class="submit" value=" " />
+
+                </div>
+
+            </form>-->
+
+            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+
+        </li>
+
+        <li class="start <?php echo $at== 'home'?'active':'';?>">
+
+            <a href="<?php echo U('home/home/index');?>">
+
+                <i class="icon-home"></i>
+
+                <span class="title">首页</span>
+
+                <span class="selected"></span>
+
+            </a>
+
+        </li>
+
+
+
+
+
+        <?php $limit_list = limits_status();?>
+        <?php $show_num = show_num();?>
+
+
+        <if condition="$limit_list.banner eq 1 or $limit_list.type eq 1">
+        <li class="last <if condition='$at eq banner'>active</if>">
+            <a href="{:U('home/banner/index')}">
+                <i class="icon-picture"></i>
+                <span class="title">Banner列表</span>
+
+            </a>
+
+        </li>
+        </if>
+
+
+        <!--<if condition="$limit_list.hospital eq 1 or $limit_list.type eq 1">-->
+            <!--<li class="last <if condition='$at eq hospital'>active</if>">-->
+                <!--<a href="{:U('home/hospital/index')}">-->
+                    <!--<i class="icon-dashboard"></i>-->
+                    <!--<span class="title">医院列表</span>-->
+
+                <!--</a>-->
+
+            <!--</li>-->
+        <!--</if>-->
+
+        <if condition="$limit_list.doctor eq 1 or $limit_list.type eq 1">
+            <li class="last <if condition='$at eq doctor'>active</if>">
+                <a href="{:U('home/doctor/index')}">
+                    <i class="icon-user-md"></i>
+                    <span class="title">医生列表</span>
+
+                </a>
+
+            </li>
+        </if>
+
+        <if condition="$limit_list.ticket eq 1 or $limit_list.type eq 1">
+            <li class="last <if condition='$at eq ticket'>active</if>">
+                <a href="{:U('home/ticket/index')}">
+                    <i class="icon-tags"></i>
+                    <span class="title">优惠券管理</span>
+                </a>
+
+            </li>
+        </if>
+
+
+
+
+       <if condition="$limit_list.opinion eq 1 or $limit_list.type eq 1">
+        <li class="last <if condition='$at eq opinion'>active</if>">
+            <a href="{:U('home/opinion/index')}">
+                <i class="icon-bullhorn"></i>
+                <span class="title">反馈列表</span>
+                <if condition="$show_num.opinion_num neq 0">
+                    <span class="badge badge-important tubiao">{$show_num.opinion_num}</span>
+                </if>
+            </a>
+
+        </li>
+        </if>
+
+         <if condition="$limit_list.report eq 1 or $limit_list.type eq 1">
+        <li class="last  <?php echo $at == 'report'?'active':'';?>">
+            <a href="{:U('home/report/index')}">
+                <i class="icon-warning-sign"></i>
+                <span class="title">
+                    举报列表
+                    <if condition="$show_num.report_num neq 0">
+                      <span class="badge badge-important tubiao">{$show_num.report_num}</span>
+                    </if>
+                </span>
+
+            </a>
+
+        </li>
+        </if>
+
+
+
+        <if condition="$limit_list.tuiagent eq 1 or $limit_list.type eq 1 or $limit_list.teamsh eq 1  or $limit_list.teamqr eq 1  ">
+            <li class="<?php echo$at == 'tuiagent' ||  $at == 'teamsh' ||  $at == 'teamqr'  ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class=" icon-group"></i>
+
+                    <span class="title">星级会员管理</span>
+                    <if condition="$show_num.team_num  neq 0">
+                        <span class="badge badge-important" style="border-radius: 50%!important;">
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$show_num.team_num}</font></font></span>
+                    </if>
+
+
+                    <span class="arrow <?php echo $at == 'tuiagent' ||   $at == 'teamsh' ||  $at == 'teamqr'    ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.teamqr eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'teamqr'?'active':'';?>">
+                            <a href="{:U('home/teamqr/index')}">
+                                <span class="title">
+                                    二维码管理
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <if condition="$limit_list.teamsh eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'teamsh'?'active':'';?>">
+                            <a href="{:U('home/teamsh/index')}">
+                                <span class="title">
+                                    星级会员
+                                    <?php if($show_num['team_num'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['team_num'];?></span>
+                                    <?php }?>
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.tuiagent eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'tuiagent'?'active':'';?>">
+                            <a href="{:U('home/tuiagent/index')}">
+                                <span class="title">
+                                    上级返利明细
+
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+
+
+
+
+
+
+
+                </ul>
+
+            </li>
+
+        </if>
+
+
+
+
+        <if condition="$limit_list.made eq 1 or $limit_list.type eq 1   or $limit_list.gudong eq 1  or $limit_list.yuyue eq 1 or $limit_list.shopsh eq 1 or $limit_list.leave eq 1 ">
+            <li class="<?php echo$at == 'made' ||  $at == 'gudong' ||  $at == 'shopsh'||  $at == 'leave'||  $at == 'yuyue'  ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class="icon-eye-open"></i>
+
+                    <span class="title">申请管理</span>
+                    <if condition="$show_num.sh_num  neq 0">
+                        <span class="badge badge-important" style="border-radius: 50%!important;">
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$show_num.sh_num}</font></font></span>
+                    </if>
+
+
+                    <span class="arrow <?php echo $at == 'made' ||   $at == 'gudong' ||  $at == 'yuyue'  ||  $at == 'shopsh' ||  $at == 'leave'   ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.yuyue eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'yuyue'?'active':'';?>">
+                            <a href="{:U('home/yuyue/index')}">
+                                <span class="title">
+                                    预约列表
+                                    <?php if($show_num['yuyue_num'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['yuyue_num'];?></span>
+                                    <?php }?>
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <if condition="$limit_list.made eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'made'?'active':'';?>">
+                            <a href="{:U('home/made/index')}">
+                                <span class="title">
+                                    个性定制
+                                        <?php if($show_num['made_num'] != 0){?>
+                                      <span class="badge badge-important tubiao"><?php echo $show_num['made_num'];?></span>
+                                        <?php }?>
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.leave eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'leave'?'active':'';?>">
+                            <a href="{:U('home/leave/index')}">
+                                <span class="title">
+                                    留言管理
+
+                                    <?php if($show_num['leave_num'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['leave_num'];?></span>
+                                    <?php }?>
+
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <!--<if condition="$limit_list.teamsh eq 1 or $limit_list.type eq 1">-->
+                        <!--<li class="last <?php echo $at == 'teamsh'?'active':'';?>">-->
+                            <!--<a href="{:U('home/teamsh/index')}">-->
+                                <!--<span class="title">-->
+                                    <!--开通团队-->
+
+                                    <!--<?php if($show_num['team_num'] != 0){?>-->
+                                    <!--<span class="badge badge-important tubiao"><?php echo $show_num['team_num'];?></span>-->
+                                    <!--<?php }?>-->
+
+                                <!--</span>-->
+                            <!--</a>-->
+
+                        <!--</li>-->
+                    <!--</if>-->
+
+
+                <if condition="$limit_list.shopsh eq 1 or $limit_list.type eq 1">
+                    <li class="last <?php echo $at == 'shopsh'?'active':'';?>">
+                        <a href="{:U('home/shopsh/index')}">
+                             <span class="title">
+                                            店铺认证
+                                 <?php if($show_num['shop_num'] != 0){?>
+                                 <span class="badge badge-important tubiao"><?php echo $show_num['shop_num'];?></span>
+                                 <?php }?>
+                             </span>
+
+                        </a>
+                    </li>
+                </if>
+
+
+                    <if condition="$limit_list.gudong eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'gudong'?'active':'';?>">
+                            <a href="{:U('home/gudong/index')}">
+                             <span class="title">
+                                            城市合伙人申请
+                                 <?php if($show_num['gudong_num'] != 0){?>
+                                 <span class="badge badge-important tubiao"><?php echo $show_num['gudong_num'];?></span>
+                                 <?php }?>
+                             </span>
+
+                            </a>
+                        </li>
+                    </if>
+
+                </ul>
+
+            </li>
+
+        </if>
+
+
+
+     <if condition="$limit_list.user eq 1 or $limit_list.type eq 1">
+        <li class="last <?php echo $at == 'user'?'active':'';?>">
+            <a href="{:U('home/user/index')}">
+                <i class="icon-user"></i>
+                <span class="title">用户列表</span>
+
+            </a>
+
+        </li>
+        </if>
+
+     <if condition="$limit_list.rebatecity eq 1 or $limit_list.type eq 1">
+        <li class="last <?php echo $at == 'rebatecity'?'active':'';?>">
+            <a href="{:U('home/rebatecity/index')}">
+                <i class=" icon-flag"></i>
+                <span class="title">城市合伙人管理</span>
+
+            </a>
+
+        </li>
+        </if>
+
+
+        <if condition="$limit_list.tixmessage eq 1 or $limit_list.type eq 1">
+     <li class="last <?php echo $at == 'tixmessage'?'active':'';?>">
+         <a href="{:U('home/tixmessage/index')}">
+             <i class=" icon-bullhorn"></i>
+             <span class="title">
+                 打款消息通知
+                  <if condition="$show_num.tix_num neq 0"></if>
+                                    <if condition="$show_num.tix_num neq 0">
+                                      <span class="badge badge-important tubiao">{$show_num.tix_num}</span>
+                                    </if>
+             </span>
+
+         </a>
+
+     </li>
+     </if>
+
+
+
+
+
+        <if condition="$limit_list.shop eq 1 or $limit_list.type eq 1 or $limit_list.shopsearch eq 1   or $limit_list.shopjx eq 1  or $limit_list.shopprize eq 1   or $limit_list.noun eq 1  or $limit_list.shopgoods eq 1  or $limit_list.postage eq 1 ">
+            <li class="<?php echo$at == 'shop' ||  $at == 'shopsearch'  ||  $at == 'shopprize'  ||  $at == 'shopgoods'  ||  $at == 'shopjx'  ||  $at == 'noun'  ||  $at == 'postage'    ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class="icon-shopping-cart"></i>
+
+                    <span class="title">商城管理</span>
+
+                    <span class="arrow <?php echo $at == 'shop' ||  $at == 'shopsearch' ||  $at == 'shopgoods'||  $at == 'shopjx' ||  $at == 'postage'  ||  $at == 'noun'  ||  $at == 'shopprize'  ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.shop eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'shop'?'active':'';?>">
+                            <a href="{:U('home/shop/index')}">
+                                <span class="title">店铺管理</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <if condition="$limit_list.shopsearch eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'shopsearch'?'active':'';?>">
+                            <a href="{:U('home/shopsearch/index')}">
+                                <span class="title">热门搜索</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                  <!--  <if condition="$limit_list.ad eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'ad'?'active':'';?>">
+                            <a href="{:U('home/ad/index')}">
+                                <span class="title">广告管理</span>
+                            </a>
+
+                        </li>
+                    </if>-->
+
+                    <if condition="$limit_list.shopgoods eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'shopgoods'?'active':'';?>">
+                            <a href="{:U('home/shopgoods/index')}">
+                                <span class="title">商城商品</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.shopprize eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'shopprize'?'active':'';?>">
+                            <a href="{:U('home/shopprize/index')}">
+                                <span class="title">积分商品</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <if condition="$limit_list.postage eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'postage'?'active':'';?>">
+                            <a href="{:U('home/postage/index')}">
+                                <span class="title">运费模板</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <!-- <if condition="$limit_list.19 eq 1 or $limit_list.type eq 1">
+                         <li class="last <?php echo $at == 'totalshop'?'active':'';?>">
+                             <a href="{:U('home/totalshop/index')}">
+                                 <span class="title">商家统计</span>
+                             </a>
+                         </li>
+                     </if>-->
+
+                    <if condition="$limit_list.noun eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'noun'?'active':'';?>">
+                            <a href="{:U('home/noun/index')}">
+                                <span class="title">平安保险</span>
+                            </a>
+
+                        </li>
+                    </if>
+                    <if condition="$limit_list.shopjx eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'shopjx'?'active':'';?>">
+                            <a href="{:U('home/shopjx/index')}">
+                                <span class="title">精选商品</span>
+                            </a>
+
+                        </li>
+                    </if>
+                </ul>
+
+            </li>
+        </if>
+
+
+        <if condition="$limit_list.hospitalorder eq 1 or $limit_list.type eq 1 or $limit_list.createorder eq 1  or $limit_list.shopprizeorder eq 1  or $limit_list.order eq 1 ">
+            <li class="<?php echo$at == 'hospitalorder' ||  $at == 'createorder' ||  $at == 'shopprizeorder' ||  $at == 'order'    ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class=" icon-paste"></i>
+
+                    <span class="title">订单管理</span>
+                    <if condition="$show_num.order_num  neq 0">
+                        <span class="badge badge-important" style="border-radius: 50%!important;">
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$show_num.order_num}</font></font></span>
+                    </if>
+
+                    <span class="arrow <?php echo $at == 'hospitalorder' ||  $at == 'createorder' ||  $at == 'shopprizeorder'  ||  $at == 'order'   ?'open1':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.hospitalorder eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'hospitalorder'?'active':'';?>">
+                            <a href="{:U('home/hospitalorder/index')}">
+                                <span class="title">
+                                    医院订单
+                                    <?php if($show_num['hos_order_num'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['hos_order_num'];?></span>
+                                    <?php }?>
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+
+                     <if condition="$limit_list.createorder eq 1 or $limit_list.type eq 1">
+                         <li class="last <?php echo $at == 'createorder'?'active':'';?>">
+                             <a href="{:U('home/createorder/index')}">
+                                 <span class="title">创建医院订单</span>
+                             </a>
+                         </li>
+                     </if>
+
+
+
+                    <if condition="$limit_list.order eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'order'?'active':'';?>">
+                            <a href="{:U('home/order/index')}">
+                                <span class="title">
+                                    商城订单
+                                    <?php if($show_num['shop_order_num'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['shop_order_num'];?></span>
+                                    <?php }?>
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.shopprizeorder eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'shopprizeorder'?'active':'';?>">
+                            <a href="{:U('home/shopprizeorder/index')}">
+                                <span class="title">
+                                    积分订单
+                                    <?php if($show_num['prize_order_num'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['prize_order_num'];?></span>
+                                    <?php }?>
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+                </ul>
+
+            </li>
+        </if>
+
+
+        <if condition="$limit_list.project eq 1 or $limit_list.type eq 1 or $limit_list.projectclass eq 1  or $limit_list.projectapply eq 1  ">
+            <li class="<?php echo$at == 'project' ||  $at == 'projectclass' ||  $at == 'projectapply'    ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class="  icon-retweet"></i>
+
+                    <span class="title">项目活动</span>
+                    <if condition="$show_num.project_num  neq 0">
+                        <span class="badge badge-important" style="border-radius: 50%!important;">
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$show_num.project_num}</font></font></span>
+                    </if>
+
+                    <span class="arrow <?php echo $at == 'project' ||  $at == 'projectclass' ||  $at == 'projectapply'    ?'open1':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.project eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'project'?'active':'';?>">
+                            <a href="{:U('home/project/index')}">
+                                <span class="title">
+                                    项目活动列表
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+
+                    <if condition="$limit_list.projectclass eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'projectclass'?'active':'';?>">
+                            <a href="{:U('home/projectclass/index')}">
+                                <span class="title">项目活动分类</span>
+                            </a>
+                        </li>
+                    </if>
+
+
+
+                    <if condition="$limit_list.projectapply eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'projectapply'?'active':'';?>">
+                            <a href="{:U('home/projectapply/index')}">
+                                <span class="title">
+                                    项目活动申请
+                                    <?php if($show_num['project_num'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['project_num'];?></span>
+                                    <?php }?>
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+
+
+                </ul>
+
+            </li>
+        </if>
+
+
+
+
+        <if condition="$limit_list.splendid eq 1 or $limit_list.type eq 1 or $limit_list.payad eq 1  or $limit_list.ad eq 1 or $limit_list.verb eq 1">
+            <li class="<?php echo$at == 'splendid' ||  $at == 'payad'   ||  $at == 'ad'   ||  $at == 'verb'    ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class="icon-magic"></i>
+
+                    <span class="title">广告管理</span>
+
+                    <span class="arrow <?php echo $at == 'splendid' ||  $at == 'payad'  ||  $at == 'ad' ||  $at == 'verb'   ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+
+
+
+                    <if condition="$limit_list.ad eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'ad'?'active':'';?>">
+                            <a href="{:U('home/ad/index')}">
+                                <span class="title">日志广告</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <if condition="$limit_list.splendid eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'splendid'?'active':'';?>">
+                            <a href="{:U('home/splendid/index')}">
+                                <span class="title">精彩推荐</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                 <if condition="$limit_list.payad eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'payad'?'active':'';?>">
+                            <a href="{:U('home/payad/index')}">
+                                <span class="title">直接付款广告</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <if condition="$limit_list.verb eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'verb'?'active':'';?>">
+                            <a href="{:U('home/verb/index')}">
+                                <span class="title">首页活动</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <!--   <if condition="$limit_list.postage eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'postage'?'active':'';?>">
+                            <a href="{:U('home/postage/index')}">
+                                <span class="title">运费模板</span>
+                            </a>
+
+                        </li>
+                    </if>-->
+
+
+
+
+
+                </ul>
+
+            </li>
+        </if>
+
+        <!--<if condition="$limit_list.splendid eq 1 or $limit_list.type eq 1">
+            <li class="last <?php echo $at == 'splendid'?'active':'';?>">
+                <a href="{:U('home/splendid/index')}">
+                    <i class="  icon-magic"></i>
+                    <span class="title">精彩推荐</span>
+                </a>
+
+            </li>
+        </if>-->
+
+
+     <if condition="$limit_list.question eq 1 or $limit_list.type eq 1">
+        <li class="last <?php echo $at == 'question'?'active':'';?>">
+            <a href="{:U('home/question/index')}">
+                <i class=" icon-question-sign"></i>
+                <span class="title">问题列表</span>
+
+            </a>
+
+        </li>
+        </if>
+
+
+
+        <!--  <if condition="$limit_list.16 eq 1 or $limit_list.type eq 1">
+       <li class="last <?php echo $at == 'sensitivity'?'active':'';?>">
+           <a href="{:U('home/sensitivity/index')}">
+               <i class="icon-ban-circle"></i>
+               <span class="title">敏感词汇</span>
+
+           </a>
+
+       </li>
+       </if>
+-->
+
+
+
+
+
+
+
+<!--
+
+     <if condition="$limit_list.service eq 1 or $limit_list.type eq 1">
+            <li class="last <?php echo $at == 'service'?'active':'';?>">
+                <a href="{:U('home/service/index')}">
+                    <i class="icon-headphones"></i>
+                    <span class="title">客服列表</span>
+
+                </a>
+
+            </li>
+        </if>
+-->
+
+        <if condition="$limit_list.notice eq 1 or $limit_list.type eq 1">
+           <li class="last <?php echo $at == 'notice'?'active':'';?>">
+               <a href="{:U('home/notice/index')}">
+                   <i class="icon-envelope-alt"></i>
+                   <span class="title">发送系统公告</span>
+
+               </a>
+
+           </li>
+       </if>
+
+
+        <if condition="$limit_list.score eq 1 or $limit_list.type eq 1
+        or $limit_list.teammoney eq 1 or $limit_list.paylist eq 1 or $limit_list.totaluser eq 1 or $limit_list.tui eq 1 or $limit_list.ticketchou eq 1  or $limit_list.hoschou eq 1  or $limit_list.shopchou eq 1 ">
+            <li class="<?php echo$at == 'score' ||  $at == 'teammoney'  ||  $at == 'paylist' ||  $at == 'totaluser'  ||  $at == 'dixiao' ||  $at == 'tui' ||  $at == 'ticketchou' ||  $at == 'hoschou'  ||  $at == 'shopchou'    ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class="icon-bar-chart"></i>
+
+                    <span class="title">数据统计</span>
+
+                    <if condition="$show_num.da_num  neq 0">
+                        <span class="badge badge-important" style="border-radius: 50%!important;">
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{$show_num.da_num}</font></font></span>
+                    </if>
+
+                    <span class="arrow <?php echo $at == 'score' ||  $at == 'teammoney'||  $at == 'paylist' ||   $at == 'totaluser'  ||  $at == 'tui'  ||  $at == 'ticketchou'  ||  $at == 'dixiao'  ||  $at == 'hoschou'  ||  $at == 'shopchou'   ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.score eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'score'?'active':'';?>">
+                            <a href="{:U('home/score/index')}">
+                                <span class="title">积分明细</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <if condition="$limit_list.teammoney eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'teammoney'?'active':'';?>">
+                            <a href="{:U('home/teammoney/index')}">
+                                <span class="title">
+                                    代理返利
+
+                                    <?php if($show_num['agent_tui'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['agent_tui'];?></span>
+                                    <?php }?>
+
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+                    <if condition="$limit_list.dixiao eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'dixiao'?'active':'';?>">
+                            <a href="{:U('home/dixiao/index')}">
+                                <span class="title">医院返利-抵消券使用</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <if condition="$limit_list.hoschou eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'hoschou'?'active':'';?>">
+                            <a href="{:U('home/hoschou/index')}">
+                                <span class="title">
+                                    平台抽水-医院订单
+                                    <?php if($show_num['hos_tui'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['hos_tui'];?></span>
+                                    <?php }?>
+                                </span>
+                            </a>
+
+                        </li>
+                    </if>
+
+                    <if condition="$limit_list.shopchou eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'shopchou'?'active':'';?>">
+                            <a href="{:U('home/shopchou/index')}">
+                                <span class="title">
+                                    平台抽水-商城订单
+                                    <?php if($show_num['shop_tui'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['shop_tui'];?></span>
+                                    <?php }?>
+
+                                </span>
+                            </a>
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.ticketchou eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'ticketchou'?'active':'';?>">
+                            <a href="{:U('home/ticketchou/index')}">
+                                <span class="title">
+                                    优惠券购买记录
+                                    <?php if($show_num['tic_rebate'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['tic_rebate'];?></span>
+                                    <?php }?>
+                                </span>
+                            </a>
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.tui eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'tui'?'active':'';?>">
+                            <a href="{:U('home/tui/index')}">
+                                <span class="title">
+                                    退款记录
+                                    <?php if($show_num['tui_num'] != 0){?>
+                                    <span class="badge badge-important tubiao"><?php echo $show_num['tui_num'];?></span>
+                                    <?php }?>
+                                </span>
+                            </a>
+                        </li>
+                    </if>
+                    <if condition="$limit_list.totaluser eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'totaluser'?'active':'';?>">
+                            <a href="{:U('home/totaluser/index')}">
+                                <span class="title">盈利数据</span>
+                            </a>
+                        </li>
+                    </if>
+
+
+                </ul>
+
+            </li>
+        </if>
+
+
+
+        <if condition="$limit_list.diaryclassify eq 1 or $limit_list.type eq 1 or $limit_list.madeclassify eq 1 or $limit_list.storeclassify eq 1 or $limit_list.shopclassify eq 1 ">
+            <li class="<?php echo$at == 'diaryclassify' ||  $at == 'madeclassify'  ||  $at == 'storeclassify' ||  $at == 'shopclassify'    ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class=" icon-th-list"></i>
+
+                    <span class="title">分类管理</span>
+
+                    <span class="arrow <?php echo $at == 'diaryclassify' ||  $at == 'madeclassify' ||  $at == 'storeclassify'  ||  $at == 'shopclassify'   ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.diaryclassify eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'diaryclassify'?'active':'';?>">
+                            <a href="{:U('home/diaryclassify/index')}">
+                                <span class="title">日志分类</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.storeclassify eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'storeclassify'?'active':'';?>">
+                            <a href="{:U('home/storeclassify/index')}">
+                                <span class="title">店铺分类</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.shopclassify eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'shopclassify'?'active':'';?>">
+                            <a href="{:U('home/shopclassify/index')}">
+                                <span class="title">商品分类</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.madeclassify eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'madeclassify'?'active':'';?>">
+                            <a href="{:U('home/madeclassify/index')}">
+                                <span class="title">个性定制分类</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+                </ul>
+
+            </li>
+        </if>
+
+
+        <if condition="$limit_list.comadmin eq 1 or $limit_list.type eq 1 or $limit_list.comclassify eq 1 or $limit_list.robot eq 1 ">
+            <li class="<?php echo$at == 'comadmin' ||  $at == 'comclassify'  ||  $at == 'robot'  ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class=" icon-android"></i>
+
+                    <span class="title">机器人管理</span>
+
+                    <span class="arrow <?php echo $at == 'comadmin' ||  $at == 'comclassify' ||  $at == 'robot'     ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.robot eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'robot'?'active':'';?>">
+                            <a href="{:U('home/robot/index')}">
+                                <span class="title">机器人</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.comclassify eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'comclassify'?'active':'';?>">
+                            <a href="{:U('home/comclassify/index')}">
+                                <span class="title">评论语分类</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.comadmin eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'comadmin'?'active':'';?>">
+                            <a href="{:U('home/comadmin/index')}">
+                                <span class="title">默认评论语</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+
+
+
+                </ul>
+
+            </li>
+        </if>
+
+
+
+
+
+        <if condition="$limit_list.webnews eq 1 or $limit_list.type eq 1 or $limit_list.webbanner eq 1 or $limit_list.webwenzi eq 1 or $limit_list.webimg eq 1 ">
+            <li class="<?php echo$at == 'webnews' ||  $at == 'webbanner'  ||  $at == 'webwenzi'  ||  $at == 'webimg'  ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class=" icon-globe"></i>
+
+                    <span class="title">网站管理</span>
+
+                    <span class="arrow <?php echo $at == 'webbanner' ||  $at == 'webnews' ||  $at == 'webimg'   ||  $at == 'webwenzi'     ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.webbanner eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'webbanner'?'active':'';?>">
+                            <a href="{:U('home/webbanner/index')}">
+                                <span class="title">网站数据</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.webimg eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'webimg'?'active':'';?>">
+                            <a href="{:U('home/webimg/index')}">
+                                <span class="title">网站图片</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.webwenzi eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'webwenzi'?'active':'';?>">
+                            <a href="{:U('home/webwenzi/index')}">
+                                <span class="title">网站文字动态</span>
+                            </a>
+
+                        </li>
+                    </if>
+                <if condition="$limit_list.webnews eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'webnews'?'active':'';?>">
+                            <a href="{:U('home/webnews/index')}">
+                                <span class="title">网站图文动态</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+
+
+
+                </ul>
+
+            </li>
+        </if>
+
+
+
+
+
+
+
+        <if condition="$limit_list.activity eq 1 or $limit_list.type eq 1 or $limit_list.activitygroup eq 1 or $limit_list.activityuser eq 1 ">
+            <li class="<?php echo$at == 'activity' ||  $at == 'activitygroup'  ||  $at == 'activityuser'  ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class="  icon-inbox"></i>
+
+                    <span class="title">活动管理</span>
+
+                    <span class="arrow <?php echo $at == 'activity' ||  $at == 'activitygroup' ||  $at == 'activityuser'     ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <if condition="$limit_list.activity eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'activity'?'active':'';?>">
+                            <a href="{:U('home/activity/index')}">
+                                <span class="title">活动列表</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.activitygroup eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'activitygroup'?'active':'';?>">
+                            <a href="{:U('home/activitygroup/index')}">
+                                <span class="title">抽奖组</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.activityuser eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'activityuser'?'active':'';?>">
+                            <a href="{:U('home/activityuser/index')}">
+                                <span class="title">活动用户</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+
+
+
+                </ul>
+
+            </li>
+        </if>
+
+
+
+
+
+
+
+
+
+        <if condition="$limit_list.blogs eq 1 or $limit_list.type eq 1">
+            <li class="last <?php echo $at == 'blogs'?'active':'';?>">
+                <a href="{:U('home/blogs/index')}">
+                    <i class=" icon-camera"></i>
+                    <span class="title">
+                        日志管理
+                          <if condition="$show_num.blogs_num neq 0">
+                      <span onclick="cleartis('1')" class="badge badge-important tubiao">{$show_num.blogs_num}</span>
+                    </if>
+                    </span>
+                </a>
+            </li>
+        </if>
+        <if condition="$limit_list.blogscomment eq 1 or $limit_list.type eq 1">
+            <li class="last <?php echo $at == 'blogscomment'?'active':'';?>">
+                <a href="{:U('home/blogscomment/index')}">
+                    <i class=" icon-comments"></i>
+                    <span class="title">
+                        评论列表
+                          <if condition="$show_num.comment_num neq 0">
+                      <span  class="badge badge-important tubiao">{$show_num.comment_num}</span>
+                    </if>
+                    </span>
+                </a>
+            </li>
+        </if>
+
+        <if condition="$limit_list.about eq 1 or $limit_list.type eq 1">
+        <li class="last <if condition='$at eq about'>active</if>">
+            <a href="{:U('home/about/index')}">
+                <i class="  icon-glass"></i>
+                <span class="title">关于我们</span>
+
+            </a>
+        </li>
+        </if>
+
+        <if condition="$limit_list.phonecode eq 1 or $limit_list.type eq 1">
+            <li class="last <if condition='$at eq phonecode'>active</if>">
+                <a href="{:U('home/phonecode/index')}">
+                    <i class="icon-barcode"></i>
+                    <span class="title">免验证码</span>
+
+                </a>
+            </li>
+        </if>
+
+
+
+
+        <if condition="$limit_list.type eq 1">
+            <li class="last <if condition='$at eq task'>active</if>">
+                <a href="{:U('home/task/index')}">
+                    <i class="icon-gift"></i>
+                    <span class="title">红包管理</span>
+
+                </a>
+            </li>
+        </if>
+
+
+     <!--   <if condition="$limit_list.type eq 1">
+        <li class="last <?php echo $at == 'admin'?'active':'';?>">
+            <a href="{:U('home/admin/index')}">
+                <i class=" icon-info-sign"></i>
+                <span class="title">账号管理</span>
+
+            </a>
+
+        </li>
+        </if>-->
+
+        <li class="last <?php echo $at == 'editpass'?'active':'';?>">
+            <a href="{:U('home/editpass/index')}">
+                <i class="icon-key"></i>
+                <span class="title">修改密码</span>
+
+            </a>
+
+        </li>
+
+
+
+        <if condition="$limit_list.smscode eq 1 or $limit_list.type eq 1 ">
+            <li class="<?php echo  $at == 'smscode'  ||  $at == 'homead' ||  $at == 'admin'   ||  $at == 'taskreg'     ?'active':'';?>">
+
+                <a href="javascript:;">
+
+                    <i class=" icon-cog"></i>
+
+                    <span class="title">其他设置</span>
+
+                    <span class="arrow <?php echo  $at == 'smscode' ||  $at == 'homead' ||  $at == 'admin'    ||  $at == 'taskreg'     ?'open':'';?>"></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+
+
+                    <if condition="$limit_list.smscode eq 1 or $limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'smscode'?'active':'';?>">
+                            <a href="{:U('home/smscode/index')}">
+                                <span class="title">群发短信</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'homead'?'active':'';?>">
+                            <a href="{:U('home/homead/index')}">
+                                <span class="title">弹出视频</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+
+                    <if condition="$limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'taskreg'?'active':'';?>">
+                            <a href="{:U('home/taskreg/index')}">
+                                <span class="title">红包设置</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+                    <if condition="$limit_list.type eq 1">
+                        <li class="last <?php echo $at == 'admin'?'active':'';?>">
+                            <a href="{:U('home/admin/index')}">
+                                <span class="title">账号管理</span>
+                            </a>
+
+                        </li>
+                    </if>
+
+
+
+                </ul>
+
+            </li>
+        </if>
+
+
+
+
+<!--
+        <if condition="$limit_list.type eq 1">
+            <li class="last <?php echo $at == 'homead'?'active':'';?>">
+                <a href="{:U('home/homead/index')}">
+                    <i class=" icon-youtube-play"></i>
+                    <span class="title">弹出视频</span>
+
+                </a>
+
+            </li>
+        </if>
+        <if condition="$limit_list.notice eq 1 or $limit_list.type eq 1">
+            <li class="last <?php echo $at == 'smscode'?'active':'';?>">
+                <a href="{:U('home/smscode/index')}">
+                    <i class="icon-comments"></i>
+                    <span class="title">群发短信</span>
+
+                </a>
+
+            </li>
+        </if>-->
+
+
+        <if condition="$limit_list.type eq 1">
+        <li class="last <?php echo $at == 'alizz'?'active':'';?>">
+            <a href="{:U('home/alizz/index')}">
+                <i class="icon-jpy"></i>
+                <span class="title">支付宝转账</span>
+
+            </a>
+
+        </li>
+        </if>
+
+        <if condition="$limit_list.set eq 1 or $limit_list.type eq 1">
+        <li class="last <?php echo $at == 'set'?'active':'';?>">
+            <a href="{:U('home/set/index')}">
+                <i class="icon-cog"></i>
+                <span class="title">设置</span>
+
+            </a>
+
+        </li>
+        </if>
+
+    </ul>
+
+    <!-- END SIDEBAR MENU -->
+
+</div>

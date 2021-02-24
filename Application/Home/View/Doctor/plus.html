@@ -1,0 +1,589 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/duoimg/css/globle.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        {$title} <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">游戏</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#"><?php echo $is_edit?'修改'.$title:'新增'.$title;?></a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="form-horizontal">
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医生名称</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入医生名称" name="name"  value="{$list.name}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医生头像</font></font></label>
+
+
+                                        <div class="controls">
+                                            <div id="upload_kuang"  <if condition="!$is_edit and !$list['head']">class="dan_upload_img_div1"</if>>
+                                            <div id="uploadPreview">
+                                                <if condition="$is_edit and $list['head']">
+                                                    <img src="{$list.head}" style="max-height: 150px;border:1px solid #ddd;" alt=""/>
+                                                </if>
+                                            </div>
+
+                                        </div>
+
+                                        <label class="on_img_btn" for="uploadImage" style="display: inline;"> <span  class="btn btn-default" style="">
+                                                <if condition="!$is_edit and !$list['head']">
+                                                    选择图片
+                                                    <else/>
+                                                    更改图片
+                                                </if>
+
+                                            </span></label>
+                                        <label class="change_img_btn" for="uploadImage" style="display: none;"> <span  class="btn btn-default" style="">更改</span></label>
+                                        <label class="del_img_btn" style="display: none;" onclick="ClearImg()"> <span  class="btn btn-default" style="">删除</span></label>
+                                        <input id="uploadImage" style="" type="file"  name="photoimage" class="fimg1"  />
+                                    </div>
+                                    </div>
+
+
+                                    <?php if($is_edit){?>
+
+                                    <div class="control-group " >
+
+                                        <label class="control-label">
+                                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医生相册当前图片</font></font></label>
+
+                                        <div class="controls">
+
+                                            <foreach name="banner_list" item="k">
+                                                <a style="position: relative;" class="fancybox-button" data-rel="fancybox-button" title="" href="{$k.img_url}">
+                                                    <img src="{$k.img_url}" class="" style="width: 80px;height: 80px;" alt="">
+                                                    <div style="position: absolute;top:10px;right: 5px;">
+                                                        <i class="icon-trash" onclick="_deleteUser('{$k.id}','医生相册','doctor_photo');" style="font-size: 22px;color:#f00;"></i>
+                                                    </div>
+                                                </a>
+
+                                            </foreach>
+
+
+                                        </div>
+
+                                    </div>
+                                    <?php }?>
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医生相册</font></font></label>
+
+                                        <div class="controls">
+                                            <ul class="upload-ul clearfix">
+                                                <li class="upload-pick">
+                                                    <div class="webuploader-container clearfix" id="goodsUpload"></div>
+                                                </li>
+                                            </ul>
+                                            <p><a class="upload-btn" href="javascript:;">上传图片</a></p>
+                                        </div>
+
+                                    </div>
+
+
+                            <div class="control-group">
+
+                                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属医院</font></font></label>
+
+                                <div class="controls">
+                                    <select id="hospital_id" class="m-wrap">
+                                        <option value="" >请选择</option>
+                                        <foreach name="hos_list" item="v">
+                                            <option <if condition="$list['hospital_id'] eq $v['id']"> selected </if> value="{$v.id}" >{$v.name}</option>
+                                        </foreach>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="control-group">
+
+                                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">绑定的用户ID</font></font></label>
+
+                                <div class="controls">
+                                    <input type="text" placeholder="已注册的用户ID" name="user_id"  value="{$list.user_id}" class="m-wrap medium">
+                                </div>
+
+                            </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">担任职位</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入担任职位" name="job"  value="{$list.job}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执业年龄</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="number" placeholder="请输入从业年限（年）" name="job_age"  value="{$list.job_age}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">擅长项目</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="多个擅长项目请用加号（+）分隔" name="skilled"  value="{$list.skilled}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医生简介</font></font></label>
+                                <div class="controls">
+                                    <textarea class="large m-wrap" name="intro" rows="10">{$list.intro}</textarea>
+                                </div>
+                            </div>
+
+
+
+                            <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">排序</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入序号" name="sort"  value="{$list.sort}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                    <div class="form-actions">
+
+                                        <button type="button" onclick="UploadImg()"  class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wangEditor/release/wangEditor.min.js"></script>
+<script src="__PUBLIC__/duoimg/js/webuploader.min.js"></script>
+<script src="__PUBLIC__/duoimg/js/diyUpload.js"></script>
+<script>
+
+
+    var img_arr = new Array();
+    var img_i = 0;
+    $(function(){
+
+        //上传图片
+        var $tgaUpload = $('#goodsUpload').diyUpload({
+            url:"<?php echo U('home/Upload/upload_duo');?>",
+            success:function( data ) {
+
+                img_arr[img_i]  = data.res;
+                console.log(img_arr);
+                img_i++;
+            },
+            error:function( err ) { },
+            buttonText : '',
+            accept: {
+                title: "Images",
+                extensions: 'gif,jpg,jpeg,bmp,png'
+            },
+            /*fileNumLimit:3,*/
+            thumb:{
+                width:120,
+                height:90,
+                quality:100,
+                allowMagnify:true,
+                crop:true,
+                type:"image/jpeg"
+            }
+        });
+
+        $(".upload-btn").click(function(){ $tgaUpload.upload(); });
+    });
+
+
+
+
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+
+    /*$('input:radio[name="optionsRadios1"]').change( function(){
+        $('.show_all').hide();
+        if($(this).val()==1 || $(this).val()==2){
+            $('.show_'+$(this).val()).show();
+        }
+    })
+*/
+
+    function ClearImg(){
+        $("#upload_kuang").addClass("dan_upload_img_div1");
+        $("#uploadImage").val('');
+        $('.on_img_btn').show();
+        $('.change_img_btn').hide();
+        $('.del_img_btn').hide();
+        $('#uploadPreview').html('');
+    }
+
+
+    function _deleteUser(id,name,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除'+name,'确定要删除'+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/delete'); ?>",
+                data:{id:id,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function UploadImg(){
+        var img = "";
+        var file = $("#uploadImage").val();
+        if(file==""){
+            SubmitData("");
+        }
+
+
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+
+                            SubmitData(img);
+                        }else{
+                            showAlert("图片上传失败");
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
+    var parent_url = "<?php echo U('home/'.$at.'/index');?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+    function SubmitData(img){
+        var name = $.trim($("*[name='name']").val());
+        var user_id = $.trim($("*[name='user_id']").val());
+        var job = $.trim($("*[name='job']").val());
+        var job_age = $.trim($("*[name='job_age']").val());
+        var skilled = $.trim($("*[name='skilled']").val());
+        var sort = $.trim($("*[name='sort']").val());
+        var intro = $.trim($("*[name='intro']").val());
+        var hospital_id = $.trim($("#hospital_id").val());
+
+        if (!name){showAlert("请输入医生名称");return false;}
+        if (!job){showAlert("请输入担任职位");return false;}
+        if (!job_age){showAlert("请输入从业年限");return false;}
+        if (!skilled){showAlert("请输入擅长项目");return false;}
+        if (!intro){showAlert("请输入医生简介");return false;}
+        if (!hospital_id){showAlert("请选择所属医院");return false;}
+
+
+        if(!img && !is_Edit){
+            showAlert("请上传医生头像");
+            return false;
+        }
+
+        var img_leng = $(".diyControl").length;
+        var img_arr_count = img_arr.length;
+        if(img_leng!=img_arr_count){
+            showAlert("请先点击上传图片后在保存");
+            return false;
+        }
+
+        if(img_arr_count>0){
+
+        }else{
+            img_arr ='';
+        }
+
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/add'); ?>",
+            data:{img:img,
+                name:name,
+                user_id:user_id,
+                job:job,
+                job_age:job_age,
+                skilled:skilled,
+                sort:sort,
+                intro:intro,
+                hospital_id:hospital_id,
+                img_arr:img_arr,
+                is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

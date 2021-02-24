@@ -1,0 +1,334 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        个性定制分类 <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#">定制分类</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+
+                    <div class="btn-group">
+
+                        <a href="<?php echo U('home/'.$at.'/plus');?>" id="sample_editable_1_new" class="btn green">
+
+                            新增分类 <i class="icon-plus"></i>
+
+                        </a>
+
+                    </div>
+
+                    <div class="tabbable tabbable-custom tabbable-full-width">
+
+                        <div class="tab-content">
+
+
+
+                            <div id="tab_1_5" class="tab-pane active">
+
+                                <div class="row-fluid search-forms search-default">
+<!--
+                                    <form class="form-search" method="get" action="{:U('home/'.$at.'/index')}">
+
+                                        <div class="chat-form clearfix">
+
+                                            <div class="input-cont" style="width:100%;float: left;margin-right: 20px;margin-bottom: 2px;min-width: 210px;">
+
+                                                <select name="status" id="" style="line-height: 34px;height: 34px;">
+                                                    <option value="" disabled >类型筛选</option>
+                                                    <option value="0" >全部</option>
+                                                    <option <if condition="$search_list['status'] eq 1"> selected </if> value="1" >不跳转</option>
+                                                    <option <if condition="$search_list['status'] eq 2"> selected </if> value="2" >跳转外部URL链接</option>
+                                                    <option <if condition="$search_list['status'] eq 3"> selected </if> value="3" >跳转医院</option>
+
+                                                </select>
+
+
+                                                <select name="is_show" id="" style="line-height: 34px;height: 34px;">
+                                                    <option value="" disabled >显示状态筛选</option>
+                                                    <option value="0" >全部</option>
+                                                    <option <if condition="$search_list['is_show'] eq 2"> selected </if> value="2" >显示</option>
+                                                    <option <if condition="$search_list['is_show'] eq 1"> selected </if> value="1" >隐藏</option>
+                                                </select>
+
+
+
+                                                <input type="text" placeholder="开始时间 " value="{$search_list.search_date}" name="search_date" class="m-wrap large auto-kal">
+                                                <input type="text" placeholder="结束时间 " value="{$search_list.search_date2}" name="search_date2" class="m-wrap large auto-kal">
+                                            </div>
+
+
+
+
+
+                                            <button type="submit" class="btn green">搜 索 &nbsp; <i class="m-icon-swapright m-icon-white"></i></button>
+
+                                        </div>
+
+                                    </form>-->
+
+                                </div>
+
+                                <div class="portlet-body" style="overflow: auto;">
+
+                                    <table class="table table-striped table-hover" style="min-width: 860px;">
+
+                                        <thead>
+
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>图片</th>
+                                            <th>名称</th>
+                                            <th>状态</th>
+                                            <th>排序</th>
+                                            <th>创建时间</th>
+                                            <th>操作</th>
+                                        </tr>
+
+                                        </thead>
+
+                                        <tbody>
+                                        <if condition="$list">
+                                            <foreach name="list" item="v" key="key">
+                                                <tr>
+
+                                                    <td>
+                                                        {$key+1}
+                                                    </td>
+
+
+                                                    <td style="width: 15%">
+                                                        <a class="fancybox-button" data-rel="fancybox-button" title="" href="{$v.logo}">
+                                                            <img src="{$v.logo}" class="img45" alt="">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        {$v.name}
+                                                    </td>
+
+                                                    <td>
+
+                                                        <if condition="$v.is_show eq 1">
+                                                            <a href="javascript:EditStatus('{$v.id}','0','分类','made_classify')">
+                                                                <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示</font></font></span>
+                                                            </a>
+                                                        </if>
+
+                                                        <if condition="$v.is_show eq 0">
+                                                            <a href="javascript:EditStatus('{$v.id}','1','分类','made_classify')">
+                                                                <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">隐藏</font></font></span>
+                                                            </a>
+                                                        </if>
+                                                    </td>
+                                                    <td>
+                                                      {$v.sort}
+
+                                                    </td>
+
+
+                                                    <td>{$v.create_time|date="Y-m-d H:i",###}</td>
+                                                    <td>
+
+                                                        <a href="{:U('home/'.$at.'/plus/edit/'.$v['id'])}" class="btn blue"><i class="icon-edit"></i> 修改</a>
+                                                        <a href="JavaScript:_deleteUser('{$v.id}','分类','made_classify');" class="btn red"><i class="icon-trash"></i> 删除</a>
+                                                    </td>
+                                                </tr>
+                                            </foreach>
+                                            <else />
+                                            <tr>
+                                                <td colspan="10"><p class="no_data">暂时没有数据</p></td>
+                                            </tr>
+                                        </if>
+
+
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                                <div class="space5"></div>
+
+                                <div class="pagination pagination-right">
+                                    <br/>
+                                    <div class="page_div">
+                                        <?php echo $page;?>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!--end tabbable-->
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+
+<!-- modal -->
+<div id='modal_video' style="display: none;width: 100%;height: 100%;background: rgba(0,0,0,0.8);z-index: 10000000;position: fixed;top: 0;">
+
+    <div style="margin: 80px auto 0;text-align: center;position: relative;" >
+        <div style="position:absolute;top:-58px;right: 30%;">
+            <i class="icon-remove-circle" style="font-size: 50px;color: #f00;"></i>
+        </div>
+        <div id="video_url" style="display: inline-block;max-height: 800px;">
+
+        </div>
+    </div>
+</div>
+<!-- ./modal -->
+
+<include file="common/footer"/>
+
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script>
+
+
+
+    function _deleteUser(id,name,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除'+name,'确定要删除'+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/delete'); ?>",
+                data:{id:id,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function EditStatus(id,str,title,db){
+        var name;
+        if(str=='1'){
+            name = '显示';
+        }else{
+            name = '隐藏';
+        }
+        showConfirm('<i class="icon-exclamation-sign"></i> '+name+title,'确定要'+name+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editshow'); ?>",
+                    data:{id:id,str:str,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function EditData(id)
+    {
+        location.href = "<?php echo U('home/GameAdd/index/edit_id/"+id+"');?>";
+    }
+</script>

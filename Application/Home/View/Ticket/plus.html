@@ -1,0 +1,530 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        {$title} <small>操作</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-long-arrow-right"></i>
+
+                            <a href="<?php echo U('home/'.$at.'/index');?>">优惠券管理</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#"><?php echo $is_edit?'修改'.$title:'新增'.$title;?></a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="form-horizontal">
+                                        <div class="control-group">
+                                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">适用类型</font></font></label>
+                                            <div class="controls">
+                                                <label class="radio">
+                                                    <div class="radio"><span><input type="radio" name="optionsRadios22"  checked=""  <if condition="$list['ticket_type'] eq 1 or !$list['type']"> checked="" </if>   value="1"></span></div>
+                                                    机构优惠券
+                                                </label>
+                                                <label class="radio">
+                                                    <div class="radio"><span class="checked"><input type="radio" name="optionsRadios22"  <if condition="$list['ticket_type'] eq 3 "> checked="" </if>    value="2"></span></div>
+                                                    商品优惠券
+                                                </label>
+                                                <label class="radio">
+                                                    <div class="radio"><span class="checked"><input type="radio" name="optionsRadios22"  <if condition="$list['ticket_type'] eq 3 "> checked="" </if>   value="3"></span></div>
+                                                    活动优惠券
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    <div class="control-group  show_all show_1 show_2" <if condition="$list['ticket_type']==3">style="display: none;"</if>>
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">优惠券类型</font></font></label>
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <div class="radio"><span><input type="radio" name="optionsRadios2" <if condition="$list['type'] eq 1 or $list['type'] eq 0"> checked="" </if>   value="1"></span></div>
+                                                普通优惠券
+                                            </label>
+                                            <!--<label class="radio">-->
+                                                <!--<div class="radio"><span class="checked"><input type="radio" name="optionsRadios2" <if condition="$list['type'] eq 2"> checked="" </if> value="2"></span></div>-->
+                                                <!--体验券-->
+                                            <!--</label>-->
+                                            <label class="radio">
+                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios2" <if condition="$list['type'] eq 3"> checked="" </if> value="3"></span></div>
+                                                代理优惠券
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="control-group show_all show_1 show_2"  <if condition="$list['ticket_type']==3">style="display: none;"</if> >
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用类型</font></font></label>
+
+                                        <div class="controls">
+
+                                            <label class="radio">
+                                                <div class="radio"><span><input type="radio" name="optionsRadios3" <if condition="$list['use_type'] eq 1 or $list['use_type'] eq 0"> checked="" </if>   value="1"></span></div>
+                                                折扣券
+                                            </label>
+                                            <label class="radio show_all show_1" <if condition="$list['ticket_type'] eq 2"> style="display: none;" </if>>
+                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios3" <if condition="$list['use_type'] eq 2"> checked="" </if> value="2"></span></div>
+                                                抵消券
+                                            </label>
+                                            <label class="radio">
+                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios3" <if condition="$list['use_type'] eq 3"> checked="" </if> value="3"></span></div>
+                                                现金券
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+                            <div class="control-group show_all show_3 "  <if condition="$list['ticket_type']!=3">style="display: none;"</if> >
+
+                                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">项目活动</font></font></label>
+
+                                <div class="controls">
+
+                                    <select name="project_id" id="" style="line-height: 34px;height: 34px;">
+                                        <option value="0" >请选择项目活动</option>
+                                        <foreach name="pro_list" item="v">
+                                            <option <if condition="$list['project_id'] eq $v['id']"> selected </if> value="{$v.id}" >{$v.name}</option>
+
+                                        </foreach>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                            <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">优惠券标题</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="text" placeholder="请输入优惠券标题"  name="title"  value="{$list.title}" class="m-wrap medium">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">副标题</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="text" placeholder="请输入优惠券副标题" name="info"  value="{$list.info}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+                            <div class="control-group">
+
+                                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                    显示文字
+                                </font></font></label>
+
+                                <div class="controls">
+
+                                    <input type="text" placeholder="显示文字" name="dis_title"  value="{$list.dis_title}" class="m-wrap medium">
+
+                                </div>
+
+                            </div>
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销量</font></font></label>
+
+                                        <div class="controls">
+
+                                            <input type="text" placeholder="请输入销量" name="sales"  value="{$list.sales}" class="m-wrap medium">
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group show_3_all show_3_1 show_3_3"  <if condition="$list['use_type'] eq 2"> style="display: none;" </if>>
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                            折扣/金额
+                                            <br>
+                                            <span style="color: red;">（折扣券则输入折扣，现金券则输入金额）</span>
+                                        </font></font></label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="折扣：如8.9折输入数字89 金额则输入金额" name="discount"  value="{$list.discount}" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="control-group "  >
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">购买价格</font></font></label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="请输入购买价格" name="price"  value="{$list.price}" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group"  >
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用后返还</font></font></label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="返还金额" name="rebate"  value="{$list.rebate}" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                            <div class="control-group"  >
+                                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">城市合伙人计算金额</font></font></label>
+                                <div class="controls">
+                                    <input type="number" placeholder="城市合伙人计算金额" name="city_money"  value="{$list.city_money}" class="m-wrap medium">
+                                </div>
+                            </div>
+
+                    <div class="control-group " >
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">限购（不限购填0）</font></font></label>
+                        <div class="controls">
+                            <input type="number" placeholder="返还金额" name="max"  value="{$list.max}" class="m-wrap medium">
+                        </div>
+                    </div>
+
+            <div class="control-group show_2_all show_2_3"  <if condition="$list['type'] neq 3"> style="display: none;" </if>>
+                <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是否返利上级</font></font></label>
+                <div class="controls">
+
+                    <label class="radio">
+                        <div class="radio"><span><input type="radio" name="optionsRadios4" <if condition="$list['is_rebate'] eq 0"> checked="" </if>   value="0"></span></div>
+                        否
+                    </label>
+                    <label class="radio">
+                        <div class="radio"><span class="checked"><input type="radio" name="optionsRadios4" <if condition="$list['is_rebate'] eq 1"> checked="" </if> value="1"></span></div>
+                        是
+                    </label>
+                </div>
+            </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">排序</font></font></label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="请输入排序" name="sort"  value="{$list.sort}" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                    <div class="control-group">
+
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">优惠券说明</font></font></label>
+
+                        <div class="controls">
+                            <textarea class="large m-wrap" rows="6" name="explain" placeholder="请输入优惠券说明">{$list.explain}</textarea>
+
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                                    <div class="form-actions">
+
+                                        <button type="button" id="js_btn" onclick="SubmitData()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<include file="common/tz"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+
+    function admintype(){
+        var type_id = $('#type_id').val();
+        if(type_id=='2'){
+            $('.limits_1').show();
+            $('.limits_2').hide();
+        }else{
+            $('.limits_1').hide();
+            $('.limits_2').show();
+        }
+    }
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    var parent_url = "<?php echo U('home/'.$at.'/index');?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+    $('input:radio[name="optionsRadios22"]').change( function(){
+        $('.show_all').hide();
+        $('.show_'+$(this).val()).show();
+    });
+
+    $('input:radio[name="optionsRadios2"]').change( function(){
+        $('.show_2_all').hide();
+        if($(this).val()==1 || $(this).val()==3){
+            $('.show_2_'+$(this).val()).show();
+        }
+    });
+
+    $('input:radio[name="optionsRadios3"]').change( function(){
+        $('.show_3_all').hide();
+        $('.show_3_'+$(this).val()).show();
+    });
+
+    function SubmitData(){
+
+        var arrlist=new Array();
+        var tmp="";
+        $("input[name='limits']:checkbox:checked").each(function(){
+            arrlist.push($(this).val());
+        });
+        tmp = arrlist.join(",");
+
+        var title = $.trim($("*[name='title']").val());
+        var info = $.trim($("*[name='info']").val());
+        var dis_title = $.trim($("*[name='dis_title']").val());
+        var sales = $.trim($("*[name='sales']").val());
+        var max = $.trim($("*[name='max']").val());
+        var explain = $.trim($("*[name='explain']").val());
+        var price = $.trim($("*[name='price']").val());
+        var rebate = $.trim($("*[name='rebate']").val());
+        var city_money = $.trim($("*[name='city_money']").val());
+        var discount = '';
+        var sort = $.trim($("*[name='sort']").val());
+
+        var ticket_type = $("input[name='optionsRadios22']:checked").val();
+        var project_id = 0;
+        var type = $("input[name='optionsRadios2']:checked").val();
+        var use_type = $("input[name='optionsRadios3']:checked").val();
+        var is_rebate = $("input[name='optionsRadios4']:checked").val();
+        if(ticket_type==2 && use_type==2){
+            showAlert("请选择使用类型");return false;
+        }
+
+        if (use_type=='1' || use_type=='3'){
+             discount = $.trim($("*[name='discount']").val());
+            if(!discount){showAlert("请输入折扣/金额");return false;}
+        }
+        if(ticket_type==3){
+            project_id = $.trim($("*[name='project_id']").val());
+
+            if(!project_id){showAlert("请选择项目活动");return false;}
+        }
+        if(!title){showAlert("请输入优惠券标题");return false;}
+        if(!info){showAlert("请输入优惠券副标题");return false;}
+        if(!type){showAlert("请选择优惠券类型");return false;}
+
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/add'); ?>",
+            data:{
+                title:title,
+                info:info,
+                dis_title:dis_title,
+                sales:sales,
+                explain:explain,
+                price:price,
+                project_id:project_id,
+                rebate:rebate,
+                city_money:city_money,
+                is_rebate:is_rebate,
+                discount:discount,
+                type:type,
+                use_type:use_type,
+                sort:sort,
+                max:max,
+                ticket_type:ticket_type,
+                is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

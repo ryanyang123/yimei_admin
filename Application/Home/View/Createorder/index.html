@@ -1,0 +1,905 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/duoimg/css/globle.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" href="__PUBLIC__/time/css/borain-timeChoice.css">
+<link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css">
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        {$title} <small>操作</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+
+
+                        <li><a href="#">{$title}</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <!-- BEGIN PORTLET-->
+
+                        <div class="portlet box">
+
+
+
+                            <div class="portlet-body form">
+
+                                <!-- BEGIN FORM-->
+
+                                <form action="<?php echo U('home/GameAdd/upload_thumb');?>" class="form-horizontal">
+                                    <!--<div class="control-group">
+
+                                       <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">类型</font></font></label>
+
+                                      <div class="controls">
+
+
+                                           <a href="{:U('home/article/plus')}" class="btn icn-only">文字</a>
+                                           <a href="#" class="btn green icn-only">图片</a>
+                                           <a href="{:U('home/article/video')}" class="btn icn-only">视频</a>
+                                       </div>
+
+                                    </div>-->
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择医院</font></font></label>
+
+                                        <div class="controls">
+                                            <select id="parent" name="parent"  onchange="CheckDoctor()" class="m-wrap">
+                                                <option value="" >请选择</option>
+                                                <foreach name="list" item="v">
+                                                    <option <if condition="$list['parent'] eq $v['id']"> selected </if> value="{$v.id}" >{$v.name}</option>
+                                                </foreach>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医生</font></font></label>
+
+                                        <div class="controls">
+                                            <select id="doctor_id" name="doctor_id" class="m-wrap">
+                                                <option value="" >请选择</option>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+
+
+                                   <div class="control-group">
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font
+                                                style="vertical-align: inherit;">订单类型</font></font></label>
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <div class="radio"><span><input type="radio" name="optionsRadios1" <if
+                                                        condition="$list['type'] eq 0 or $list['type'] eq 1"> checked="" </if>   value="1"></span>
+                                                </div>
+                                               普通订单
+                                            </label>
+                                            <label class="radio">
+                                                <div class="radio"><span class="checked"><input type="radio"
+                                                                                                name="optionsRadios1" <if
+                                                        condition="$list['type'] eq 2"> checked="" </if> value="2"></span>
+                                                </div>
+                                                体验券订单
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="control-group show_all show_1 show_3"  <if condition="$list['type'] eq 2"> style="display: none;" </if> >
+
+                                    <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用类型</font></font></label>
+
+                                    <div class="controls">
+
+                                        <label class="radio">
+                                            <div class="radio"><span><input type="radio" name="optionsRadios3" <if condition="$list['use_type'] eq 1 or $list['use_type'] eq 0"> checked="" </if>   value="1"></span></div>
+                                            折扣券
+                                        </label>
+                                        <label class="radio">
+                                            <div class="radio"><span class="checked"><input type="radio" name="optionsRadios3" <if condition="$list['use_type'] eq 2"> checked="" </if> value="2"></span></div>
+                                            抵消券
+                                        </label>
+                                    </div>
+
+                            </div>
+
+
+
+
+
+                            <div id="use_ticket" class="control-group show_all show_2" <if condition="$list['type'] neq 2"> style="display: none;"</if> >
+
+                                    <label class="control-label"><font style="vertical-align: inherit;"><font
+                                            style="vertical-align: inherit;">
+                                        可用优惠券
+
+                                    </font></font></label>
+
+                                    <div class="controls">
+                                        <p style="padding-top: 7px;padding-left: 30px;" id="tic_p">请先选择医院</p>
+                                    </div>
+
+                                    </div>
+
+
+
+
+                                    <div class="control-group  show_all show_1" <if condition="$list['type'] eq 2"> style="display: none;"</if>>
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单总金额</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="number" placeholder="请输入订单总金额" name="total_money"  value="" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                                    <div id="prepay_div" class="control-group" <if condition="$list['type'] eq 2"> style="display: none;"</if>>
+
+                                        <label class="control-label">
+                                            定金
+                                            <p style="font-size: 13px;color: red;text-align: left;">(订单不允许支付定金，该参数填0或不填)</p>
+                                        </label>
+
+                                        <div class="controls">
+                                            <input type="number" placeholder="可预先支付定金，全额支付填0或不填" name="prepay_money"  value="" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group show_all show_1" <if condition="$list['type'] eq 2"> style="display: none;"</if>>
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">杂费</font></font></label>
+
+                                        <div class="controls">
+                                            <input type="number" placeholder="请输入杂费价" name="cost"  value="" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group show_all show_1" <if condition="$list['type'] eq 2"> style="display: none;"</if>>
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">贷款金额
+                                            <br>
+                                            （无贷款填0或不填）
+                                        </font></font></label>
+
+                                        <div class="controls">
+                                            <input type="number" placeholder="请输入贷款金额" name="loans"  value="" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                             <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单备注
+
+                                        </font></font></label>
+
+                                        <div class="controls">
+                                            <textarea name="remark" class="large m-wrap" rows="3"></textarea>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="control-group">
+
+                                        <label class="control-label"><font style="vertical-align: inherit;"><font
+                                                style="vertical-align: inherit;">选择对应商品</font></font></label>
+
+                                        <div class="controls">
+                                            <span id="show_xz_span"></span>
+                                            <a href="JavaScript:binduser()" class="btn blue"><i
+                                                    class="icon-plus"></i> <span id="xz_a_span">选择</span></a>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="form-actions">
+
+                                        <button type="button" id="js_btn" onclick="SubmitData()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 生 成</font></font></button>
+
+                                        <button type="button" onclick="to_gen()" class="btn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取消</font></font></button>
+
+
+
+                                    </div>
+
+                                </form>
+
+                                <!-- END FORM-->
+
+                            </div>
+
+                        </div>
+
+                        <!-- END PORTLET-->
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+
+<!-- modal -->
+<div class="modal fade" id = 'modal_fahuo' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+
+                <h4 class="modal-title" id='modal_fahuo_title'>订单生成成功</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form action="#" class="form-horizontal">
+
+
+                    <div class="control-group" style="margin-bottom: 0;">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单编号</font></font></label>
+                        <div class="controls">
+                            <p style="padding-top: 7px;margin-bottom: 0;" id="show_number"></p>
+                        </div>
+                    </div>
+
+
+                    <div class="control-group is_of_show" style="margin-bottom: 0;">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单总金额</font></font></label>
+                        <div class="controls">
+                            <p style="padding-top: 7px;margin-bottom: 0;" id="show_total_money"></p>
+                        </div>
+                    </div>
+
+                    <div class="control-group is_of_show" style="margin-bottom: 0;">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">杂费</font></font></label>
+                        <div class="controls">
+                            <p style="padding-top: 7px;margin-bottom: 0;" id="show_cost"></p>
+                        </div>
+                    </div>
+                    <div class="control-group is_of_show" style="margin-bottom: 0;">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">贷款</font></font></label>
+                        <div class="controls">
+                            <p style="padding-top: 7px;margin-bottom: 0;" id="show_loans"></p>
+                        </div>
+                    </div>
+
+                    <div class="control-group is_of_show" style="margin-bottom: 0;">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">需要支付金额</font></font></label>
+                        <div class="controls">
+                            <p style="padding-top: 7px;margin-bottom: 0;" id="show_pay_money"></p>
+                        </div>
+                    </div>
+                    <div id="show_qr_url" style="text-align: center;">
+
+                    </div>
+
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn green"
+                        data-dismiss="modal" >确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+
+<!-- modal -->
+<div class="modal fade" id='modal_bind' style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+
+                <h4 class="modal-title" id='modal_bind_title'>搜索商品</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form action="#" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" style="width: 80px;"><font style="vertical-align: inherit;"><font
+                                style="vertical-align: inherit;">当前选择</font></font></label>
+                        <div class="controls" style="margin-left: 100px;">
+                            <p style="padding-top: 7px;color: #f00;" id="xz_p">暂无选择</p>
+                            <table style="width: 100%;line-height: 25px;display: none;" id="xz_table" border="1">
+                                <tr>
+                                    <th style="width: 30px;" id="xz_id"></th>
+                                    <th id="xz_name"></th>
+                                    <th style="width: 120px;" id="xz_shop"></th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font
+                                style="vertical-align: inherit;">搜索</font></font></label>
+                        <div class="controls">
+                            <input type="text" placeholder="搜索商品名称" name="search_val" value="" class="m-wrap medium">
+                            <button type="button" class="btn green" onclick="SearchGoods()" style='margin-left:9px'>搜
+                                索
+                            </button>
+                        </div>
+                    </div>
+
+                    <style>
+                        .zdy_a {
+                            display: block;
+                            width: 12px;
+                            height: 12px;
+                            border: 2px solid #ccc;
+                            border-radius: 50%;
+                            text-decoration: none;
+                            margin: 0 auto;
+                        }
+
+                        a.zdy_a:link, a.zdy_a:visited, a.zdy_a:hover, a.zdy_a:active {
+                            text-decoration: none;
+                        }
+
+                        .zdy_a_active {
+                            background: #333;
+                        }
+                    </style>
+                    <div class="control-group">
+
+                        <div style="height: 270px;overflow-y: auto;">
+
+                            <table id="goods_table" style="width: 100%;text-align: center;line-height: 40px;" border="1">
+                                <tr>
+                                    <th style="width: 70px;">商品ID</th>
+                                    <th>商品名称</th>
+                                    <th style="width: 120px;">所属店铺</th>
+                                    <th style="width: 50px;">选择</th>
+                                </tr>
+
+
+
+                                <tbody id="search_tbody">
+                                    <foreach name="goods_list" item="v">
+                                        <tr>
+                                            <td>{$v.id}</td>
+                                            <td>{$v.name}</td>
+                                            <td>{$v.shop_name}</td>
+                                            <td><a href="javascript:xzgoods('{$v.id}')" class="zdy_a zdy_a_{$v.id}">&nbsp;</a> </td>
+                                        </tr>
+                                    </foreach>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn green"
+                        data-dismiss="modal">确 定
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script src="__PUBLIC__/duoimg/js/webuploader.min.js"></script>
+<script src="__PUBLIC__/duoimg/js/diyUpload.js"></script>
+<script>
+    var xz_id = 0;
+    var xz_name = '';
+    var xz_shop = '';
+    var search_list =   $.parseJSON('{$goods_arr}');
+
+
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+
+
+    $('input:radio[name="optionsRadios1"]').change(function () {
+        $('.show_all').hide();
+        CheckDoctor();
+         if($(this).val()==1 ){
+
+             var use_type = $("input[name='optionsRadios3']:checked").val();
+             if (use_type=='2'){
+                 $('#use_ticket').show();
+                 $('#prepay_div').hide();
+             }else{
+                 $('#prepay_div').show();
+             }
+             $('.show_'+$(this).val()).show();
+         }else{
+             $('#prepay_div').hide();
+         }
+        $('.show_' + $(this).val()).show();
+
+
+
+    })
+    $('input:radio[name="optionsRadios3"]').change(function () {
+
+         if($(this).val()==1){
+             $('#use_ticket').hide();
+             $('#prepay_div').show();
+         }else{
+             $('#use_ticket').show();
+             $('#prepay_div').hide();
+             CheckDoctor();
+         }
+
+    })
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    var parent_url = "<?php echo U('home/'.$at.'/index');?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+    function ClearImg(str){
+        if(str){
+            $("#upload_kuang"+str).addClass("dan_upload_img_div1");
+            $("#uploadImage"+str).val('');
+            $('.on_img_btn'+str).show();
+            $('.change_img_btn'+str).hide();
+            $('.del_img_btn'+str).hide();
+            $('#uploadPreview'+str).html('');
+        }else{
+            $("#upload_kuang").addClass("dan_upload_img_div1");
+            $("#uploadImage").val('');
+            $('.on_img_btn').show();
+            $('.change_img_btn').hide();
+            $('.del_img_btn').hide();
+            $('#uploadPreview').html('');
+        }
+
+    }
+
+    function CheckDoctor(){
+        var check_type = '';
+        var parent = $('#parent').val();
+        var type = $("input[name='optionsRadios1']:checked").val();
+        var use_type = $("input[name='optionsRadios3']:checked").val();
+        if (type=='2'){
+            check_type = 1;
+        }else{
+            check_type = 2;
+        }
+        if(parent){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/checkdoctor'); ?>",
+                data:{parent:parent,type:check_type},
+                success: function (result) {
+                    $('#doctor_id').html('');
+                    $('#doctor_id').append('<option value="" >请选择</option>');
+                   if (result.is_tic==1){
+                        $('#tic_p').html('');
+                        $.each(result.tic_list,function(index,value){
+                            $('#tic_p').append('     <label class="checkbox limits_'+value.id+'" ">' +
+                                '                        <span><input class="limits" type="checkbox"  name="limits" value="'+value.id+'"></span> ' +value.title+
+                                '                    </label>');
+                        });
+                    } else{
+
+                        $('#tic_p').html('此医院没有可用抵消券');
+                    }
+                    if(result.code == 1){
+                        $.each(result.list,function(index,value){
+                            $('#doctor_id').append('<option value="'+value.id+'" >'+value.name+'</option>');
+                        });
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        }
+    }
+
+    function _deleteUser(id,name,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除'+name,'确定要删除'+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/delete'); ?>",
+                data:{id:id,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        $('.banner_a'+id).remove();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function UploadImg(){
+
+        var img = "";
+        var file = $("#uploadImage").val();
+        $('#js_btn').attr('disabled',true);
+        if(file==""){
+            SubmitData('');
+        }
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                $('#js_btn').attr('disabled',false);
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/upload/thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+
+                            SubmitData(img);
+                        }else{
+                            showAlert("图片上传失败");
+                            $('#js_btn').attr('disabled',false);
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    function fahuo(){
+        $('#modal_fahuo').modal('show');
+       /* $('#modal_fahuo_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            SubmitFaHuo(id);
+        };*/
+    }
+
+
+
+    function SubmitData(){
+        var type = $("input[name='optionsRadios1']:checked").val();
+        var use_type = $("input[name='optionsRadios3']:checked").val();
+        //var type = '1';
+        var parent = $.trim($("*[name='parent']").val());
+        var doctor_id = $.trim($("*[name='doctor_id']").val());
+        var total_money = '';
+        var cost = '';
+        var loans = '';
+        var prepay_money = '';
+        var tmp="";
+        var remark = $.trim($("*[name='remark']").val());
+
+        if(!parent){showAlert("请选择医院");$('#js_btn').attr('disabled',false);return false;}
+        if(!doctor_id){showAlert("请选择医生");$('#js_btn').attr('disabled',false);return false;}
+        if(!xz_id){showAlert("请选择对应商品");$('#js_btn').attr('disabled',false);return false;}
+
+        if(type=='1' && use_type!='2'){
+             total_money = $.trim($("*[name='total_money']").val());
+             prepay_money = $.trim($("*[name='prepay_money']").val());
+             cost = $.trim($("*[name='cost']").val());
+             loans = $.trim($("*[name='loans']").val());
+            if(!total_money){showAlert("请输入订单总金额");$('#js_btn').attr('disabled',false);return false;}
+
+        }else{
+            if (type=='1'){
+                total_money = $.trim($("*[name='total_money']").val());
+                cost = $.trim($("*[name='cost']").val());
+                loans = $.trim($("*[name='loans']").val());
+                if(!total_money){showAlert("请输入订单总金额");$('#js_btn').attr('disabled',false);return false;}
+            }
+            var arrlist=new Array();
+
+            $("input[name='limits']:checkbox:checked").each(function(){
+                arrlist.push($(this).val());
+            });
+            tmp = arrlist.join(",");
+            if(!tmp){showAlert("请选择可使用的优惠券");$('#js_btn').attr('disabled',false);return false;}
+        }
+        //if(!xz_id){showAlert("请选择对应商品");$('#js_btn').attr('disabled',false);return false;}
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/'.$at.'/add'); ?>",
+            data:{type:type,
+                prepay_money:prepay_money,
+                goods_id:xz_id,
+                use_type:use_type,
+                parent:parent,
+                doctor_id:doctor_id,
+                total_money:total_money,
+                cost:cost,
+                loans:loans,
+                remark:remark,
+                tmp:tmp,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    /*showAlert(result.res);*/
+                    /*window.location.href= parent_url;*/
+                    $('#js_btn').attr('disabled',false);
+
+                    if (type=='1'){
+                        $('.is_of_show').show();
+                    }else{
+                        $('.is_of_show').hide();
+                    }
+
+                    $('#show_number').html(result.list.order_number);
+                    $('#show_total_money').html(result.list.total_money);
+                    $('#show_cost').html(result.list.cost);
+                    $('#show_loans').html(result.list.loans);
+                    $('#show_pay_money').html(result.list.pay_money);
+                    $('#show_qr_url').html('<img src="'+result.list.qr_url+'" style="height: 250px;"/>');
+                    fahuo();
+
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+    function binduser() {
+        $('#modal_bind_title').html('搜索商品');
+        $('#modal_bind').modal('show');
+        /*$('#modal_bind_yes')[0].onclick = function () {
+            //$('#modal_confirm').modal('hide');
+            //Submitbduser(doc_id);
+        };*/
+    }
+    function SearchGoods() {
+        var search_val = $.trim($("*[name='search_val']").val());
+        if (search_val == '') {
+            showAlert("请输入要搜索的名称");
+            return false;
+        }
+        var parent = $.trim($("*[name='parent']").val());
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/SearchGoods'); ?>",
+            data: {search_val: search_val,type:2,hospital_id:parent},
+            success: function (result) {
+                $('#search_tbody_blogs').html('');
+                $('#search_tbody').html('');
+                if (result.code == 1) {
+                    search_list = result.list;
+                    $('#search_tbody').html('');
+                    $('#goods_table').show();
+                    $('#blogs_table').hide();
+                    $.each(result.list, function (index, value) {
+                        $('#search_tbody').append(' <tr>' +
+                            '                        <td>' + value.id + '</td>' +
+                            '                        <td>' + value.name + '</td>' +
+                            '                        <td>' + value.shop_name + '</td>' +
+                            '                        <td><a href="javascript:xzgoods(\'' + value.id + '\')" class="zdy_a zdy_a_' + value.id + '">&nbsp;</a> </td>' +
+                            '                        </tr>');
+                    });
+
+                } else {
+                    $('#search_tbody').html('<tr>' +
+                        '                    <td colspan="10">未找到相关商品</td>' +
+                        '                        </tr>');
+                }
+            }
+        });
+    }
+
+    function xzgoods(id) {
+        //console.log(search_list[id].name);
+
+        $('#xz_name').html(search_list[id].name);
+        $('#xz_shop').html(search_list[id].shop_name);
+        $('#show_xz_span').html("当前选择：《 "+search_list[id].name+" 》    <br/>");
+
+        xz_name = search_list[id].name;
+        xz_shop = search_list[id].shop_name;
+        $('.zdy_a').removeClass('zdy_a_active');
+        $('.zdy_a_' + id).addClass('zdy_a_active');
+        $('#xz_p').hide();
+        $('#xz_table').show();
+        $('#xz_id').html(id);
+
+        $('#xz_a_span').html('更改');
+        xz_id = id;
+    }
+
+</script>

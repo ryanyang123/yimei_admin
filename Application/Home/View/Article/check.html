@@ -1,0 +1,689 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+
+<!-- 上传图片 -->
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-fileupload.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.gritter.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/chosen.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select2_metro.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jquery.tagsinput.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/clockface.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-wysihtml5.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/timepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/colorpicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-toggle-buttons.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/daterangepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/datetimepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/multi-select-metro.css" />
+
+<link href="__PUBLIC__/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<!-- 上传图片-->
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+
+
+        <!-- BEGIN PAGE CONTAINER-->
+
+        <div class="container-fluid">
+
+            <!-- BEGIN PAGE HEADER-->
+
+            <div class="row-fluid">
+
+                <div class="span12">
+
+
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        帖子 <small>详细</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li>
+
+                            <i class="icon-user"></i>
+
+                            <a href="<?php echo U('home/article/index');?>">帖子列表</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#">{$list.content}</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+                <div class="row-fluid">
+
+                    <div class="span6">
+
+                        <!-- BEGIN SAMPLE TABLE PORTLET-->
+
+                        <div class="portlet">
+
+                            <div class="portlet-title">
+
+                                <div class="caption"><i class="icon-bell"></i><font style="vertical-align: inherit;">帖子详情</font></div>
+
+
+
+                            </div>
+
+                            <div class="portlet-body">
+
+                                <div>
+                                     <div>
+                                         <p style="line-height: 24px;">
+                                             <a class="fancybox-button" data-rel="fancybox-button" title="" href="{$list.user_head}" style="float: left;">
+                                                 <img src="{$list.user_head}" style="width: 50px;height: 50px;border-radius: 50%!important;" alt="">
+                                             </a>
+                                             <a href="{:U('home/user/index/user_id/'.$list['user_id'])}">
+                                             <span style="padding-left: 20px;color:#121213;font-size: 15px;font-weight: bolder;">
+                                                 {$list.user_name}
+                                             </span>
+                                             </a>
+                                             <br/>
+                                              <span style="padding-left: 20px;color: #7C7E86;font-size: 13px;">
+                                                 {$list.create_time}
+                                                  <span style="margin-left: 30px;">{$list.browse}人浏览</span>
+                                             </span>
+                                         </p>
+
+                                     </div>
+                                    <div style="margin-top: 20px;">
+                                        <p style="color: #121213;font-size: 18px;font-weight: bolder;">
+                                            {$list.content}
+                                        </p>
+                                        <br/>
+                                        <if condition="$list.type eq 1">
+                                        <?php foreach($list['phone_list'] as $item){?>
+
+                                        <a class="fancybox-button" data-rel="fancybox-button" style="position: relative;width: 32%;display: inline-block;" title="" href="<?php echo $item['img_url'];?>">
+                                            <img src="<?php echo $item['img_url'];?>" style="width: 100%" alt="">
+                                            <div style="position: absolute;top: 5px;right: 10px;">
+                                                <i class="icon-trash" onclick="DelPhone('<?php echo $item[id];?>')" style="font-size: 22px;color:#f00;"></i>
+                                            </div>
+                                        </a>
+                                        <?php }?>
+                                        </if>
+                                        <if condition="$list.type eq 2">
+                                            <video  controls>
+                                                <source src="movie.ogg" type="video/ogg">
+                                                <source  src="'+url+'" type="video/mp4">
+                                                <source src="{$list.video_url}" type="video/webm">
+                                                <object data="movie.mp4" width="320" height="240">
+                                                    <embed width="320" height="240" src="movie.swf">
+                                                        </object>
+                                                </video>
+                                        </if>
+                                    </div>
+                                    <div style="margin-top: 20px;">
+                                        <p>
+                                            <i class="icon-comment"></i>
+                                            <span style="color: #9A9EAC;">{$list.comment_count}</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i class="icon-thumbs-up"></i>
+                                            <span style="color: #9A9EAC;">{$list.zan}</span>
+
+                                            <a href="javascript:showedit('<?php echo $list[id];?>','<?php echo $list[zan];?>','article')"
+                                               style="float: right;">修改点赞数</a>
+
+                                        </p>
+
+                                    </div>
+                                    <div style="background: #F5F5F7;height: 20px;">
+
+                                    </div>
+                                    <div>
+                                        <p style="border-bottom: 1px solid #EAEAEA;color: #7C7E86;font-size: 18px;font-weight: bolder;line-height: 60px;">评论
+                                            <a class="btn blue disabled" href="javascript:OpenComment()" style="float: right;font-size: 15px;">新增评论</a></p>
+                                    </div>
+
+                                    <div>
+                                        <?php foreach($list['comment_list'] as $item){?>
+                                        <div style="border-bottom: 1px solid #EAEAEA;margin-top: 20px; ">
+                                            <span style="float: right;">
+                                                <a href="javascript:OpenReply('<?php echo $item[comment_id];?>','')"
+                                                   style="margin-right: 20px;">回复评论</a>
+                                                <a href="javascript:showedit('<?php echo $item[comment_id];?>','<?php echo $item[zan];?>','article_comment')" style="margin-right: 20px;">修改点赞数</a>
+                                                <a href="javascript:DelComment('<?php echo $item[comment_id];?>')" >删除</a>
+                                            </span>
+
+                                            <p style="line-height: 24px;">
+                                                <a class="fancybox-button" data-rel="fancybox-button" title="" href="<?php echo $item['head'];?>" style="float: left;">
+                                                    <img src="<?php echo $item['head'];?>" style="width: 50px;height: 50px;border-radius: 50%!important;" alt="">
+                                                </a>
+                                             <span style="padding-left: 20px;color:#121213;font-size: 14px;font-weight: bolder;">
+                                                 <a href="<?php echo U('home/user/index/user_id/'.$item['user_id']);?>"><?php echo $item['name'];?></a>
+                                                 <?php if($item['is_self']){?>
+                                                 &nbsp;&nbsp;
+                                                 <span style="background: #149EFF;color: #fff;padding:2px 5px;font-size: 12px;font-weight: normal;">楼主</span>
+                                                 <?php }?>
+                                             </span>
+                                                <br/>
+                                              <span style="padding-left: 20px;color: #7C7E86;font-size: 13px;">
+                                                 <?php echo $item['create_time'];?>
+                                             </span>
+                                                <span style="margin-left: 100px;"><i class="icon-thumbs-up"></i>{$item.zan}</span>
+                                            </p>
+                                            <p style="padding-left: 70px;color: #121213;font-size: 16px;font-weight: bolder;">
+                                                <?php echo $item['content'];?>
+                                            </p>
+                                            <?php if($item['reply_list']){?>
+                                            <div style="margin-left:70px;background: #F5F5F7;padding: 10px;margin-bottom: 20px;">
+                                                <?php foreach($item['reply_list'] as $val){?>
+                                                <p  style="color: #7C7E86;padding-right: 40px;position: relative;"><a href="<?php echo U('home/user/index/user_id/'.$val['user_id']);?>"><?php echo $val[name];?></a>
+                                                    <?php if($val['appoint_user_id']){?>
+                                                    @ <a href="<?php echo U('home/user/index/user_id/'.$val['appoint_user_id']);?>"  style="color: #7C7E86;"><?php echo $val[appoint_user_name];?></a> :
+                                                    <?php }else{?>
+                                                    :
+                                                    &nbsp;
+                                                    <?php }?>
+                                                    <span><?php echo $val[reply_content];?></span>
+                                                    <a href="javascript:OpenReply('<?php echo $item[comment_id];?>','<?php echo $val[user_id];?>')"
+                                                       style="position: absolute;top:0;right: 50px;">@该用户</a>
+                                                    <a href="javascript:DelReply('<?php echo $val[reply_id];?>')" style="position: absolute;top:0;right: 0;">删除</a>
+                                                </p>
+                                                <?php }?>
+                                            </div>
+                                            <?php }?>
+
+                                        </div>
+                                        <?php }?>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- END SAMPLE TABLE PORTLET-->
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+
+<!-- modal -->
+<div class="modal fade" id = 'modal_edit' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_confirm_title'>修改点赞数</h4>
+            </div>
+            <div class="modal-body">
+                    <p>评论ID：<span id="com_id"></span></p>
+                    <p>
+                        点赞数：<input id="zan_num" type="number"/>
+                    </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >取 消</button>
+                <button type="button" class="btn green" id='submit_zan' style='margin-left:9px'>确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+
+
+
+<!-- modal -->
+<div class="modal fade" id = 'modal_comment' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_confirm_title1'>新增评论</h4>
+            </div>
+            <div class="modal-body">
+                <p>发布用户：
+                    <select name="user_id" data-placeholder="Your Favorite Type of Bear" class="chosen-with-diselect span3" tabindex="-1" id="user_id">
+
+                    <foreach name="user_list" item="v">
+                        <option  selected  value="{$v.id}" >
+                            名称：{$v.name}-----<img src="{$v.head}" alt=""/>----性别：{$v.sex}
+                        </option>
+                    </foreach>
+
+                </select></p>
+                <p>
+                    评论内容： <textarea class="span3 m-wrap" name="content" id="content" rows="6">
+
+                                            </textarea>
+                </p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >取 消</button>
+                <button type="button" class="btn green" id="submit_comment" style='margin-left:9px'>确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+
+<!-- modal -->
+<div class="modal fade" id = 'modal_reply' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_confirm_title2'>回复评论</h4>
+            </div>
+            <div class="modal-body">
+                <p>发布用户：
+                    <select name="user_id" data-placeholder="Your Favorite Type of Bear" class="chosen-with-diselect span3" tabindex="-1" id="user_id_reply">
+
+                        <foreach name="user_list" item="v">
+                            <option  selected  value="{$v.id}" >
+                                名称：{$v.name}-----<img src="{$v.head}" alt=""/>----性别：{$v.sex}
+                            </option>
+                        </foreach>
+
+                    </select></p>
+                <p>
+                    评论内容： <textarea class="span3 m-wrap" name="content" id="content_reply" rows="6">
+
+                                            </textarea>
+                </p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >取 消</button>
+                <button type="button" class="btn green" id="submit_reply" style='margin-left:9px'>确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+<!-- END CONTAINER -->
+<include file="common/footer"/>
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+    var is_Edit = '<?php echo $is_edit;?>';
+
+
+    function OpenReply(comment_id,type){
+        $('#modal_reply').modal('show');
+        $('#submit_reply')[0].onclick=function(){
+            var user_id = $('#user_id_reply').val();
+            var content = $('#content_reply').val();
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/article/addreply'); ?>",
+                data:{article_id:is_Edit,user_id:user_id,content:content,comment_id:comment_id,appoint_user_id:type},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                        $('#modal_reply').modal('hide');
+                    }
+                }
+            });
+            $('#modal_reply').modal('hide');
+
+        };
+        $('#modal_reply')[0].focus();
+    }
+
+    function OpenComment(){
+        $('#modal_comment').modal('show');
+        $('#submit_comment')[0].onclick=function(){
+            var user_id = $('#user_id').val();
+            var content = $('#content').val();
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/article/addcomment'); ?>",
+                data:{article_id:is_Edit,user_id:user_id,content:content},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                        $('#modal_comment').modal('hide');
+                    }
+                }
+            });
+            $('#modal_comment').modal('hide');
+
+        };
+        $('#submit_comment')[0].focus();
+    }
+    function showedit(id,zan,type){
+        /*$('#modal_confirm_title')[0].innerHTML=title;
+        $('#modal_confirm_body')[0].innerHTML=body;*/
+        $('#com_id').html(id);
+        $('#zan_num').val(zan);
+        $('#submit_zan')[0].onclick=function(){
+            var num = $('#zan_num').val();
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/article/editzan'); ?>",
+                data:{id:id,num:num,type:type},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                        $('#modal_edit').modal('hide');
+                    }
+                }
+            });
+            $('#modal_edit').modal('hide');
+        };
+        $('#modal_edit').modal('show');
+        $('#submit_zan')[0].focus();
+    }
+
+    function DelComment(id){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除评论','确定要删除该评论吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/article/deletecomment'); ?>",
+                data:{id:id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function DelReply(id){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除回复','确定要删除该回复吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/article/deletereply'); ?>",
+                data:{id:id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function DelPhone(id){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除图片','确定要删除该图片吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/article/deletephone'); ?>",
+                data:{id:id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    var is_Edit = '<?php echo $is_edit;?>';
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+    var parent_url = "<?php echo U('home/user/index');?>";
+
+    function to_gen(){
+        window.location.href = parent_url;
+    }
+
+    function ClearImg(){
+        $("#upload_kuang").addClass("dan_upload_img_div1");
+        $("#uploadImage").val('');
+        $('.on_img_btn').show();
+        $('.change_img_btn').hide();
+        $('.del_img_btn').hide();
+        $('#uploadPreview').html('');
+    }
+
+
+    function UploadImg(){
+        var img = "";
+        var file = $("#uploadImage").val();
+        if(file==""){
+            SubmitData("");
+        }
+
+
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+
+                            SubmitData(img);
+                        }else{
+                            showAlert("图片上传失败");
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
+    function SubmitData(){
+
+        var name = $.trim($("*[name='name']").val());
+        var phone = $.trim($("*[name='phone']").val());
+        var location = $.trim($("*[name='location']").val());
+        var parent = $.trim($("*[name='parent']").val());
+        var price = $.trim($("*[name='price']").val());
+        var ku_num = $.trim($("*[name='ku_num']").val());
+
+        if(!name){
+            showAlert("请输入帖子详细名称");
+            return false;
+        }
+
+        if(!phone){
+            showAlert("请输入手机号");
+            return false;
+        }
+        if(!location){
+            showAlert("请输入地址");
+            return false;
+        }
+
+
+
+        $('#js_btn').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "<?php echo U('home/user/add'); ?>",
+            data:{name:name,phone:phone,location:location,parent:parent,price:price,ku_num:ku_num,is_edit:is_Edit},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href= parent_url;
+                }else if(result.code==0){
+                    showAlert(result.res);
+                    $('#js_btn').attr('disabled',false);
+                }else{
+                    showAlert("提交失败，请检查您的输入是否合法");
+                    $('#js_btn').attr('disabled',false);
+                }
+            }
+        });
+
+    }
+
+</script>

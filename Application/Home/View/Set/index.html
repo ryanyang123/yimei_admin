@@ -1,0 +1,2545 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+
+<link rel="stylesheet" href="__PUBLIC__/time/css/borain-timeChoice.css">
+<link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css">
+<div class="page-container">
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+    <div class="page-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        设置 <small>配置信息</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#">设置</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+                    <div class="tabbable tabbable-custom tabbable-full-width">
+
+                        <ul class="nav nav-tabs">
+                            <if condition="$limit_list.type eq 1">
+                            <li <if condition="$now_at eq 1">class="active"</if>><a data-toggle="tab" href="#tab_2_5">基础设置</a></li>
+                            <li ><a data-toggle="tab" href="#tab_2_1">抽水设置</a></li>
+                            </if>
+                            <li ><a data-toggle="tab" href="#tab_2_2">关于我们</a></li>
+
+                            <li><a data-toggle="tab" href="#tab_2_3">APP版本</a></li>
+
+                            <li><a data-toggle="tab" href="#tab_2_4">协议与规则</a></li>
+<!--
+                            <li <if condition="$now_at eq 2">class="active"</if>><a data-toggle="tab" href="#tab_1_2">会员赠送</a></li>
+-->
+                            <li <if condition="$now_at eq 3">class="active"</if>><a data-toggle="tab" href="#tab_1_4">积分规则</a></li>
+                            <li <if condition="$now_at eq 4">class="active"</if>><a data-toggle="tab" href="#tab_1_5">等级规则</a></li>
+                           <li <if condition="$now_at eq 5">class="active"</if>><a data-toggle="tab" href="#tab_2_9">星级会员赠送</a></li>
+                            <li <if condition="$now_at eq 7">class="active"</if>><a data-toggle="tab" href="#tab_5_1">游戏设置</a></li>
+<!--
+                           <li <if condition="$now_at eq 6">class="active"</if>><a data-toggle="tab" href="#tab_3_1">注册任务</a></li>
+-->
+                             <!--<li><a data-toggle="tab" href="#tab_1_2">客服电话</a></li>-->
+
+
+
+
+                        </ul>
+
+                        <div class="tab-content">
+                            <style>
+                                .form-horizontal .control-label{
+                                    width: 250px;
+                                    margin-right: 10px;
+                                }
+                            </style>
+                            <!--end tab-pane-->
+
+                            <div id="tab_2_2" class="tab-pane ">
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <!-- BEGIN PORTLET-->
+                                        <div class="portlet box">
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">标题</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="版本号" name="company_info_value" value="{$list.company_info.set_value}" class="m-wrap medium">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示内容</font></font></label>
+                                                        <div class="controls">
+                                                            <textarea class="span6 m-wrap" name="company_info_remark" rows="10">{$list.company_info.remark}</textarea>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="form-actions">
+                                                        <button type="button"  onclick="UploadSets('company_info')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                    </div>
+
+                                                </form>
+
+                                                <!-- END FORM-->
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- END PORTLET-->
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--end tab-pane-->
+
+                            <div id="tab_2_3" class="tab-pane">
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <!-- BEGIN PORTLET-->
+                                        <div class="portlet box">
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+                                                    <hr>
+                                                    <p>Android版本设置</p>
+                                                    <hr>
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">版本号</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="版本号" name="android_value" value="{$list.android.set_value}" class="m-wrap medium">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下载地址</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="下载地址" name="android_remark" value="{$list.android.remark}" class="m-wrap medium">
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">当前状态</font></font></label>
+                                                        <div class="controls">
+                                                            <label class="radio">
+                                                                <div class="radio"><span><input type="radio" name="app_status_value" <if condition="$list['app_status']['set_value'] eq 1"> checked="" </if>   value="1"></span></div>
+                                                                正常
+                                                            </label>
+                                                            <label class="radio">
+                                                                <div class="radio"><span class="checked"><input type="radio" name="app_status_value" <if condition="$list['app_status']['set_value'] eq 0"> checked="" </if> value="0"></span></div>
+                                                                审核
+                                                            </label>
+                                                            <button type="button" onclick="UploadSet('app_status')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="form-actions">
+                                                        <button type="button" onclick="UploadSets('android')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                    </div>
+
+
+
+
+                                                    <br>
+                                                    <hr>
+                                                    <p>IOS版本设置</p>
+                                                    <hr>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">版本号</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="版本号" name="ios_value" value="{$list.ios.set_value}" class="m-wrap medium">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下载地址</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="下载地址" name="ios_remark" value="{$list.ios.remark}" class="m-wrap medium">
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">当前状态</font></font></label>
+                                                        <div class="controls">
+                                                            <label class="radio">
+                                                                <div class="radio"><span><input type="radio" name="app_status_ios_value" <if condition="$list['app_status_ios']['set_value'] eq 1"> checked="" </if>   value="1"></span></div>
+                                                                正常
+                                                            </label>
+                                                            <label class="radio">
+                                                                <div class="radio"><span class="checked"><input type="radio" name="app_status_ios_value" <if condition="$list['app_status_ios']['set_value'] eq 0"> checked="" </if> value="0"></span></div>
+                                                                审核
+                                                            </label>
+                                                            <button type="button" onclick="UploadSet('app_status_ios')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+                                                    <div class="form-actions">
+                                                        <button type="button"  onclick="UploadSets('ios')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                    </div>
+
+                                                </form>
+
+                                                <!-- END FORM-->
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- END PORTLET-->
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <!--end tab-pane-->
+
+                            <div id="tab_2_5" class="tab-pane <if condition='$now_at eq 1'>active</if>">
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <!-- BEGIN PORTLET-->
+                                        <div class="portlet box">
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+
+<!--
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">每月赠送邀请码数量</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="每月赠送邀请码数量" name="month_code_num_value" value="{$list.month_code_num.set_value}" class="m-wrap medium">个
+
+                                                            <button type="button" onclick="UploadSet('month_code_num')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是否开放注册：</font></font></label>
+                                                        <div class="controls">
+                                                            <label class="radio">
+                                                                <div class="radio"><span><input type="radio" <if condition="$list['is_register_code']['set_value'] eq 0">checked</if> name="set_is_register_code" value="0"></span></div>
+                                                                否（需要邀请码）
+                                                            </label>
+
+                                                            <label class="radio">
+                                                                <div class="radio"><span class="checked"><input type="radio" <if condition="$list['is_register_code']['set_value'] eq 1">checked</if>  name="set_is_register_code" value="1"></span></div>
+                                                                是（无需邀请码）
+                                                            </label>
+
+                                                            <button type="button" onclick="SetPayType('is_register_code')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+                                                    </div>
+-->
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">支付宝打款操作</font></font></label>
+                                                        <div class="controls">
+                                                            <label class="radio">
+                                                                <div class="radio"><span><input type="radio" name="tix_status_value" <if condition="$list['tix_status']['set_value'] eq 1"> checked="" </if>   value="1"></span></div>
+                                                                正常
+                                                            </label>
+                                                            <label class="radio">
+                                                                <div class="radio"><span class="checked"><input type="radio" name="tix_status_value" <if condition="$list['tix_status']['set_value'] eq 0"> checked="" </if> value="0"></span></div>
+                                                                暂停
+                                                            </label>
+                                                            <button type="button" onclick="UploadSet('tix_status')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">APP下载地址</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="APP下载地址" name="app_url_value" value="{$list.app_url.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('app_url')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">医美机构预约项目</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="医美机构预约项目" name="yuyue_11_value" value="{$list.yuyue_11.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('yuyue_11')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">生活美容预约项目</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="生活美容预约项目" name="yuyue_12_value" value="{$list.yuyue_12.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('yuyue_12')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">成为城市合伙人费用</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="成为城市合伙人费用" name="gudong_money_value" value="{$list.gudong_money.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('gudong_money')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">客服电话</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="电话" name="service_call_value" value="{$list.service_call.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('service_call')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商城首页搜索字段</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="商城首页搜索字段" name="search_val_value" value="{$list.search_val.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('search_val')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">积分商城限购个数（0表示不限购）</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="积分商城限购个数" name="prize_buy_num_value" value="{$list.prize_buy_num.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('prize_buy_num')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+<!--
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商城首页搜索字段</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="text" placeholder="商城首页搜索字段" name="search_val_value" value="{$list.search_val.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('search_val')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+
+
+                                                    </div>
+-->
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">积分兑换规则</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="分数" style="width: 50px!important;" name="score_pay_value" value="{$list.score_pay.set_value}" class="m-wrap medium">
+                                                            分，可兑换
+                                                            <input type="number" placeholder="金额" style="width: 50px!important;" name="score_pay_remark" value="{$list.score_pay.remark}" class="m-wrap medium">
+                                                            元
+                                                            <button type="button" onclick="UploadSets('score_pay')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">订单达到指定金额可购买保险
+
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="" name="noun_money_value" value="{$list.noun_money.set_value}" class="m-wrap medium"> 元
+                                                            <button type="button" onclick="UploadSet('noun_money')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">医院订单杂费比例（百分比）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：医院订单杂费可使用金额，设置订单总金额的百分比)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="" name="hos_order_cost_value" value="{$list.hos_order_cost.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('hos_order_cost')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">医院订单使用积分最大比例（百分比）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：医院订单使用积分最多可用金额，设置订单金额的百分比)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="结算时间" name="score_use_max_value" value="{$list.score_use_max.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('score_use_max')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">浏览日志出现广告几率（百分比）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：日志详情出现商品广告几率)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="结算时间" name="ad_show_odds_value" value="{$list.ad_show_odds.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('ad_show_odds')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">默认收货时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：到达时间后默认帮用户确认收货)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="默认收货时间" name="take_goods_value" value="{$list.take_goods.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('take_goods')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+
+                                                   <!-- <div class="control-group">
+                                                        <label class="control-label">结算时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：交易完成后的结算时间，即打款给卖方或医院)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="结算时间" name="cut_off_time_value" value="{$list.cut_off_time.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('cut_off_time')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>-->
+                                                    <div class="control-group">
+                                                        <label class="control-label">城市合伙人返利（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(城市合伙人返利)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="结算时间" name="ccity_rebate_time_value" value="{$list.city_rebate_time.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('city_rebate_time')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">整形医院结算时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：整形医院类型交易完成后的结算时间，即打款给卖方或医院)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="结算时间" name="cut_off_time_11_value" value="{$list.cut_off_time_11.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('cut_off_time_11')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">美容店结算时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：美容店类型交易完成后的结算时间，即打款给卖方或医院)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="结算时间" name="cut_off_time_12_value" value="{$list.cut_off_time_12.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('cut_off_time_12')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">化妆护肤品结算时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：化妆护肤品类型交易完成后的结算时间，即打款给卖方或医院)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="结算时间" name="cut_off_time_13_value" value="{$list.cut_off_time_13.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('cut_off_time_13')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">返利时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：交易完成后返利的时间，即打款给代理)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="返利时间" name="rebate_time_value" value="{$list.rebate_time.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('rebate_time')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">二维码订单抵消券返利时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：二维码订单使用抵消券返利给医院时间，交易完成后返利的时间，即打款给医院)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="返利时间" name="dixiao_time_value" value="{$list.dixiao_time.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('dixiao_time')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+                                                 <div class="control-group">
+                                                        <label class="control-label">商城商品退款时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：商品申请退款的时间，即打款给买家)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="返利时间" name="shop_tui_time_value" value="{$list.shop_tui_time.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('shop_tui_time')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">优惠券退款时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：优惠券退款的时间，即打款给买家)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="返利时间" name="ticket_tui_time_value" value="{$list.ticket_tui_time.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('ticket_tui_time')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">优惠券返利时间（天）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：使用优惠券后返利给买家，即打款给买家)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="返利时间" name="tic_rebate_time_value" value="{$list.tic_rebate_time.set_value}" class="m-wrap medium"> 天
+                                                            <button type="button" onclick="UploadSet('tic_rebate_time')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+
+
+
+                                                </form>
+
+                                                <!-- END FORM-->
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- END PORTLET-->
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <!--end tab-pane-->
+
+                            <div id="tab_2_1" class="tab-pane">
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <!-- BEGIN PORTLET-->
+                                        <div class="portlet box">
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+                                                    <div class="control-group">
+                                                        <label class="control-label">医院订单使用代理优惠券（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：医院订单使用了代理优惠券的订单上级和上上级可获得的返利)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="医院订单使用代理优惠券" name="use_agent_ticket_value" value="{$list.use_agent_ticket.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('use_agent_ticket')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <p style="font-size: 18px;font-weight: bolder;">股东设置:</p>
+                                                    <hr>
+                                                    <div class="control-group">
+                                                        <label class="control-label">一级股东获得抽水（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：团队中只有一个股东可获得的抽水比例)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="医院订单抽水" name="shareholde_1_value" value="{$list.shareholde_1.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('shareholde_1')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">二级股东获得抽水（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：团队中有多个股东可获得的抽水比例)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="医院订单抽水" name="shareholde_2_value" value="{$list.shareholde_2.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('shareholde_2')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <p style="font-size: 18px;font-weight: bolder;">平台抽成:</p>
+                                                    <hr>
+                                                <!--    <div class="control-group">
+                                                        <label class="control-label">医院订单抽水（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：医院订单交易完成后的抽水)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="医院订单抽水" name="hos_order_chou_value" value="{$list.hos_order_chou.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('hos_order_chou')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>-->
+
+
+
+                                                    <!--<div class="control-group">
+                                                        <label class="control-label">商城订单抽水（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：商城订单交易完成后的抽水)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="商城订单抽水" name="shop_order_chou_value" value="{$list.shop_order_chou.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('shop_order_chou')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>-->
+
+                                                    <foreach name="odds_type_list" item="v">
+                                                        <div class="control-group">
+                                                            <label class="control-label">{$v.name} 抽水（%）
+                                                                <br>
+                                                                <p style="text-align: center;color: #f00; font-size: 13px;">(说明：机构交易完成后的抽水)</p>
+                                                            </label>
+                                                            <div class="controls">
+                                                                <input type="number" placeholder="商城订单抽水" name="odds_value_{$v.id}" value="{$v.odds}" class="m-wrap medium"> %
+                                                                <button type="button" onclick="UploadSetOdds('{$v.id}')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                            </div>
+                                                        </div>
+                                                    </foreach>
+
+
+
+                                                   <!-- <div class="control-group">
+                                                        <label class="control-label">商城（整形医院）订单抽水（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：商城(整形医院)订单交易完成后的抽水)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="商城(整形医院)订单抽水" name="11_order_chou_value" value="{$list.11_order_chou.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('11_order_chou')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">商城（美容店）订单抽水（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：商城(美容店)订单交易完成后的抽水)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="商城(美容店)订单抽水" name="12_order_chou_value" value="{$list.12_order_chou.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('12_order_chou')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">商城（化妆护肤品）订单抽水（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：商城(化妆护肤品)订单交易完成后的抽水)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="商城(化妆护肤品)订单抽水" name="13_order_chou_value" value="{$list.13_order_chou.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('13_order_chou')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                        </div>
+                                                    </div>-->
+
+                                                    <hr>
+
+
+                                                    <p style="font-size: 18px;font-weight: bolder;">代理抽水设置:</p>
+
+
+                                                    <table class="table table-bordered table-hover tc_table" >
+
+                                                        <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <foreach name="type_list" item="v">
+                                                                <th>{$v.name}</th>
+                                                            </foreach>
+                                                        </tr>
+
+
+                                                        </thead>
+
+                                                        <tbody>
+                                                        <foreach name="odds_list" item="v">
+                                                            <tr>
+                                                                <th style="width: 260px;text-align: left;">{$v.show_name}</th>
+                                                                <foreach name="v.set_list" item="k" >
+                                                                    <th>
+                                                                        <input type="number" style="width: 60px!important;" placeholder="设置" name="{$k.name}" value="{$k.value}" class="m-wrap medium"> %
+                                                                        <br>
+                                                                        <button type="button" onclick="Updateodd('{$k.name}')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                                    </th>
+                                                                </foreach>
+
+                                                            </tr>
+
+                                                        </foreach>
+
+
+                                                        </tbody>
+
+                                                    </table>
+
+
+
+                                                 <!--   <p style="font-size: 18px;font-weight: bolder;">支付给医院抽成设置:</p>
+                                                    <hr>
+                                                    <div class="control-group">
+                                                        <label class="control-label">好友消费返利（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：未成为代理前，好友填写邀请码支付给医院后可获得的返利)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="好友消费返利" name="friend_rebate_value" value="{$list.friend_rebate.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('friend_rebate')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">下属客户的好友消费返利（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：下属客户（没成为代理的客户）邀请的好友消费后的抽水，仅限医院订单)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="下属客户的好友消费返利" name="hos_xia_friend_value" value="{$list.hos_xia_friend.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('hos_xia_friend')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">下属客户消费返利（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：成为代理后，填写了邀请码的客户支付给医院后可获得的返利)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="下属客户消费返利" name="agent_rebate_value" value="{$list.agent_rebate.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('agent_rebate')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">下级代理客户消费返利（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：下级代理邀请的客户支付给医院后的返利，即代理 B 级（二级）的客户消费)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="下级代理客户消费返利" name="xia_rebate_value" value="{$list.xia_rebate.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('xia_rebate')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">下下级代理客户消费返利（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：下下级代理邀请的客户支付给医院后的返利，即代理 C 级（三级）的客户消费)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="下下级代理客户消费返利" name="xiaixa_rebate_value" value="{$list.xiaixa_rebate.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('xiaixa_rebate')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <hr>
+
+
+
+                                                    <p style="font-size: 18px;font-weight: bolder;">购买商城商品抽成设置:</p>
+                                                    <hr>
+                                                    <div class="control-group">
+                                                        <label class="control-label">好友消费返利（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：未成为代理前，好友填写邀请码购买商品后可获得的返利)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="好友消费返利" name="shop_friend_rebate_value" value="{$list.shop_friend_rebate.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('shop_friend_rebate')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">下属客户消费返利（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：成为代理后，填写了邀请码的客户购买商品后可获得的返利)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="下属客户消费返利" name="shop_agent_rebate_value" value="{$list.shop_agent_rebate.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('shop_agent_rebate')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">下级代理客户消费返利（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：下级代理邀请的客户购买商品后的返利，即代理 B 级（二级）的客户消费)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="下级代理客户消费返利" name="shop_xia_rebate_value" value="{$list.shop_xia_rebate.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('shop_xia_rebate')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">下下级代理客户消费返利（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：下下级代理邀请的客户购买商品后的返利，即代理 C 级（三级）的客户消费)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="下下级代理客户消费返利" name="shop_xiaixa_rebate_value" value="{$list.shop_xiaixa_rebate.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('shop_xiaixa_rebate')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <hr>
+-->
+                                                </form>
+
+                                                <!-- END FORM-->
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- END PORTLET-->
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                            <!--end tab-pane-->
+
+                            <!--end tab-pane-->
+
+                            <div id="tab_2_9" class="tab-pane <if condition='$now_at eq 5'>active</if>" >
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <!-- BEGIN PORTLET-->
+                                        <div class="portlet box">
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开通团队费用</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="开通团队费用" name="team_open_money_value" value="{$list.team_open_money.set_value}" class="m-wrap medium">
+                                                            <!--<button type="button" onclick="UploadSet('team_open_money')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>-->
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开通团队费用城市合伙人返利金额</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="开通团队费用城市合伙人返利金额" name="team_city_money_value" value="{$list.team_city_money.set_value}" class="m-wrap medium">
+                                                            <!--<button type="button" onclick="UploadSet('team_open_money')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>-->
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">会员上级可得返利</font></font></label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="会员上级可得返利" name="team_agent_money_value" value="{$list.team_agent_money.set_value}" class="m-wrap medium">
+                                                            <!--<button type="button" onclick="UploadSet('team_open_money')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>-->
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label" style="width: 170px;">赠送类型
+                                                      </label>
+                                                        <div class="controls">
+                                                            <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+
+                                                            <label class="radio">
+                                                                <div class="radio"><span><input type="radio" name="optionsRadios138" <if condition="$agent_send['type'] eq 0"> checked="" </if>   value="0"></span></div>
+                                                                不赠送
+                                                            </label>
+                                                            <!--<label class="radio">-->
+                                                                <!--<div class="radio"><span class="checked"><input type="radio" name="optionsRadios138" <if condition="$agent_send['type'] eq 1"> checked="" </if> value="1"></span></div>-->
+                                                                <!--送优惠券-->
+                                                            <!--</label>-->
+                                                            <label class="radio">
+                                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios138" <if condition="$agent_send['type'] eq 2"> checked="" </if> value="2"></span></div>
+                                                                送实物
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="control-group " >
+
+                                                    <label class="control-label " style="width: 170px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择赠送的优惠券</font></font></label>
+                                                    <div class="controls">
+                                                        <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+                                                        <label class="radio">
+                                                            <div class="radio"><span><input type="radio" name="optionsRadios38" <if condition="$agent_send['ticket_id'] eq 0"> checked="" </if>    value="0"></span></div>
+                                                            不赠送
+                                                        </label>
+                                                        <br>
+                                                        <foreach name="tic_list" item="v" >
+                                                            <label class="radio">
+                                                                <div class="radio"><span><input type="radio" name="optionsRadios38" <if condition="$agent_send['ticket_id'] eq $v['id']"> checked="" </if>    value="{$v.id}"></span></div>
+                                                                {$v.title}
+                                                            </label>
+                                                            <br>
+                                                        </foreach>
+
+                                                    </div>
+
+                                            </div>
+
+                                                    <div class="control-group" >
+                                                        <label class="control-label" style="width: 170px;">开通说明
+                                                     </label>
+                                                        <div class="controls">
+                                                            <textarea name="agent_content"  id="" style="width: 50%;" rows="10">{$agent_send.content}</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <p style="margin-left: 115px">开通图片：</p>
+                                                    <div class="control-group">
+                                                        <div class="controls">
+                                                            <div id="upload_kuang" >
+                                                                <div id="uploadPreview">
+                                                                    <img src="{$agent_send.img_url}" style="max-height: 150px;border:1px solid #ddd;" alt=""/>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <label class="on_img_btn" for="uploadImage" style="display: inline;"> <span  class="btn btn-default" style="">
+                                                                    更改图片
+
+                                                                </span></label>
+                                                            <label class="change_img_btn" for="uploadImage" style="display: none;"> <span  class="btn btn-default" style="">更改</span></label>
+                                                            <label class="del_img_btn" style="display: none;" onclick="ClearImg()"> <span  class="btn btn-default" style="">删除</span></label>
+                                                            <input id="uploadImage" style="" type="file"  name="photoimage" class="fimg1"  />
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <div class="controls">
+                                                            <button type="button" onclick="UploadImg()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+                                                        </div>
+
+                                                    </div>
+
+
+
+
+                                                </form>
+
+                                                <!-- END FORM-->
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- END PORTLET-->
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                            <!--end tab-pane-->
+
+
+
+
+
+
+                            <div id="tab_1_2" class="tab-pane <if condition='$now_at eq 2'>active</if>">
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <!-- BEGIN PORTLET-->
+                                        <div class="portlet box">
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+                                                    <p>成为星级会员后可获得的体验券</p>
+                                                    <hr>
+
+                                                    <style>
+                                                        .tc_table th,.tc_table td{
+                                                            text-align: center;
+                                                        }
+                                                    </style>
+
+                                                    <div class="portlet-body" style="width: 70%;">
+                                                        <table class="table table-bordered table-hover tc_table" >
+                                                            <thead>
+                                                            <tr>
+                                                                <th>优惠券标题</th>
+                                                                <th>优惠券副标题</th>
+                                                                <!--<th>折扣</th>-->
+                                                                <th>适用医院</th>
+                                                                <th>创建时间</th>
+                                                                <th>是否注册赠送</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <foreach name="list.ticket_list" item="v" key="key">
+                                                                <tr>
+                                                                    <td>{$v.title}</td>
+                                                                    <td>
+                                                                        {$v.info}
+                                                                    </td>
+                                                                   <!-- <td>{$v.discount}</td>-->
+                                                                    <td>
+                                                                        <foreach name="v.hos_list" item="k">
+                                                                            <a href="{:U('home/hospital/check/edit/'.$k['id'])}" target="_blank">{$k.name}</a>
+                                                                            <br>
+                                                                        </foreach>
+                                                                    </td>
+                                                                    <td>
+                                                                        {$v.create_time|date="Y-m-d H:i",###}
+                                                                    </td>
+                                                                    <td>
+                                                                        <if condition="$v.is_give eq 1">
+                                                                            <a href="javascript:EditAll('{$v.id}','0','取消为注册赠送','ticket','is_give')">
+                                                                                <span class="label label-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是</font></font></span>
+                                                                            </a>
+                                                                        </if>
+
+                                                                        <if condition="$v.is_give eq 0">
+                                                                            <a href="javascript:EditAll('{$v.id}','1','设置注册赠送','ticket','is_give')">
+                                                                                <span class="label label-important"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">否</font></font></span>
+                                                                            </a>
+                                                                        </if>
+                                                                    </td>
+                                                                </tr>
+                                                            </foreach>
+
+
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    </div>
+
+                                                </form>
+
+                                                <!-- END FORM-->
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- END PORTLET-->
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!--end tab-pane-->
+
+
+
+                            <div id="tab_1_4" class="tab-pane <if condition='$now_at eq 3'>active</if>">
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <!-- BEGIN PORTLET-->
+                                        <div class="portlet box">
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+                                                    <p>积分获取规则</p>
+                                                    <hr>
+
+                                                    <style>
+                                                        .tc_table th,.tc_table td{
+                                                            text-align: center;
+                                                        }
+                                                    </style>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">注册获得积分（无邀请码）
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="注册获得积分" name="register_score_value" value="{$list.register_score.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('register_score')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="control-label">注册获得积分（有邀请码）
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="注册获得积分" name="register_score_code_value" value="{$list.register_score_code.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('register_score_code')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">邀请一个好友获得积分
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="邀请一个好友获得积分" name="friend_score_value" value="{$list.friend_score.set_value}" class="m-wrap medium">
+                                                            <button type="button" onclick="UploadSet('friend_score')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">购买商品获得积分（%）
+                                                            <br>
+                                                            <p style="text-align: center;color: #f00; font-size: 13px;">(说明：根据购买商品的总金额的百分比获得)</p>
+                                                        </label>
+                                                        <div class="controls">
+                                                            <input type="number" placeholder="购买商品获得积分" name="buy_gooods_score_value" value="{$list.buy_gooods_score.set_value}" class="m-wrap medium"> %
+                                                            <button type="button" onclick="UploadSet('buy_gooods_score')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="portlet-body" style="width: 80%;">
+                                                        <table class="table table-bordered table-hover tc_table" >
+                                                            <thead>
+                                                            <tr>
+                                                                <th>规则</th>
+                                                                <th>获取分数</th>
+                                                                <th>每天可获取次数</th>
+                                                                <th>每天最大获取分数</th>
+                                                                <th>操作</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <foreach name="list.level_type" item="v" key="key">
+                                                                <tr>
+                                                                    <td>{$v.name}</td>
+                                                                    <td>
+                                                                        <input type="text" name="s_score_{$v.id}" value="{$v.score}">
+                                                                    </td>
+                                                                    <td><input type="text" name="s_max_{$v.id}" value="{$v.max}"></td>
+                                                                    <td>
+                                                                        {$v.max_day}
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button" onclick="UploadScore('{$v.id}')" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                                    </td>
+
+                                                                </tr>
+                                                            </foreach>
+
+
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    </div>
+
+                                                </form>
+
+                                                <!-- END FORM-->
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- END PORTLET-->
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!--end tab-pane-->
+
+                            <div id="tab_3_1" class="tab-pane <if condition='$now_at eq 6'>active</if>">
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <!-- BEGIN PORTLET-->
+                                        <div class="portlet box">
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+                                                    <p>注册后红包任务状态设置</p>
+                                                    <hr>
+
+
+
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label">状态
+                                                        </label>
+                                                        <div class="controls">
+                                                            <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+                                                            <label class="radio">
+                                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios1" <if condition="$list['register_task']['set_value'] eq 1"> checked="" </if> value="1"></span></div>
+                                                                开启
+                                                            </label>
+                                                            <label class="radio">
+                                                                <div class="radio"><span><input type="radio" name="optionsRadios1" <if condition="$list['register_task']['set_value'] eq 0"> checked="" </if>   value="0"></span></div>
+                                                                关闭
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="show_all show_1"  <if condition="$list['register_task']['set_value'] eq 0">style="display: none;"</if>>
+                                                        <div class="control-group">
+                                                            <label class="control-label">任务名称
+                                                            </label>
+                                                            <div class="controls">
+                                                                <input type="text" placeholder="任务名称" name="task_name" value="{$task_set.name}" class="m-wrap medium">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label">任务邀请人数
+                                                            </label>
+                                                            <div class="controls">
+                                                                <input type="number" placeholder="邀请人数" name="need_num" value="{$task_set.need_num}" class="m-wrap medium">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+
+                                                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">赠送礼品类型</font></font></label>
+                                                            <div class="controls">
+                                                                <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+                                                                <label class="radio">
+                                                                    <div class="radio"><span><input type="radio" name="optionsRadios2"  checked=""   value="1"></span></div>
+                                                                    优惠券
+                                                                </label>
+                                                                <label class="radio">
+                                                                    <div class="radio"><span class="checked"><input type="radio" <if condition="$task_set['prize'] eq 2"> checked="" </if>  name="optionsRadios2"  value="2"></span></div>
+                                                                    积分
+                                                                </label>
+                                                                <label class="radio">
+                                                                    <div class="radio"><span class="checked"><input type="radio" <if condition="$task_set['prize'] eq 3"> checked="" </if>  name="optionsRadios2"  value="3"></span></div>
+                                                                    现金
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div class="control-group t_show_all t_show_1" <if condition="$task_set['prize'] neq 0 and $task_set['prize'] neq 1">style="display: none;"</if>>
+
+                                                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择赠送的优惠券</font></font></label>
+                                                            <div class="controls" style="margin-left: 260px;">
+                                                                <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+
+                                                                <foreach name="tic_list" item="v">
+                                                                    <label class="radio">
+                                                                        <div class="radio"><span><input type="radio" name="optionsRadios3" <if condition="$task_set['prize_id'] eq $v['id']"> checked="" </if>    value="{$v.id}"></span></div>
+                                                                        {$v.title}
+                                                                    </label>
+                                                                    <br>
+                                                                </foreach>
+
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div class="control-group t_show_all t_show_2" <if condition="$task_set['prize'] neq 2">style="display: none;"</if>>
+
+                                                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">赠送的积分</font></font></label>
+
+                                                            <div class="controls">
+                                                                <input type="number" placeholder="请输入要赠送的积分数量" name="task_score" value="{$task_set.score}"  class="m-wrap medium">
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="control-group t_show_all t_show_3" <if condition="$task_set['prize'] neq 3">style="display: none;"</if>>
+
+                                                            <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">赠送的现金</font></font></label>
+
+                                                            <div class="controls">
+                                                                <input type="number" placeholder="请输入要赠送的现金" name="task_money" value="{$task_set.money}"    class="m-wrap medium">
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label"></label>
+
+                                                        <div class="controls">
+                                                            <button type="button" onclick="UploadRegTask()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更改</font></font></button>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </form>
+
+                                                <!-- END FORM-->
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- END PORTLET-->
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+            <div id="tab_5_1" class="tab-pane <if condition='$now_at eq 7'>active</if>">
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <!-- BEGIN PORTLET-->
+                        <div class="portlet box">
+                            <div class="portlet-body form">
+                                <!-- BEGIN FORM-->
+                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+                                    <p>游戏基础设置</p>
+                                    <hr>
+
+
+                                    <div class="control-group">
+                                        <label class="control-label">单人闯关一局所需积分
+                                        </label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="玩游戏需要的积分" name="start_num" value="{$game_info.start_num}" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label">创建对局游戏最低需要积分
+                                        </label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="创建对局游戏最低需要积分" name="create_game" value="{$list.create_game.set_value}" class="m-wrap medium">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">超时未玩游戏归还积分时间（天）
+                                        </label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="超时未玩游戏归还积分时间" name="game_over_time" value="{$list.game_over_time.set_value}" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label">邀请新用户可获得积分
+                                        </label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="邀请新用户可获得积分" name="share_num" value="{$game_info.share_num}" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label">单人闯关通关后可获得积分（用户积分与奖品二选一）
+                                        </label>
+                                        <div class="controls">
+                                            <input type="number" placeholder="邀请新用户可获得积分" name="prize_num" value="{$game_info.prize_num}" class="m-wrap medium">
+                                        </div>
+                                    </div>
+
+
+
+                                    <!--<div class="control-group">
+                                        <label class="control-label">状态
+                                        </label>
+                                        <div class="controls">
+                                            &lt;!&ndash; 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友&ndash;&gt;
+                                            <label class="radio">
+                                                <div class="radio"><span class="checked"><input type="radio" name="optionsRadios1" <if condition="$list['register_task']['set_value'] eq 1"> checked="" </if> value="1"></span></div>
+                                                开启
+                                            </label>
+                                            <label class="radio">
+                                                <div class="radio"><span><input type="radio" name="optionsRadios1" <if condition="$list['register_task']['set_value'] eq 0"> checked="" </if>   value="0"></span></div>
+                                                关闭
+                                            </label>
+                                        </div>
+                                    </div>-->
+
+
+
+
+                                    <div class="control-group">
+
+                                    <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单人闯关通关后可获得商品（用户积分与奖品二选一）</font></font></label>
+                                    <div class="controls" style="margin-left: 260px;">
+                                        <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+
+                                        <foreach name="prize_list" item="v">
+                                            <label class="radio">
+                                                <div class="radio"><span><input type="radio" name="optionsRadios10" <if condition="$game_info['prize_id'] eq $v['id']"> checked="" </if>    value="{$v.id}"></span></div>
+                                                {$v.name}
+                                            </label>
+                                            <br>
+                                        </foreach>
+
+                                    </div>
+
+                            </div>
+
+                </div>
+
+
+
+
+
+                <div class="control-group">
+                    <label class="control-label"></label>
+
+                    <div class="controls" style="text-align: center;">
+                        <button type="button" onclick="UploadGameInfo()" class="btn blue"><i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 保存</font></font></button>
+                    </div>
+                </div>
+
+
+
+                </form>
+
+                <!-- END FORM-->
+
+            </div>
+
+                    </div>
+
+                    <!-- END PORTLET-->
+
+                </div>
+
+            </div>
+
+
+
+                            <!--end tab-pane-->
+
+                            <div id="tab_1_5" class="tab-pane <if condition='$now_at eq 4'>active</if>">
+
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <!-- BEGIN PORTLET-->
+                                        <div class="portlet box">
+                                            <div class="portlet-body form">
+                                                <!-- BEGIN FORM-->
+                                                <form action="/yfm/home/GameAdd/upload_thumb.html" class="form-horizontal">
+                                                    <p>等级规则</p>
+                                                    <hr>
+
+                                                    <style>
+                                                        .tc_table th,.tc_table td{
+                                                            text-align: center;
+                                                        }
+                                                    </style>
+
+                                                    <div class="portlet-body" style="width: 50%;">
+                                                        <table class="table table-bordered table-hover tc_table" >
+                                                            <thead>
+                                                            <tr>
+                                                                <th>等级</th>
+                                                                <th>升级需要积分</th>
+                                                                <th>操作</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <foreach name="list.level_list" item="v" key="key">
+                                                                <tr>
+                                                                    <td>{$v.lv}</td>
+                                                                    <td>
+                                                                        {$v.score}
+                                                                    </td>
+                                                                    <td>
+                                                                            <if condition="$v.is_del eq 1">
+                                                                                <a href="JavaScript:_deleteLv('{$v.id}','level');" class="btn red"><i class="icon-trash"></i> 删除</a>
+                                                                            </if>
+                                                                    </td>
+
+                                                                </tr>
+                                                            </foreach>
+
+
+                                                            </tbody>
+
+                                                        </table>
+
+                                                        <div class="btn-group">
+
+                                                            <a href="javascript:fahuo()" id="sample_editable_1_new" class="btn green">
+
+                                                                新增等级 <i class="icon-plus"></i>
+
+                                                            </a>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </form>
+
+                                                <!-- END FORM-->
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- END PORTLET-->
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!--end tab-pane-->
+
+
+
+
+                            <!--end tab-pane-->
+
+
+                            <div id="tab_2_4" class="tab-pane">
+
+
+                                <div class="control-group">
+                                    <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">类型</font></font></label>
+                                    <div class="controls">
+                                        <select name="classify"  onchange="xy_change(this)" class="chosen-with-diselect span3" tabindex="-1" id="xy_type">
+                                                <option value="shop_user_xy" selected>商家进驻协议</option>
+                                                <option value="team_xy" >开通团队规则说明</option>
+                                                <option value="invite_friends_xy" >邀请好友规则</option>
+                                                <option value="user_xy" >伊美小天鹅用户协议</option>
+                                                <option value="agent_user_xy" >星级会员用户协议</option>
+                                                <option value="shop_pay_con" >店铺收款码使用教程</option>
+                                                <option value="gudong_h5" >城市合伙人</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            <div class="row-fluid">
+                                <style>
+                                    .toolbar {
+                                        border: 1px solid #ccc;
+                                    }
+                                    .text {
+                                        border: 1px solid #ccc;
+                                        height: 500px;
+                                    }
+                                </style>
+
+                                <div id="div1" class="toolbar">
+                                </div>
+
+
+                                <div id="div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
+                                    {$list.shop_user_xy.remark}
+                                </div>
+
+                                <!--<div id="editor" style="min-height: 600px;">
+                                    {$list.content}
+                                </div>-->
+
+
+                                <!--end tabbable-->
+                                <div style="margin-top: 50px;text-align: center;">
+                                    <button type="button" id="btn1"  class="btn blue">
+                                        <i class="icon-ok"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 更新</font></font></button>
+                                </div>
+
+
+
+                            </div>
+                            </div>
+
+
+
+
+
+
+                            <!--end tab-pane-->
+
+
+
+
+
+
+                    <!--end tab-pane-->
+
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                    <!--end tabbable-->
+
+
+
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- modal -->
+<div class="modal fade" id = 'modal_fahuo' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_fahuo_title'>新增等级</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form action="#" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">升级需要分数</font></font></label>
+                        <div class="controls">
+                            <input type="number" placeholder="请输入升级需要分数" name="fh_num"  value="" class="m-wrap medium">
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >取 消</button>
+                <button type="button" class="btn green" id='modal_fahuo_yes'  style='margin-left:9px'>确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+<include file="common/footer"/>
+
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+
+<script src="__PUBLIC__/time/js/borain-timeChoice.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wangEditor/release/wangEditor.min.js"></script>
+
+<script src="__PUBLIC__/js/ajaxfileupload.js"></script>
+<script>
+
+
+
+    $("#uploadImage").on("change", function(){
+        // Get a reference to the fileList
+        var files = !!this.files ? this.files : [];
+
+        // If no files were selected, or no FileReader support, return
+        if (!files.length || !window.FileReader) return;
+
+        // Only proceed if the selected file is an image
+        if (/^image/.test( files[0].type)){
+
+            // Create a new instance of the FileReader
+            var reader = new FileReader();
+
+            // Read the local file as a DataURL
+            reader.readAsDataURL(files[0]);
+
+            // When loaded, set image data as background of div
+            reader.onloadend = function(){
+
+                $("#uploadPreview").html("<img style='max-height: 150px;border:1px solid #ddd;' src='"+this.result+"'/>");
+                $('.on_img_btn').hide();
+                $('.change_img_btn').show().css('display','inline-block');
+                $('.del_img_btn').show().css('display','inline-block');
+                $("#upload_kuang").removeClass("dan_upload_img_div1");
+            }
+        }
+    });
+
+
+    var E = window.wangEditor
+    var editor = new E('#div1', '#div2')
+    // 配置服务器端地址
+    editor.customConfig.uploadImgServer = "{:U('home/upload/upload')}"
+    editor.customConfig.uploadFileName = 'fileData'
+
+
+    editor.customConfig.linkImgCheck = function (src) {
+        console.log(src) // 图片的链接
+
+        return true // 返回 true 表示校验成功
+        // return '验证失败' // 返回字符串，即校验失败的提示信息
+    }
+    editor.customConfig.linkCheck = function (text, link) {
+        console.log(text) // 插入的文字
+        console.log(link) // 插入的链接
+
+        return true // 返回 true 表示校验成功
+        // return '验证失败' // 返回字符串，即校验失败的提示信息
+    }
+    editor.customConfig.linkImgCallback = function (url) {
+        console.log(url) // url 即插入图片的地址
+    }
+
+    document.getElementById('btn1').addEventListener('click', function () {
+        // 读取 html
+        //alert(editor.txt.html())
+        SetXy(editor.txt.html())
+    }, false)
+
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create();
+
+    $('input:radio[name="optionsRadios138"]').change( function(){
+        $('.agent_send_all').hide();
+        $('.agent_send_'+$(this).val()).show();
+
+    })
+
+    function fahuo(){
+        $('#modal_fahuo').modal('show');
+        $('#modal_fahuo_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            SubmitFaHuo();
+        };
+    }
+
+    function SubmitFaHuo(){
+        var score = $.trim($("*[name='fh_num']").val());
+        if(score==''){
+            showAlert("请输入升级需要的分数");
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/addlv'); ?>",
+            data:{score:score},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href = "{:U('home/set/index/type/4')}";
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+    function Updateodd(name){
+        var value = $.trim($("*[name='"+name+"']").val());
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/Updateodd'); ?>",
+            data:{name:name,value:value},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+    $('input:radio[name="optionsRadios1"]').change( function(){
+        $('.show_all').hide();
+        if($(this).val()==1){
+            $('.show_'+$(this).val()).show();
+        }
+    })
+
+    $('input:radio[name="optionsRadios2"]').change( function(){
+        $('.t_show_all').hide();
+        $('.t_show_'+$(this).val()).show();
+    })
+
+
+
+
+    function xy_change(str){
+        var type = $(str).val();
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/checkxy'); ?>",
+            data:{type:type},
+            success: function (result) {
+                if(result.code == 1){
+                    $('#div2').html(result.list.remark);
+                    editor.create();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function SetXy(content){
+        var type = $('#xy_type').val();
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/set/xyedit'); ?>",
+            data:{content:content,type:type},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+
+    function UploadImg(){
+        var img = "";
+        var file = $("#uploadImage").val();
+        if(file==""){
+            SetImg('{$agent_send.img_url}');
+        }
+        else{
+            //判断上传的文件的格式是否正确
+            var fileType = file.substring(file.lastIndexOf(".")+1);
+            if(fileType!="png"&&fileType!="jpg" &&fileType!="jpeg"){
+                showAlert("上传文件格式错误");
+                return false;
+            }
+            else{
+                var url = "<?php echo U('home/Upload/thumb');?>";
+                $.ajaxFileUpload({
+                    url:url,
+                    fileElementId:"uploadImage",        //file的id
+                    dataType:"json",                  //返回数据类型为文本
+                    success:function(res){
+                        if(res){
+                            img = res;
+                            SetImg(img);
+                        }else{
+                            showAlert("图片上传失败");
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+
+    function SetImg(img){
+
+        var type = $("input[name='optionsRadios138']:checked").val();
+        var ticket_id = $("input[name='optionsRadios38']:checked").val();
+
+        var agent_content = $.trim($("*[name='agent_content']").val());
+        var open_money = $.trim($("*[name='team_open_money_value']").val());
+        var city_money = $.trim($("*[name='team_city_money_value']").val());
+        var agent_money = $.trim($("*[name='team_agent_money_value']").val());
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/updateagentsend'); ?>",
+            data:{
+                open_money:open_money,
+                city_money:city_money,
+                agent_money:agent_money,
+                img:img,
+                ticket_id:ticket_id,
+                content:agent_content,
+                type:type
+            },
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href = "{:U('home/set/index/type/5')}";
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+
+
+    function ClearImg(){
+        $("#upload_kuang").addClass("dan_upload_img_div1");
+        $("#uploadImage").val('');
+        $('.on_img_btn').show();
+        $('.change_img_btn').hide();
+        $('.del_img_btn').hide();
+        $('#uploadPreview').html('');
+    }
+
+
+
+
+
+    function SubmitContent(str,value){
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/set/shili'); ?>",
+            data:{str:str,value:value},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function SetPayType(type){
+        var set_type = $("input[name='set_"+type+"']:checked").val();
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/updatepay'); ?>",
+            data:{set_type:set_type,type:type},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function UpdateVip(){
+        var status_type = $("input[name='optionsRadios1']:checked").val();
+        var start_time = '';
+        var end_time = '';
+        var vip_content='';
+        if(status_type==1){
+            vip_content = $.trim($("#vip_content").val());
+            if(!vip_content){
+                showAlert("请输入活动规则");
+                return false;
+            }
+        }
+        if(status_type==2){
+            start_time = $.trim($("*[name='vip_start_time']").val());
+            end_time = $.trim($("*[name='vip_end_time']").val());
+            vip_content = $.trim($("#vip_content").val());
+            if(!start_time){
+                showAlert("请选择活动开始时间");
+                return false;
+            }
+            if(!end_time){
+                showAlert("请选择活动结束时间");
+                return false;
+            }
+            if(!vip_content){
+                showAlert("请输入活动规则");
+                return false;
+            }
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/updatevip'); ?>",
+            data:{status_type:status_type,start_time:start_time,end_time:end_time,vip_content:vip_content},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+
+    function Updatexs(){
+        var status_type = $("input[name='optionsRadios4']:checked").val();
+        var start_time = '';
+        var end_time = '';
+        var vip_content='';
+        if(status_type==1){
+            vip_content = $.trim($("#xs_content").val());
+            if(!vip_content){
+                showAlert("请输入活动规则");
+                return false;
+            }
+        }
+        if(status_type==2){
+            start_time = $.trim($("*[name='xs_start_time']").val());
+            end_time = $.trim($("*[name='xs_end_time']").val());
+            vip_content = $.trim($("#xs_content").val());
+            if(!start_time){
+                showAlert("请选择活动开始时间");
+                return false;
+            }
+            if(!end_time){
+                showAlert("请选择活动结束时间");
+                return false;
+            }
+            if(!vip_content){
+                showAlert("请输入活动规则");
+                return false;
+            }
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/updatexs'); ?>",
+            data:{status_type:status_type,start_time:start_time,end_time:end_time,vip_content:vip_content},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+    function Updatetj(){
+        var status_type = $("input[name='optionsRadios3']:checked").val();
+        var tj_money = $.trim($("*[name='tj_money']").val());
+        var tj_num = $.trim($("*[name='tj_num']").val());
+        var start_time = '';
+        var end_time = '';
+        var vip_content='';
+
+
+        if(status_type==1){
+            vip_content = $.trim($("#tj_content").val());
+            if(!vip_content){
+                showAlert("请输入活动规则");
+                return false;
+            }
+        }else{
+            if(!tj_money){
+                showAlert("请输入消费金额");
+                return false;
+            }
+            if(!tj_num){
+                showAlert("请输入赠送数量");
+                return false;
+            }
+        }
+        if(status_type==2){
+            start_time = $.trim($("*[name='tj_start_time']").val());
+            end_time = $.trim($("*[name='tj_end_time']").val());
+            vip_content = $.trim($("#tj_content").val());
+            if(!start_time){
+                showAlert("请选择活动开始时间");
+                return false;
+            }
+            if(!end_time){
+                showAlert("请选择活动结束时间");
+                return false;
+            }
+            if(!vip_content){
+                showAlert("请输入活动规则");
+                return false;
+            }
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/updatetj'); ?>",
+            data:{status_type:status_type,start_time:start_time,end_time:end_time,vip_content:vip_content,tj_money:tj_money,tj_num:tj_num},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+
+
+    function Updatemonth(){
+        var status_type = $("input[name='optionsRadios2']:checked").val();
+        var start_time = '';
+        var end_time = '';
+        var vip_content='';
+        if(status_type==1){
+            vip_content = $.trim($("#month_content").val());
+            if(!vip_content){
+                showAlert("请输入活动规则");
+                return false;
+            }
+        }
+        if(status_type==2){
+            start_time = $.trim($("*[name='month_start_time']").val());
+            end_time = $.trim($("*[name='month_end_time']").val());
+            vip_content = $.trim($("#month_content").val());
+            if(!start_time){
+                showAlert("请选择活动开始时间");
+                return false;
+            }
+            if(!end_time){
+                showAlert("请选择活动结束时间");
+                return false;
+            }
+            if(!vip_content){
+                showAlert("请输入活动规则");
+                return false;
+            }
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/updatemonth'); ?>",
+            data:{status_type:status_type,start_time:start_time,end_time:end_time,vip_content:vip_content},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+
+    }
+
+
+    function UploadSets(str){
+        var set_value = $.trim($("*[name='"+str+"_value']").val());
+        var remark = $.trim($("*[name='"+str+"_remark']").val());
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/set/UploadSets'); ?>",
+            data:{str:str,set_value:set_value,remark:remark},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+
+    function UploadScore(id){
+        var score = $.trim($("*[name='s_score_"+id+"']").val());
+        var max = $.trim($("*[name='s_max_"+id+"']").val());
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/set/UploadScore'); ?>",
+            data:{score:score,max:max,id:id},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href = "{:U('home/set/index/type/3')}";
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function UploadGameInfo(){
+
+        var start_num = $.trim($("*[name='start_num']").val());
+        var share_num = $.trim($("*[name='share_num']").val());
+        var prize_num = $.trim($("*[name='prize_num']").val());
+        var create_game = $.trim($("*[name='create_game']").val());
+        var game_over_time = $.trim($("*[name='game_over_time']").val());
+        var prize_id = $("input[name='optionsRadios10']:checked").val();
+
+
+
+        if(!start_num){showAlert("请输入玩游戏所需积分");return false;}
+        if(!share_num){showAlert("请输入邀请新用户可获得积分");return false;}
+        if(!prize_num){showAlert("请输入通关获得积分");return false;}
+        if(!prize_id){showAlert("请选择通关可得奖品");return false;}
+
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/set/UploadGameInfo'); ?>",
+            data:{start_num:start_num,
+                share_num:share_num,
+                prize_num:prize_num,
+                create_game:create_game,
+                game_over_time:game_over_time,
+                prize_id:prize_id},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href = "{:U('home/set/index/type/7')}";
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function UploadRegTask(){
+
+        var name = $.trim($("*[name='task_name']").val());
+        var score = '';
+        var money = '';
+        var ticket_id = '';
+        if(!name){showAlert("请输入红包名称");return false;}
+
+        var status = $("input[name='optionsRadios1']:checked").val();
+        var prize = $("input[name='optionsRadios2']:checked").val();
+        var need_num = $.trim($("*[name='need_num']").val());
+
+        if(!need_num){showAlert("请输入任务需要邀请人数");return false;}
+        if(prize=='1'){
+            ticket_id = $("input[name='optionsRadios3']:checked").val();
+            if(!ticket_id){showAlert("请选择要赠送的优惠券");return false;}
+        }
+        if(prize=='2'){
+            score = $.trim($("*[name='task_score']").val());
+            if(!score){showAlert("请输入要赠送的积分");return false;}
+        }
+        if(prize=='3'){
+            money = $.trim($("*[name='task_money']").val());
+            if(!money){showAlert("请输入要赠送的金额");return false;}
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/set/UploadRegTask'); ?>",
+            data:{status:status,name:name,prize:prize,need_num:need_num,ticket_id:ticket_id,score:score,money:money},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.href = "{:U('home/set/index/type/6')}";
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function UploadSet(str){
+        //var set_value = $.trim($("*[name='"+str+"_value']").val());
+        if(str=='tix_status'){
+            var set_value = $("input[name='"+str+"_value']:checked").val();
+        }else if(str=='app_status_ios'){
+            var set_value = $("input[name='"+str+"_value']:checked").val();
+        }else if(str=='app_status'){
+            var set_value = $("input[name='"+str+"_value']:checked").val();
+        }else{
+            var set_value = $.trim($("*[name='"+str+"_value']").val());
+        }
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/set/UploadSet'); ?>",
+            data:{str:str,set_value:set_value},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function UploadSetOdds(str){
+        var set_value = $.trim($("*[name='odds_value_"+str+"']").val());
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/set/UploadSetOdds'); ?>",
+            data:{str:str,set_value:set_value},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function _deleteUser(id,name){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除客户','确定要删除客户 '+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/user/delete'); ?>",
+                data:{id:id},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+
+    function _deleteLv(id,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除等级','确定要删除等级吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/delete'); ?>",
+                data:{id:id,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.href = "{:U('home/set/index/type/4')}";
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+
+    function EditAll(id,str,title,db,value){
+
+        showConfirm('<i class="icon-exclamation-sign"></i> '+title,'确定要 '+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editall'); ?>",
+                data:{id:id,str:str,db:db,value:value},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.href = "{:U('home/set/index/type/2')}";
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function EditData(id)
+    {
+        location.href = "<?php echo U('home/GameAdd/index/edit_id/"+id+"');?>";
+    }
+</script>

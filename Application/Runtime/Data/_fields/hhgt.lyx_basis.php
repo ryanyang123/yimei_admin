@@ -1,0 +1,1 @@
+a:8:{i:0;s:2:"id";i:1;s:11:"option_type";i:2;s:11:"option_name";i:3;s:12:"option_value";i:4;s:11:"create_time";i:5;s:11:"update_time";s:3:"_pk";s:2:"id";s:5:"_type";a:6:{s:2:"id";s:7:"int(11)";s:11:"option_type";s:12:"varchar(200)";s:11:"option_name";s:12:"varchar(500)";s:12:"option_value";s:12:"varchar(500)";s:11:"create_time";s:7:"int(11)";s:11:"update_time";s:7:"int(11)";}}

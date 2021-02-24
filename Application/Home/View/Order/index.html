@@ -1,0 +1,826 @@
+<!--引用文件head-->
+<include file="common/header"/>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+<!--头部导航栏-->
+<include file="common/top"/>
+
+<style>
+    .star_img{
+        width: 25px;
+    }
+</style>
+
+<div class="page-container">
+
+
+    <!--导航栏-->
+    <include file="common/nav"/>
+
+
+
+    <div class="page-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row-fluid">
+                <div class="span12">
+
+                    <!--颜色选择-->
+                    <include file="common/color"/>
+
+
+
+                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                    <h3 class="page-title">
+
+                        订单管理 <small>列表</small>
+
+                    </h3>
+
+                    <ul class="breadcrumb">
+
+                        <li>
+
+                            <i class="icon-home"></i>
+
+                            <a href="<?php echo U('home/home/index');?>">主页</a>
+
+                            <i class="icon-angle-right"></i>
+
+                        </li>
+
+                        <li><a href="#">订单管理</a></li>
+
+
+
+                    </ul>
+
+                    <!-- END PAGE TITLE & BREADCRUMB-->
+
+                </div>
+
+            </div>
+
+            <!-- END PAGE HEADER-->
+
+            <div id="dashboard">
+
+
+
+                <div class="row-fluid">
+
+
+               <!--     <div class="btn-group">
+
+                        <a href="<?php echo U('home/'.$at.'/plus');?>" id="sample_editable_1_new" class="btn green">
+
+                            新增活动 <i class="icon-plus"></i>
+
+                        </a>
+
+                    </div>-->
+
+                    <div class="tabbable tabbable-custom tabbable-full-width">
+
+                        <div class="tab-content">
+
+                            <ul class="nav nav-tabs">
+                                <li <if condition="$search_list.page_type eq 1">class="active"</if> ><a  href="{:U('home/'.$at.'/index/page_type/1')}">待处理</a></li>
+                                <li <if condition="$search_list.page_type eq 2">class="active"</if> ><a  href="{:U('home/'.$at.'/index/page_type/2')}">全部</a></li>
+                            </ul>
+
+
+
+                            <div id="tab_1_5" class="tab-pane active">
+
+                                <div class="row-fluid search-forms search-default">
+
+                                   <form class="form-search" method="get" action="{:U('home/'.$at.'/index')}">
+
+
+                                        <div class="chat-form clearfix">
+
+                                            <div class="input-cont" style="width:100%;float: left;margin-right: 20px;margin-bottom: 2px;min-width: 210px;">
+
+                                                <input type="text" placeholder="搜索 订单编号" value="{$search_list.search}" name="search" class="m-wrap large">
+                                                <input type="text" placeholder="搜索 收件人姓名 | 手机 | 地址 | 商品名称" value="{$search_list.search2}" name="search2" class="m-wrap large">
+                                                <input type="text" placeholder=" 根据用户ID搜索" value="{$search_list.user_id}" name="user_id" class="m-wrap large">
+
+                                                <select name="money_type" id="" style="line-height: 34px;height: 34px;">
+                                                    <option value="" disabled >支付类型筛选</option>
+                                                    <option value="0" >全部</option>
+                                                    <option <if condition="$search_list['money_type'] eq 2"> selected </if> value="2" >支付全款</option>
+                                                    <option <if condition="$search_list['money_type'] eq 1"> selected </if> value="1" >支付预约金</option>
+                                                </select>
+
+                                                <select name="pay_type" id="" style="line-height: 34px;height: 34px;">
+                                                    <option value="" disabled >支付方式筛选</option>
+                                                    <option value="0" >全部</option>
+                                                    <option <if condition="$search_list['pay_type'] eq 1"> selected </if> value="1" >微信</option>
+                                                    <option <if condition="$search_list['pay_type'] eq 2"> selected </if> value="2" >支付宝</option>
+                                                </select>
+
+                                                <select name="status" id="" style="line-height: 34px;height: 34px;">
+                                                    <option value="" disabled >订单状态筛选</option>
+                                                    <option value="0" >全部</option>
+                                                    <option <if condition="$search_list['status'] eq 1"> selected </if> value="1" >支付预约金</option>
+                                                    <option <if condition="$search_list['status'] eq 2"> selected </if> value="2" >支付全款，待发货</option>
+                                                    <option <if condition="$search_list['status'] eq 3"> selected </if> value="3" >退款</option>
+                                                    <option <if condition="$search_list['status'] eq 4"> selected </if> value="4" >已发货，待收货</option>
+                                                    <option <if condition="$search_list['status'] eq 5"> selected </if> value="5" >交易完成</option>
+                                                </select>
+                                                <select name="refund_status" id="" style="line-height: 34px;height: 34px;">
+                                                    <option value="" disabled >退款状态筛选</option>
+                                                    <option value="0" >全部</option>
+                                                    <option <if condition="$search_list['refund_status'] eq 2"> selected </if> value="1" >买家申请退款</option>
+                                                    <option <if condition="$search_list['refund_status'] eq 3"> selected </if> value="3" >卖家拒绝退款</option>
+                                                    <option <if condition="$search_list['refund_status'] eq 4"> selected </if> value="4" >买家申请客服介入 </option>
+                                                    <option <if condition="$search_list['refund_status'] eq 6"> selected </if> value="6" >退余中</option>
+                                                    <option <if condition="$search_list['refund_status'] eq 5"> selected </if> value="5" >退款成功</option>
+                                                </select>
+
+
+                                                <input type="hidden" name="page_type" value="{$search_list.page_type}">
+
+                                                <input type="text" placeholder="支付开始时间 " autocomplete="off" value="{$search_list.search_date}" name="search_date" class="m-wrap large auto-kal">
+                                                <input type="text" placeholder="支付结束时间 " autocomplete="off" value="{$search_list.search_date2}" name="search_date2" class="m-wrap large auto-kal">
+                                            </div>
+
+
+
+
+
+                                            <button type="submit" class="btn green">搜 索 &nbsp; <i class="m-icon-swapright m-icon-white"></i></button>
+
+                                        </div>
+
+                                    </form>
+
+
+
+                                </div>
+
+
+                                <div class="portlet-body" style="overflow: auto;">
+
+
+                                    <div class="btn-group" style="float: right;">
+                                        <form action="{:U('home/inout/expOrderInfo')}" method="get">
+                                            <input type="hidden" name="search" value="{$search_list.search}"/>
+                                            <input type="hidden" name="search2" value="{$search_list.search2}"/>
+                                            <input type="hidden" name="user_id" value="{$search_list.user_id}"/>
+                                            <input type="hidden" name="money_type" value="{$search_list.money_type}"/>
+                                            <input type="hidden" name="pay_type" value="{$search_list.pay_type}"/>
+                                            <input type="hidden" name="status" value="{$search_list.status}"/>
+                                            <input type="hidden" name="refund_status" value="{$search_list.refund_status}"/>
+                                            <input type="hidden" name="search_date" value="{$search_list.search_date}"/>
+                                            <input type="hidden" name="search_date2" value="{$search_list.search_date2}"/>
+                                            <button type="submit" id="sample_editable_1_new" class="btn green" >
+                                                导出EXCEL <i class="icon-signin"></i>
+                                            </button>
+                                        </form>
+
+                                    </div>
+
+
+                                    <table class="table table-striped table-hover" >
+
+                                        <thead>
+
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>订单编号</th>
+                                            <th>购买用户</th>
+                                            <th>支付类型</th>
+                                            <th>支付金额</th>
+                                            <th>订单总金额</th>
+                                            <th>支付方式</th>
+                                            <th>订单状态</th>
+                                           <!-- <th>收件人</th>
+                                            <th>电话</th>
+                                            <th>收货地址</th>-->
+                                            <th>支付时间</th>
+                                            <th>创建时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <if condition="$list">
+                                            <foreach name="list" item="v" key="key">
+                                                <tr>
+                                                    <td>
+                                                        {$key+1}
+                                                    </td>
+
+                                                    <td>
+                                                        {$v.order_number}
+                                                    </td>
+                                                    <td><a href="{:U('home/user/check/edit/'.$v['user_id'])}" target="_blank">{$v.user_name}</a></td>
+                                                    <td>
+                                                        <if condition="$v.money_type eq 1">
+                                                            <span class="label label-success">支付预约金</span>
+                                                            <else/>
+                                                            <span class="label label-info">支付全额</span>
+                                                        </if>
+                                                    </td>
+                                                    <td><span style="color: #f00;font-weight: bolder;font-size: 16px;">￥{$v.money}</span></td>
+                                                    <td><span style="color: green;font-weight: bolder;font-size: 16px;">￥{$v.total_money}</span></td>
+                                                    <td>
+                                                        <if condition="$v.pay_type eq 1">
+                                                            <span class="label label-success">微信</span>
+                                                        </if>
+                                                        <if condition="$v.pay_type eq 2">
+                                                            <span class="label label-info">支付宝</span>
+                                                        </if>
+                                                        <if condition="$v.pay_type eq 3">
+                                                            <span class="label label-warning">银联</span>
+                                                        </if>
+                                                        <if condition="$v.pay_type eq 4">
+                                                            <span class="label label-warning">余额支付</span>
+                                                        </if>
+                                                    </td>
+                                                    <td>
+                                                        <if condition="$v.status eq 1">
+                                                            <span class="label label-success">支付预约金额</span>
+                                                        </if>
+                                                        <if condition="$v.status eq 2">
+                                                            <span class="label label-info">支付全款,待发货</span>
+                                                        </if>
+                                                        <if condition="$v.status eq 3">
+                                                            <span class="label label-important">
+                                                                退款
+                                                                <if condition="$v.refund_status eq 1">
+                                                                    -买家申请中，待卖家同意
+                                                                </if>
+                                                                <if condition="$v.refund_status eq 2">
+                                                                    -卖家拒绝退款
+                                                                </if>
+                                                                <if condition="$v.refund_status eq 3">
+                                                                    -买家申请客服介入
+                                                                </if>
+                                                                  <if condition="$v.refund_status eq 4">
+                                                                    -退款成功
+                                                                </if>
+
+                                                                <if condition="$v.refund_status eq 5">
+                                                                    -退款中
+                                                                </if>
+                                                            </span>
+                                                            <br>
+
+                                                            申请退款前状态：
+                                                            <if condition="$v.front_status eq 1">
+                                                                <span class="label label-success">支付预约金额</span>
+                                                            </if>
+                                                            <if condition="$v.front_status eq 2">
+                                                                <span class="label label-info">支付全款,待发货</span>
+                                                            </if>
+                                                            <if condition="$v.front_status eq 4">
+                                                                <span class="label label-warning">已发货，待收货</span>
+                                                            </if>
+                                                            <if condition="$v.front_status eq 5">
+                                                                <span class="label">交易完成(未评价)</span>
+                                                            </if>
+                                                            <if condition="$v.front_status eq 6">
+                                                                <span class="label label-inverse">交易完成(已评价)</span>
+                                                            </if>
+
+                                                        </if>
+                                                        <if condition="$v.status eq 4">
+                                                            <span class="label label-warning">已发货，待收货</span>
+                                                        </if>
+                                                        <if condition="$v.status eq 5">
+                                                            <span class="label">交易完成(未评价)</span>
+                                                        </if>
+                                                        <if condition="$v.status eq 6">
+                                                            <span class="label label-inverse">交易完成(已评价)</span>
+                                                        </if>
+                                                    </td>
+
+
+                                                  <!--  <td>
+                                                        {$v.name}
+                                                    </td>
+                                                    <td>
+                                                        {$v.phone}
+                                                    </td>
+
+                                                    <td>
+
+                                                        {$v.location}{$v.detailed}
+
+                                                    </td>
+-->
+                                                    <td>{$v.pay_time|date="Y-m-d H:i:s",###}</td>
+                                                    <td>{$v.create_time|date="Y-m-d H:i:s",###}</td>
+                                                    <td>
+
+                                                        <a href="{:U('home/'.$at.'/check/edit/'.$v['id'])}" class="btn green"><i class="icon-eye-open"></i> 查看详细</a>
+
+<!--
+                                                        <a href="JavaScript:_deleteUser('{$v.id}','订单','order');" class="btn red"><i class="icon-trash"></i> 删除</a>
+-->
+                                                        <!--<a href="JavaScript:_deleteUser('{$v.id}','订单管理','card');" class="btn red"><i class="icon-trash"></i> 删除</a>-->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="10">
+                                                        <p style="padding-left: 50px;">
+                                                            购买店铺：<a href="{:U('home/shop/check/edit/'.$v['shop_id'])}" target="_blank">{$v.shop_name}</a>
+
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            收件人：{$v.addressee} &nbsp;&nbsp;&nbsp;&nbsp;    手机号： {$v.mobile} &nbsp;&nbsp;&nbsp;&nbsp;   收货地址：{$v.location}{$v.particular}
+                                                            <br>
+                                                            <br>
+                                                            购买商品：
+
+                                                            <a class="fancybox-button" data-rel="fancybox-button" title="" href="{$v.cover}">
+                                                                <img src="{$v.cover}" style="width: 60px;height: 60px;" alt="">
+                                                            </a>
+                                                            <span style="margin-left: 15px;">{$v.name}</span>
+
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买数量：{$v.total_num}
+
+                                                        </p>
+
+                                                    </td>
+                                                    <td>
+                                                        <if condition="$v.express_type eq 1">
+                                                            <a href="javascript:wuliu('{$v.id}');" class="btn green"><i class="icon-truck"></i> 查看物流信息</a>
+                                                        </if>
+                                                        <if condition="$v.status eq 3">
+                                                            <if condition="$v.refund_status eq 3">
+
+                                                                申请前状态：
+                                                                <br>
+
+                                                                <if condition="$v.front_status eq 1">
+                                                                <span class="label label-success">支付预约金额</span>
+                                                                </if>
+                                                                <if condition="$v.front_status eq 2">
+                                                                    <span class="label label-info">支付全款,待收货</span>
+                                                                </if>
+
+                                                                <if condition="$v.front_status eq 4">
+                                                                    <span class="label label-info">已发货，待收货</span>
+                                                                </if>
+
+
+                                                                <p>操作：</p>
+                                                                <a href="javascript:fahuo('{$v.id}','{$v.money}');" class="btn blue"><i class="icon-edit"></i> 退款给买家</a>
+                                                                <br>
+                                                                <a href="javascript:EditAll('{$v.id}','2','拒绝买家的退款申请','shop_order','refund_status');" class="btn red"><i class="icon-edit"></i> 拒绝退款</a>
+                                                            </if>
+                                                        </if>
+                                                    </td>
+                                                </tr>
+                                            </foreach>
+                                            <else />
+                                            <tr>
+                                                <td colspan="10"><p class="no_data">暂时没有数据</p></td>
+                                            </tr>
+                                        </if>
+
+
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                                <div class="space5"></div>
+
+                                <div class="pagination pagination-right">
+                                    <br/>
+                                    <div class="page_div">
+                                        <?php echo $page;?>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <!--end tabbable-->
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+<!-- modal -->
+<div class="modal fade" id = 'modal_fahuo' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_fahuo_title'>退款给买家</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form action="#" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">当前支付金额</font></font></label>
+                        <div class="controls">
+                            <p style="padding-top: 7px;" id="tui_money"></p>
+                        </div>
+                    </div>
+
+
+                    <div class="control-group">
+
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">类型</font></font></label>
+
+                        <div class="controls">
+                            <!-- 类型：0不跳转，1跳转外部链接，2跳转医院详情,3优惠券详情，4商品详情，5邀请好友-->
+
+                            <label class="radio">
+                                <div class="radio"><span><input type="radio" name="optionsRadios1"  checked=""  value="1"></span></div>
+                                全部退款
+                            </label>
+                            <label class="radio">
+                                <div class="radio"><span ><input type="radio" name="optionsRadios1"  value="2"></span></div>
+                                手动输入退款金额
+                            </label>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="control-group show_all show_2" style="display: none;">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">退款金额</font></font></label>
+                        <div class="controls">
+                            <input type="number" placeholder="请输入要退款金额" name="money_tui"  value="" class="m-wrap medium">
+                        </div>
+                    </div>
+
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >取 消</button>
+                <button type="button" class="btn green" id='modal_fahuo_yes'  style='margin-left:9px'>确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+<!-- modal -->
+<div class="modal fade" id = 'modal_guid' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_guid_title'>安排用户行程</h4>
+            </div>
+            <div class="modal-body" style="min-height: 270px;">
+
+                <form action="#" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单编号</font></font></label>
+                        <div class="controls">
+                            <p id="guid_number" style="padding-top: 7px;margin: 0;">12321321</p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="control-group">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分配司机</font></font></label>
+                        <div class="controls">
+                            <select name="guid_card_id" data-placeholder="Your Favorite Type of Bear" class="chosen-with-diselect large" tabindex="-1" id="driver_id">
+                                <option value="0" selected >请选择</option>
+                                <foreach name="driver_list" item="v">
+                                    <option value="{$v.id}">{$v.name} - {$v.phone}</option>
+                                </foreach>
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="control-group">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分配车辆</font></font></label>
+                        <div class="controls">
+                            <select name="guid_card_id" data-placeholder="Your Favorite Type of Bear" class="chosen-with-diselect large" tabindex="-1" id="vehicle_id">
+                                <option value="0" selected >请选择</option>
+                                <foreach name="vehicle_list" item="v">
+                                    <option value="{$v.id}">{$v.vehicle_number}</option>
+                                </foreach>
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="control-group">
+                        <label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">备注</font></font></label>
+                        <div class="controls">
+                            <textarea class="m-wrap" rows="3" id="an_remark" placeholder="显示至用户订单,空则不显示"></textarea>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >取 消</button>
+                <button type="button" class="btn green" id='modal_guid_yes'  style='margin-left:9px'>确 定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+
+<!-- modal -->
+<div class="modal fade" id = 'modal_wuliu' style="display: none;">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                </button>
+                <i class="fa fa-question" style='margin-top:5px; width:30px; float:left;'></i>
+                <h4 class="modal-title" id='modal_wuliu_title'>物流信息</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+                <p>快递公司：<span id="express_name"></span></p>
+                <p>快递单号：<span id="express_number"></span></p>
+
+                <hr>
+                <div>
+                    <p id="no_wuliu" style="text-align: center;margin: 10px 0;display: none;">未查询到物流信息！</p>
+
+                    <table style="line-height: 60px;" id="express_con">
+
+                    </table>
+                </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal" >关 闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- ./modal -->
+
+
+
+<!-- modal -->
+<div id='modal_video' style="display: none;width: 100%;height: 100%;background: rgba(0,0,0,0.8);z-index: 10000000;position: fixed;top: 0;">
+
+    <div style="margin: 80px auto 0;text-align: center;position: relative;" >
+        <div style="position:absolute;top:-58px;right: 30%;">
+            <i class="icon-remove-circle" style="font-size: 50px;color: #f00;"></i>
+        </div>
+        <div id="video_url" style="display: inline-block;max-height: 800px;">
+
+        </div>
+    </div>
+</div>
+<!-- ./modal -->
+
+<include file="common/footer"/>
+<include file="common/tz"/>
+
+<!-- END JAVASCRIPTS -->
+
+</body>
+
+
+<!-- END BODY -->
+
+</html>
+<script>
+
+    function UserGuid(id,number){
+        $('#guid_number').html(number);
+        $('#modal_guid').modal('show');
+        $('#modal_guid_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            AnPai(id);
+        };
+    }
+
+    $('input:radio[name="optionsRadios1"]').change( function(){
+        $('.show_all').hide();
+        if($(this).val()==2){
+            $('.show_'+$(this).val()).show();
+        }
+    })
+    function fahuo(id,money){
+        $('#tui_money').html(money);
+        $('#modal_fahuo').modal('show');
+        $('#modal_fahuo_yes')[0].onclick=function(){
+            //$('#modal_confirm').modal('hide');
+            Edittui(id)
+        };
+    }
+
+    function wuliu(id){
+        $('#modal_wuliu').modal('show');
+        $('#no_wuliu').hide();
+        $('#express_con').html('');
+        $('#express_name').html('');
+        $('#express_number').html('');
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/wuliu'); ?>",
+            data:{order_id:id},
+            success: function (result) {
+                if(result.code == 1){
+                    $('#express_name').html(result.head_info.express_name);
+                    $('#express_number').html(result.head_info.express_number);
+                    $.each(result.list, function(index, value) {
+                        $('#express_con').append('<tr>' +
+                            '<td style="width: 150px;vertical-align: top;">'+value.time+'</td>' +
+                            '<td style="line-height: 25px;">'+value.context+'</td>' +
+                            '</tr>');
+                    });
+                }else{
+                    $('#no_wuliu').show().html(result.res);
+                }
+            }
+        });
+    }
+
+    function Edittui(id,money){
+        var type = $("input[name='optionsRadios1']:checked").val();
+        var money = 0;
+        if(type==2){
+            money = $.trim($("*[name='money_tui']").val());
+        }
+        showConfirm('<i class="icon-exclamation-sign"></i> 退款','确定要退款给买家吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/'.$at.'/edittui'); ?>",
+                data:{id:id,type:type,money:money},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function AnPai(id){
+        var driver_id = $('#driver_id').val();
+        var vehicle_id = $('#vehicle_id').val();
+        var remark = $('#an_remark').val();
+        if(driver_id=='0'){
+            showAlert('请选择司机');
+            return false;
+        }
+        if(vehicle_id=='0'){
+            showAlert('请选择车辆');
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo U('home/'.$at.'/anpai'); ?>",
+            data:{id:id,driver_id:driver_id,vehicle_id:vehicle_id,remark:remark},
+            success: function (result) {
+                if(result.code == 1){
+                    showAlert(result.res);
+                    window.location.reload();
+                }else{
+                    showAlert(result.res);
+                }
+            }
+        });
+    }
+
+    function _deleteUser(id,name,db){
+        showConfirm('<i class="icon-exclamation-sign"></i> 删除'+name,'确定要删除'+name+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/delete'); ?>",
+                data:{id:id,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function EditAll(id,str,title,db,value){
+
+        showConfirm('<i class="icon-exclamation-sign"></i> '+title,'确定要 '+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editall'); ?>",
+                data:{id:id,str:str,db:db,value:value},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+    function EditStatus(id,str,title,db){
+        var name;
+        if(str=='1'){
+            name = '显示';
+        }else{
+            name = '隐藏';
+        }
+        showConfirm('<i class="icon-exclamation-sign"></i> '+name+title,'确定要'+name+title+' 吗?',function(){
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo U('home/public/editshow'); ?>",
+                    data:{id:id,str:str,db:db},
+                success: function (result) {
+                    if(result.code == 1){
+                        showAlert(result.res);
+                        window.location.reload();
+                    }else{
+                        showAlert(result.res);
+                    }
+                }
+            });
+        });
+    }
+
+
+    function EditData(id)
+    {
+        location.href = "<?php echo U('home/GameAdd/index/edit_id/"+id+"');?>";
+    }
+</script>

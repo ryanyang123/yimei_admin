@@ -1,0 +1,70 @@
+.img45{
+    width: 45px;
+    height: 45px;
+}
+
+.num,.prev ,.next,.end ,.first{
+    border: 1px solid #ddd;
+    padding: 7px 12px;
+    color:#0d638f;
+    /*border-left-width: 0;*/
+
+}
+.current{
+    border: 1px solid #ddd;
+    padding: 7px 12px;
+    color:#999;
+    background: #f5f5f5;
+}
+a.num,a.prev,a.next,a.end ,a.first{
+    text-decoration: none;
+}
+.rows{
+    clear: both;
+    margin-top: 20px;
+    text-align: center;
+}
+.page_div{
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+}
+
+.no_data{
+    text-align: center;
+    line-height: 50px;
+}
+
+#uploadImage, #uploadImage2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.dan_upload_img_div1{
+    width: 200px;
+    height: 150px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    padding: 4px;
+}
+#uploadPreview{
+    max-width: 200px; max-height: 150px; line-height: 20px;margin-bottom: 5px;
+}
+.tz_input{
+    width: 50px;
+    margin-bottom: 1px!important;
+}
+.tz_a_all{
+    border: 1px solid #ddd;
+    padding: 7px 12px;
+    color: #0d638f;
+    text-decoration: none;
+}
